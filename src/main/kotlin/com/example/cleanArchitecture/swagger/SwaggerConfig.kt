@@ -30,6 +30,8 @@ class SwaggerConfig : WebMvcConfigurationSupport() {
 
 
 
+
+
     private fun metaData(): ApiInfo {
         return ApiInfoBuilder()
             .title("Spring Boot REST API")
