@@ -20,17 +20,34 @@ repositories {
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-parent:2.4.0")
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+	implementation("org.springframework.boot:spring-boot-starter-data-rest")
+	//implementation("org.springframework.boot:spring-boot-starter-parent:1.3.1.RELEASE")
+	//implementation("org.springframework.plugin:spring-plugin-core:2.0.0.RELEASE")
+
+	//implementation("org.postgresql:postgresql:9.4-1200-jdbc4")
+
 	//implementation("org.springframework.boot:spring-boot-starter-security")
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.2.1")
-	implementation("io.swagger:swagger-annotations:1.6.2")
-	//implementation("io.springfox:springfox-swagger2:3.0.0")
-	//implementation("io.springfox:springfox-swagger2:2.9.0")
-	//implementation("io.springfox:springfox-swagger-ui:2.9.0")
+	//implementation("io.swagger:swagger-annotations:1.6.2")
+
+	//implementation("io.springfox:springfox-swagger2:2.9.2")
+	//implementation("io.springfox:springfox-swagger-ui:2.9.2")
+
 	implementation("io.springfox:springfox-boot-starter:3.0.0")
+
+	//implementation("io.springfox:springfox-swagger2:3.0.0")
+	//implementation("io.springfox:springfox-swagger-ui:3.0.0")
+	//implementation("io.springfox:springfox-data-rest:3.0.0")
+
+
+	//implementation("io.springfox:springfox-boot-starter:3.0.0")
+	//implementation("io.springfox:springfox-boot-starter:2.9.0")
+
+
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.springframework.restdocs:spring-restdocs-mockmvc")
 	//testImplementation("org.springframework.security:spring-security-test")

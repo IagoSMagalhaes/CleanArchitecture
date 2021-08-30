@@ -1,6 +1,6 @@
 package com.example.cleanArchitecture.controller
 
-import io.swagger.annotations.ApiOperation
+//import io.swagger.annotations.ApiOperation
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -8,8 +8,7 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 //@ApiOper
-@ApiOperation(tags = ["User CRUD"],
-	value = "Layer responsible to recevie request to manager Create/Read/Update/Delete the User entity")
+//@ApiOperation(tags = ["User CRUD"], value = "Layer responsible to recevie request to manager Create/Read/Update/Delete the User entity")
 class UserController() {
 
 	@GetMapping("user/v1")
