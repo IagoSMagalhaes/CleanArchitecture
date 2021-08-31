@@ -1,7 +1,9 @@
 package com.example.cleanArchitecture.service
 
-import com.example.cleanArchitecture.controller.RequestPostUserEntity
-import com.example.cleanArchitecture.controller.ResponseGetUserEntity
+import com.example.cleanArchitecture.entities.dto.request.RequestDeleteUserEntity
+import com.example.cleanArchitecture.entities.dto.request.RequestPostUserEntity
+import com.example.cleanArchitecture.entities.dto.request.RequestPutUserEntity
+import com.example.cleanArchitecture.entities.dto.response.ResponseGetUserEntity
 
 
 interface UserService {
@@ -10,7 +12,7 @@ interface UserService {
 
 	fun post(body: RequestPostUserEntity)
 
-	fun put()
+    fun put(body: RequestPutUserEntity)
 
-	fun delete()
+	fun delete(body: RequestDeleteUserEntity)
 }
