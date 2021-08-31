@@ -1,24 +1,26 @@
 package com.example.cleanArchitecture.repository.domain
 
-import org.springframework.data.annotation.Id
+import com.example.cleanArchitecture.controller.UserEntity
 import javax.persistence.*
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Table;
-/*
 
 @Entity
-@Table(name = "tb_usuarios")
-@Embeddable
-class User(
+@Table(schema = "public", name = "tb_usuario")
+class User(val ids: Long?, val names: String) {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_usuario")
-	val id: Int? = null,
+
+	@javax.persistence.Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id_usuario", nullable = false)
+	var id: Long? = null
 
 	@Column(name = "nome")
-	val name: String? = null)
+	val name: String? = null
+}
 
- */
+
+fun List<User>.toEntity() = map { it.toEntity() }
+
+fun User.toEntity() = UserEntity(id = id, name = name)
+
+
