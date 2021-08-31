@@ -11,7 +11,5 @@ class PutUserEntity(val name: String? = null,
 
 fun PutUserEntity.toEntity(id: Long) = UserEntity(
                                             id = id,
-                                            name = name,
-                                            cellphone = cellphone,
-                                            email = email,
-                                            active = active)
+                                            name = this.name?.let { it },
+                                            cellphone = this.cellphone?.let { it })

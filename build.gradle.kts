@@ -18,26 +18,40 @@ repositories {
 }
 
 dependencies {
+	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+}
 
+dependencies {
+
+
+	//REPOSITORY
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("org.springframework.boot:spring-boot-starter-data-rest")
-
 	implementation("org.postgresql:postgresql:9.4-1200-jdbc4")
 
+
+	//SEGURANCA
 	//implementation("org.springframework.boot:spring-boot-starter-security")
 
+	//VALIDATION
 	implementation("org.springframework.boot:spring-boot-starter-validation")
 	implementation("org.springframework.boot:spring-boot-starter-web")
+
+
+	//KOTLIN
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.2.1")
 
 
-	//Swagger
+	//SWAGGER
 	implementation("org.springframework.boot:spring-boot-starter-parent:2.4.0")
 	implementation("io.springfox:springfox-boot-starter:3.0.0")
 	implementation("io.springfox:springfox-swagger2:3.0.0")
+	implementation("io.springfox:springfox-swagger-ui:2.9.2")
+
+
 	implementation("io.springfox:springfox-swagger-ui:2.9.2")
 
 

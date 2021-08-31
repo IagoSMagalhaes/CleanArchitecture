@@ -6,11 +6,11 @@ import org.springframework.boot.runApplication
 import org.springframework.context.annotation.ComponentScan
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories
 import org.springframework.web.servlet.config.annotation.EnableWebMvc
-import springfox.documentation.swagger2.annotations.EnableSwagger2
+//import springfox.documentation.swagger2.annotations.EnableSwagger2
 
 
 @SpringBootApplication
-@EnableSwagger2
+//@EnableSwagger2
 @EnableWebMvc
 @ComponentScan(value = ["com.example.cleanArchitecture"])
 @EntityScan(basePackages = ["com.example.cleanArchitecture.repository.domain"])
