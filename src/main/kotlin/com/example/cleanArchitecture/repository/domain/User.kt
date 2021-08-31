@@ -1,24 +1,68 @@
 package com.example.cleanArchitecture.repository.domain
 
-import org.springframework.data.annotation.Id
+import com.example.cleanArchitecture.entities.domain.UserEntity
+import com.sun.istack.NotNull
+import java.time.LocalDateTime
 import javax.persistence.*
+import javax.validation.constraints.Min
+import javax.validation.constraints.Size
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Table;
-/*
 
 @Entity
-@Table(name = "tb_usuarios")
-@Embeddable
-class User(
+@Table(schema = "public", name = "tb_usuario")
+class User (
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_usuario")
-	val id: Int? = null,
 
+	@javax.persistence.Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id_usuario", nullable = false)
+	var id: Long? = null,
+
+	@NotNull
 	@Column(name = "nome")
-	val name: String? = null)
+	@Size(min=2, max=30)
+	val name: String? = null,
 
- */
+	@Column(name = "telefone")
+	@Min(18)
+	val cellphone: String? = null,
+
+	@Column(name = "email")
+	val email: String? = null,
+
+	@Column(name = "ativo")
+	val active: Boolean? = null,
+
+	@Column(name = "dh_criacao")
+	val dateCreate: LocalDateTime? = LocalDateTime.now(),
+
+	@Column(name = "dh_alteracao")
+	val dateUpdate: LocalDateTime? = null,
+
+	@Column(name = "dh_exclusao")
+	val dateExclude: LocalDateTime? = null)
+
+
+fun List<User>.toEntity() = map { it.toEntity() }
+
+fun User.toEntity() = UserEntity(id = id,
+								 name = name,
+								 cellphone = cellphone,
+								 email = email,
+								 active = active,
+								 dateCreate = dateCreate,
+								 dateUpdate = dateUpdate,
+								 dateExclude = dateExclude)
+
+fun List<UserEntity>.toDomain() = map { it.toDomain() }
+
+fun UserEntity.toDomain() = User(id = id,
+								 name = name,
+								 cellphone = cellphone,
+								 email = email,
+								 active = active,
+								 dateCreate = dateCreate,
+								 dateUpdate = dateUpdate,
+								 dateExclude = dateExclude)
+
+
