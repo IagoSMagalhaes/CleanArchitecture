@@ -38,7 +38,7 @@
 ## Objetivos
 
 
-Conhecer o ecossistema Spring, a linguagem Kotlin e a arquitetura limpa na prática
+Abordar os conteudos: Ecossistema Spring, Kotlin e o Clean Architectura e outros Design Pattern's na prática
 
 
 
