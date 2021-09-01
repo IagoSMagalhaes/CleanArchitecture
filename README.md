@@ -67,13 +67,13 @@ O termo se refere à preparação de backlog  (que são os requisitos ou lista d
 
 ###### Premissas
 
-Gerenciar dados dos usuarios;
+    Gerenciar dados dos usuarios;
 
-DataBase própria;
+    DataBase própria;
 
-Criação do usuario no LDAP;
+    Criação do usuario no LDAP;
 
-Notificar em Tópico os usuarios criados;
+    Notificar em Tópico os usuarios criados;
 
 
 ###### Ações
