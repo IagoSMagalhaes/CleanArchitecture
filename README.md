@@ -62,7 +62,7 @@ O termo se refere à preparação de backlog  (que são os requisitos ou lista d
 
     [Design Pattern's]           Clean Architecture / Strategy / Chain Of Responsability / Builder
 
-    [Documentação do Projeto]    Swagger
+    [Documentação]               Swagger
 
 
 ###### Premissas
