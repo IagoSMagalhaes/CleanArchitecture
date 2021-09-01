@@ -2,16 +2,37 @@
 
 ### Reference Documentation
 
-* [Objetivos](Objetivos)
+* [Objetivos](#Objetivos)
 
 
-* [Grooming](##Grooming)
+* [Grooming](#Grooming)
 
 
-* [Banco de Dados](Banco de Dados)
+* [Sistema](#Sistema)
 
 
-* [Design Pattern's](Design Pattern's)
+* [Premissas](#Premissas)
+
+
+* [Ações](#Ações)
+
+
+* [Cenarios](#Cenarios)
+
+
+* [Filas](#Filas)
+
+
+* [Banco de Dados](#Banco de Dados)
+
+
+* [Estrutura de Packages / Padrão nomeclatura arquivos](#)
+
+
+* [Padrão de logs](#Padrão de logs)
+
+
+* [Links](Design Pattern's)
 
 
 ## Objetivos
@@ -173,7 +194,7 @@ Notificar em Tópico os usuarios criados;
         }
 
 
-#### Design Pattern's
+#### Link's reference
 
         Clean Architecture    https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html
 
@@ -181,9 +202,10 @@ Notificar em Tópico os usuarios criados;
 
         Builder               https://pt.wikipedia.org/wiki/Builder
 
+        Swagger               https://medium.com/@raphaelbluteau/spring-boot-swagger-documentando-sua-api-automaticamente-27903293aeb6
 
 
 #### Personas
 
 
-Robert Martin -> Clean Code   Clean Architecture
+Robert Martin -> Clean Code && Clean Architecture
