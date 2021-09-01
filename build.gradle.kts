@@ -18,16 +18,6 @@ repositories {
 }
 
 dependencies {
-	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-}
-
-dependencies {
-
-
-	//REPOSITORY
-	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-	implementation("org.springframework.boot:spring-boot-starter-data-rest")
-	implementation("org.postgresql:postgresql:9.4-1200-jdbc4")
 
 
 	//SEGURANCA
@@ -44,20 +34,9 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.2.1")
 
-
-	//SWAGGER
-	implementation("org.springframework.boot:spring-boot-starter-parent:2.4.0")
-	implementation("io.springfox:springfox-boot-starter:3.0.0")
-	implementation("io.springfox:springfox-swagger2:3.0.0")
-	implementation("io.springfox:springfox-swagger-ui:2.9.2")
-
-
-	implementation("io.springfox:springfox-swagger-ui:2.9.2")
-
-
 	//Test
-	testImplementation("org.springframework.boot:spring-boot-starter-test")
-	testImplementation("org.springframework.restdocs:spring-restdocs-mockmvc")
+	//testImplementation("org.springframework.boot:spring-boot-starter-test")
+	//testImplementation("org.springframework.restdocs:spring-restdocs-mockmvc")
 	//testImplementation("org.springframework.security:spring-security-test")
 
 
@@ -73,4 +52,34 @@ tasks.withType<KotlinCompile> {
 
 tasks.withType<Test> {
 	useJUnitPlatform()
+}
+
+
+
+
+allprojects {
+	group = "com.example"
+	version = "1.0.0"
+
+	tasks.withType<JavaCompile> {
+		sourceCompatibility = "1.8"
+		targetCompatibility = "1.8"
+	}
+
+	tasks.withType<KotlinCompile> {
+		kotlinOptions {
+			freeCompilerArgs = listOf("-Xjsr305=strict")
+			jvmTarget = "1.8"
+		}
+	}
+}
+
+subprojects {
+	repositories {
+		mavenCentral()
+	}
+
+	apply {
+		plugin("io.spring.dependency-management")
+	}
 }
