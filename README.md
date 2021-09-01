@@ -45,7 +45,7 @@ Abordar os conteudos: Ecossistema Spring, Kotlin e o Clean Architectura e outros
 ## Grooming
 
 
-O termo se refere à preparação de backlog  (que são os requisitos ou lista de pendências dentro do Scrum) e é mais adequadamente conhecido como refinamento. É o ato de detalhar, entender mais profundamente, adicionar características, estimar, priorizar e manter o backlog do produto vivo.
+O termo se refere à preparação de backlog  (que são os requisitos ou lista de pendências) e é mais adequadamente conhecido como refinamento. É o ato de detalhar, entender mais profundamente, adicionar características, estimar, priorizar e manter o backlog do produto vivo.
 
 
 ##### Sistema
