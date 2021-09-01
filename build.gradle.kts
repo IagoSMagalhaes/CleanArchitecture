@@ -9,7 +9,7 @@ plugins {
 	kotlin("plugin.jpa") version "1.5.21"
 }
 
-group = "com.example.cleanArchitecture"
+group = "com.example.com.example.cleanArchitecture"
 version = "0.0.1-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_1_8
 
@@ -26,6 +26,8 @@ dependencies {
 	//VALIDATION
 	implementation("org.springframework.boot:spring-boot-starter-validation")
 	implementation("org.springframework.boot:spring-boot-starter-web")
+	implementation(project(":web"))
+	implementation(project(":repository"))
 
 
 	//KOTLIN
@@ -33,15 +35,21 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.2.1")
+	implementation("org.springframework.boot:spring-boot-starter-data-jpa:2.5.4")
 
-	//Test
-	//testImplementation("org.springframework.boot:spring-boot-starter-test")
-	//testImplementation("org.springframework.restdocs:spring-restdocs-mockmvc")
-	//testImplementation("org.springframework.security:spring-security-test")
+	//implementation("io.springfox:springfox-swagger2:2.9.2")
+	//implementation("io.springfox:springfox-swagger-ui:2.9.2")
+	//implementation("org.springframework.boot:spring-boot-starter-parent:2.4.0")
+	//implementation("io.springfox:springfox-boot-starter:3.0.0")
+	//implementation("org.springframework.boot:spring-boot-starter-data-rest:2.5.4")
+	//implementation("org.springframework.boot:spring-boot-starter-web:2.5.4")
+
 
 
 
 }
+
+
 
 tasks.withType<KotlinCompile> {
 	kotlinOptions {
@@ -58,8 +66,8 @@ tasks.withType<Test> {
 
 
 allprojects {
-	group = "com.example"
-	version = "1.0.0"
+	group = "com.example.com.example.cleanArchitecture"
+	version = "0.0.1-SNAPSHOT"
 
 	tasks.withType<JavaCompile> {
 		sourceCompatibility = "1.8"
@@ -72,14 +80,37 @@ allprojects {
 			jvmTarget = "1.8"
 		}
 	}
+
 }
 
+
+
 subprojects {
+	group = "com.example.cleanArchitecture"
+	version = "0.0.2-SNAPSHOT"
 	repositories {
 		mavenCentral()
+		mavenLocal()
 	}
 
 	apply {
+		plugin("java")
+		plugin("kotlin")
+		plugin("kotlin-allopen")
 		plugin("io.spring.dependency-management")
 	}
+
+	sourceSets {
+		//main.java.srcDirs += "src/main/kotlin"
+	}
+
+	allOpen {
+		annotation("org.springframework.stereotype.Component")
+		annotation("org.springframework.stereotype.Service")
+		annotation("org.springframework.stereotype.Repository")
+		annotation("org.springframework.stereotype.Configuration")
+		annotation("org.springframework.stereotype.ComponentScan")
+
+	}
+
 }
