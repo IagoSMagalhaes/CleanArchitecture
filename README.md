@@ -23,16 +23,16 @@
 * [Filas](#Filas)
 
 
-* [Banco de Dados](#Banco de Dados)
+* [Banco de Dados](#BancoDeDados)
 
 
 * [Estrutura de Packages / Padrão nomeclatura arquivos](#)
 
 
-* [Padrão de logs](#Padrão de logs)
+* [Padrão de logs](#Padrãodelogs)
 
 
-* [Links](Design Pattern's)
+* [Link's reference](#Link'sreference)
 
 
 ## Objetivos
