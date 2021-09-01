@@ -38,7 +38,7 @@
 ## Objetivos
 
 
-Abordar os conteudos: Ecossistema Spring, Kotlin e o Clean Architectura e outros Design Pattern's na prática
+Abordar os conteudos: Ecossistema Spring, Kotlin, Clean Architectura e outros Design Pattern's na prática
 
 
 
