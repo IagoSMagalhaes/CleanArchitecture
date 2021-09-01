@@ -162,18 +162,51 @@ O termo se refere à preparação de backlog  (que são os requisitos ou lista d
             Exception:
                 UserPostException: -> Classe de exceção;
 
-        Usecases:
-            Service:
-                UserService -> Interface;
-                UserServiceImpl -> Implementação;               
-
 
         Repository:
             Repository:
                 UserRepository -> Interface de comunicação com BD;
+            Domain
+                User -> Classe de referencia ao BD;
+            Config
+                DataBaseConfig -> Bean de configuração do BD
+
+
+        Usecases:
+            Service:
+                UserService -> Interface;
+                UserServiceImpl -> Implementação;          
+
+
+        Web:
+            Controller:
+                UserController -> Camada responsável por receber as requisições;
+            Config
+                SwaggerConfig -> Bean responsavel pela config do Swagger
+
+
+
+
 
 
         GatewayRepository:
+            LdapRepository:
+                GatewayLdapRepository -> Interface de comunicação entre os módulos
+
+            NotifyRepository:
+                GatewayNotifyRepository -> Interface de comunicação entre os módulos
+
+
+        Other'sRepositoies: ex: LDAP
+            Gateway:
+                GatewayLdapRepositoryImpl -> Implementação do acesso ao módulo do LDAP
+
+            Service:
+                LdapService -> Interface da camada de negócio
+                LdapServiceImpl -> Impl da camada de negócio
+
+            Client:
+                LdapClient -> Client de integração com LDAP            
         
 
 
