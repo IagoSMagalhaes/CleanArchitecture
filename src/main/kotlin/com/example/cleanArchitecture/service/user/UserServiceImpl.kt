@@ -1,4 +1,4 @@
-package com.example.cleanArchitecture.service
+package com.example.cleanArchitecture.service.user
 
 import com.example.cleanArchitecture.entities.dto.request.RequestDeleteUserEntity
 import com.example.cleanArchitecture.entities.dto.request.RequestPostUserEntity
@@ -93,6 +93,24 @@ class UserServiceImpl(val repository: UserRepository) : UserService {
 		}.onSuccess {
 
 			LOG.info("END PUT User")
+
+		}
+
+	}
+
+	override fun block(document: String) {
+
+		runCatching {
+			LOG.info("START PUT Block User: {}", document)
+
+
+		}.onFailure {
+			LOG.error("ERROR PUT Block User: {} message: {} causeMessage: {}", document, it.cause!!.message)
+
+			throw UserPutException(it, HttpStatus.INTERNAL_SERVER_ERROR, "USER_PUT_EXCEPTION", "user.put.exception")
+
+		}.onSuccess {
+			LOG.info("END PUT Block User: {}", document)
 
 		}
 

@@ -60,6 +60,8 @@ O termo se refere à preparação de backlog  (que são os requisitos ou lista d
 
     [Autenticação]               SpringSecurity / oAuth2 / JWT
 
+    [Testes Unitários]           JUnit
+
     [Design Pattern's]           Clean Architecture / Strategy / Chain Of Responsability / Builder
 
     [Documentação do Projeto]    Swagger
@@ -203,6 +205,8 @@ O termo se refere à preparação de backlog  (que são os requisitos ou lista d
         Builder               https://pt.wikipedia.org/wiki/Builder
 
         Swagger               https://medium.com/@raphaelbluteau/spring-boot-swagger-documentando-sua-api-automaticamente-27903293aeb6
+
+        JUnit                 https://medium.com/@gcbrandao/testando-uma-api-rest-spring-boot-2-com-junit5-e-mockmvc-db603c65a306
 
 
 #### Personas

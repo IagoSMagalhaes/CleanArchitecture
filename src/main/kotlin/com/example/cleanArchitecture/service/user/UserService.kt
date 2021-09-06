@@ -1,4 +1,4 @@
-package com.example.cleanArchitecture.service
+package com.example.cleanArchitecture.service.user
 
 import com.example.cleanArchitecture.entities.dto.request.RequestDeleteUserEntity
 import com.example.cleanArchitecture.entities.dto.request.RequestPostUserEntity
@@ -13,6 +13,8 @@ interface UserService {
 	fun post(body: RequestPostUserEntity)
 
     fun put(body: RequestPutUserEntity)
+
+    fun block(document: String)
 
 	fun delete(body: RequestDeleteUserEntity)
 }

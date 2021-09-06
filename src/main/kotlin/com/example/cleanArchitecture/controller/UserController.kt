@@ -3,7 +3,8 @@ package com.example.cleanArchitecture.controller
 import com.example.cleanArchitecture.entities.dto.request.RequestDeleteUserEntity
 import com.example.cleanArchitecture.entities.dto.request.RequestPostUserEntity
 import com.example.cleanArchitecture.entities.dto.request.RequestPutUserEntity
-import com.example.cleanArchitecture.service.UserService
+import com.example.cleanArchitecture.service.user.UserService
+import io.swagger.annotations.Api
 import io.swagger.annotations.ApiOperation
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.*
 
 
 @RestController
-@ApiOperation(tags = ["User CRUD"], value = "Layer responsible to recevie request to manager Create/Read/Update/Delete the User entity")
+@Api(tags = ["User CRUD"], description = "Layer responsible to recevie request to manager Create/Read/Update/Delete the User entity")
 class UserController(val service: UserService) {
 
 	@GetMapping("user/v1/buscar")
@@ -39,7 +40,10 @@ class UserController(val service: UserService) {
 
 	@PutMapping("user/v1/block")
 	@ApiOperation("Block user by Document", response = HttpStatus::class)
-	fun block(@RequestBody body: RequestPutUserEntity): ResponseEntity<HttpStatus> {
+	fun block(@RequestBody document: String): ResponseEntity<HttpStatus> {
+
+		service.block(document)
+
 		return ResponseEntity.ok(HttpStatus.OK)
 	}
 
