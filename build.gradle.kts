@@ -9,7 +9,7 @@ plugins {
 	kotlin("plugin.jpa") version "1.5.21"
 }
 
-group = "com.example.cleanArchitecture"
+group = "com.asset.management"
 version = "0.0.1-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_1_8
 
