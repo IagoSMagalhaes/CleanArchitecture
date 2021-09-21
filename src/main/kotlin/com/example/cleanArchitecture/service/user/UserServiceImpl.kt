@@ -1,14 +1,16 @@
-package com.example.cleanArchitecture.service
+package com.example.cleanArchitecture.service.user
 
 import com.example.cleanArchitecture.entities.dto.request.RequestDeleteUserEntity
-import com.example.cleanArchitecture.entities.dto.request.RequestPostUserEntity
 import com.example.cleanArchitecture.entities.dto.request.RequestPutUserEntity
 import com.example.cleanArchitecture.entities.dto.request.toEntity
-import com.example.cleanArchitecture.entities.dto.response.ResponseGetUserEntity
 import com.example.cleanArchitecture.entities.exceptions.UserDeleteException
 import com.example.cleanArchitecture.entities.exceptions.UserGetException
 import com.example.cleanArchitecture.entities.exceptions.UserPostException
 import com.example.cleanArchitecture.entities.exceptions.UserPutException
+import com.example.cleanArchitecture.entities.user.domain.UserEntity
+import com.example.cleanArchitecture.entities.user.dto.request.RequestPostUserEntity
+import com.example.cleanArchitecture.entities.user.dto.request.toEntity
+import com.example.cleanArchitecture.entities.user.dto.response.ResponseGetUserEntity
 import com.example.cleanArchitecture.repository.domain.User
 import com.example.cleanArchitecture.repository.domain.toDomain
 import com.example.cleanArchitecture.repository.domain.toEntity
@@ -56,7 +58,7 @@ class UserServiceImpl(val repository: UserRepository) : UserService {
 
 		runCatching {
 
-			val domain = body.user.toEntity().toDomain()
+			val domain = body.toEntity().toDomain()
 
 			repository.save(domain)
 
@@ -119,5 +121,9 @@ class UserServiceImpl(val repository: UserRepository) : UserService {
 			LOG.info("END DELETE User")
 		}
 
+	}
+
+	override fun getFull(id: Long): UserEntity {
+		return repository.getById(id).toEntity()
 	}
 }

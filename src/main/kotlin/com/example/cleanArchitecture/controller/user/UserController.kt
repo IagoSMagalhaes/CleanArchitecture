@@ -1,9 +1,9 @@
-package com.example.cleanArchitecture.controller
+package com.example.cleanArchitecture.controller.user
 
 import com.example.cleanArchitecture.entities.dto.request.RequestDeleteUserEntity
-import com.example.cleanArchitecture.entities.dto.request.RequestPostUserEntity
 import com.example.cleanArchitecture.entities.dto.request.RequestPutUserEntity
-import com.example.cleanArchitecture.service.UserService
+import com.example.cleanArchitecture.entities.user.dto.request.RequestPostUserEntity
+import com.example.cleanArchitecture.service.user.UserService
 import io.swagger.annotations.ApiOperation
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*
 @ApiOperation(tags = ["User CRUD"], value = "Layer responsible to recevie request to manager Create/Read/Update/Delete the User entity")
 class UserController(val service: UserService) {
 
-	@GetMapping("user/v1/buscar")
+	@GetMapping("user/v1")
 	@ApiOperation("Find all user's ", response = HttpStatus::class)
 	fun get() = ResponseEntity.ok(service.get())
 

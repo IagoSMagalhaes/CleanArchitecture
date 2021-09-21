@@ -1,6 +1,6 @@
 package com.example.cleanArchitecture.repository.domain
 
-import com.example.cleanArchitecture.entities.domain.UserEntity
+import com.example.cleanArchitecture.entities.user.domain.UserEntity
 import com.sun.istack.NotNull
 import java.time.LocalDateTime
 import javax.persistence.*
@@ -33,11 +33,17 @@ class User (
 	@Column(name = "ativo")
 	val active: Boolean? = null,
 
+	@Lob
+	@Basic(fetch = FetchType.LAZY)
+	@Column(name = "image")
+	val image: ByteArray? = null,
+
 	@Column(name = "dh_criacao")
 	val dateCreate: LocalDateTime? = LocalDateTime.now(),
 
 	@Column(name = "dh_alteracao")
 	val dateUpdate: LocalDateTime? = null,
+
 
 	@Column(name = "dh_exclusao")
 	val dateExclude: LocalDateTime? = null)
@@ -50,6 +56,7 @@ fun User.toEntity() = UserEntity(id = id,
 								 cellphone = cellphone,
 								 email = email,
 								 active = active,
+								 image = image,
 								 dateCreate = dateCreate,
 								 dateUpdate = dateUpdate,
 								 dateExclude = dateExclude)
@@ -61,6 +68,7 @@ fun UserEntity.toDomain() = User(id = id,
 								 cellphone = cellphone,
 								 email = email,
 								 active = active,
+								 image = image,
 								 dateCreate = dateCreate,
 								 dateUpdate = dateUpdate,
 								 dateExclude = dateExclude)

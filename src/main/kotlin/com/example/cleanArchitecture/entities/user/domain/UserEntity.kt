@@ -1,4 +1,4 @@
-package com.example.cleanArchitecture.entities.domain
+package com.example.cleanArchitecture.entities.user.domain
 
 import java.time.LocalDateTime
 
@@ -7,6 +7,7 @@ class UserEntity(val id: Long? = null,
                  val cellphone: String? = null,
                  val email: String? = null,
                  val active: Boolean? = null,
+                 val image: ByteArray? = null,
                  val dateCreate: LocalDateTime? = LocalDateTime.now(),
                  val dateUpdate: LocalDateTime? = null,
                  val dateExclude: LocalDateTime? = null) {

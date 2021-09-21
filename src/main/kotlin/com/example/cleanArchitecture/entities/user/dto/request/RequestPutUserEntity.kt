@@ -1,6 +1,6 @@
 package com.example.cleanArchitecture.entities.dto.request
 
-import com.example.cleanArchitecture.entities.domain.UserEntity
+import com.example.cleanArchitecture.entities.user.domain.UserEntity
 
 class RequestPutUserEntity(val user: PutUserEntity)
 
