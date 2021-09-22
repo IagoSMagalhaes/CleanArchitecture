@@ -1,4 +1,4 @@
-package com.example.cleanArchitecture.repository.domain
+package com.example.cleanArchitecture.repository.user.domain
 
 import com.example.cleanArchitecture.entities.user.domain.UserEntity
 import com.sun.istack.NotNull

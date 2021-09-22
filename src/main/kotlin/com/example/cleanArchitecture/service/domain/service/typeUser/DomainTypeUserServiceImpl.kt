@@ -1,4 +1,4 @@
-package com.example.cleanArchitecture.service.domain.service.userType
+package com.example.cleanArchitecture.service.domain.service.typeUser
 
 import com.example.cleanArchitecture.entities.domain.domain.DomainEntity
 import com.example.cleanArchitecture.service.domain.service.AbstractDomainService
@@ -10,6 +10,8 @@ class DomainTypeUserServiceImpl() : AbstractDomainService {
 
 	//TODO - IMPLEMENTAR BUSCANDO DO REPOSITORY
 	override fun get(domain: String, query: String?) =
-		listOf(DomainEntity("São Paulo", "SP"))
+		listOf(DomainEntity("Administrador", "ADM"),
+			   DomainEntity("Funcionario", "FUNC"),
+			   DomainEntity("Convidado", "CONV"))
 
 }

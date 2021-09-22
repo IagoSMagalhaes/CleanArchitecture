@@ -1,4 +1,4 @@
-package com.example.cleanArchitecture.service.user
+package com.example.cleanArchitecture.service.user.impl
 
 import com.example.cleanArchitecture.entities.dto.request.RequestDeleteUserEntity
 import com.example.cleanArchitecture.entities.dto.request.RequestPutUserEntity
@@ -11,10 +11,11 @@ import com.example.cleanArchitecture.entities.user.domain.UserEntity
 import com.example.cleanArchitecture.entities.user.dto.request.RequestPostUserEntity
 import com.example.cleanArchitecture.entities.user.dto.request.toEntity
 import com.example.cleanArchitecture.entities.user.dto.response.ResponseGetUserEntity
-import com.example.cleanArchitecture.repository.domain.User
-import com.example.cleanArchitecture.repository.domain.toDomain
-import com.example.cleanArchitecture.repository.domain.toEntity
-import com.example.cleanArchitecture.repository.repository.UserRepository
+import com.example.cleanArchitecture.repository.user.domain.User
+import com.example.cleanArchitecture.repository.user.domain.toDomain
+import com.example.cleanArchitecture.repository.user.domain.toEntity
+import com.example.cleanArchitecture.repository.user.repository.UserRepository
+import com.example.cleanArchitecture.service.user.UserService
 import jdk.nashorn.internal.runtime.logging.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.http.HttpStatus
