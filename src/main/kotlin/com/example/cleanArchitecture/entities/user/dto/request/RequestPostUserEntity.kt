@@ -8,10 +8,10 @@ class RequestPostUserEntity(
                      val cellphone: String,
                      val email: String,
                      val active: Boolean? = true,
-                     val image: String?)
+                     val image: String? = null)
 
 fun RequestPostUserEntity.toEntity() = UserEntity(name = name,
                                            cellphone = cellphone,
                                            email = email,
                                            active = active,
-                                            image = Base64.getDecoder().decode(image))
+                                            image = image?.let { Base64.getDecoder().decode(it)})

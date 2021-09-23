@@ -15,6 +15,7 @@ import com.example.cleanArchitecture.repository.user.domain.User
 import com.example.cleanArchitecture.repository.user.domain.toDomain
 import com.example.cleanArchitecture.repository.user.domain.toEntity
 import com.example.cleanArchitecture.repository.user.repository.UserRepository
+import com.example.cleanArchitecture.service.auth.AuthService
 import com.example.cleanArchitecture.service.user.UserService
 import jdk.nashorn.internal.runtime.logging.Logger
 import org.slf4j.LoggerFactory
