@@ -38,11 +38,7 @@
 ## Objetivos
 
 
-<<<<<<< HEAD
 Abordar os conteudos: Ecossistema Spring, Kotlin e o Clean Architectura e outros Design Pattern's na prática
-=======
-Abordar os conteudos: Ecossistema Spring, Kotlin, Clean Architectura e outros Design Pattern's na prática
->>>>>>> 21a26b7a45d577bc4cb108321739c7eeb97c7d06
 
 
 
@@ -65,22 +61,8 @@ O termo se refere à preparação de backlog  (que são os requisitos ou lista d
     [Autenticação]               SpringSecurity / oAuth2 / JWT
 
     [Design Pattern's]           Clean Architecture / Strategy / Chain Of Responsability / Builder
-<<<<<<< HEAD
-=======
 
-    [Documentação]               Swagger
-
-
-###### Premissas
-
-    Gerenciar dados dos usuarios;
->>>>>>> 21a26b7a45d577bc4cb108321739c7eeb97c7d06
-
-    DataBase própria;
-
-    Criação do usuario no LDAP;
-
-    Notificar em Tópico os usuarios criados;
+    [Documentação do Projeto]    Swagger
 
 
 ###### Premissas
@@ -121,7 +103,7 @@ O termo se refere à preparação de backlog  (que são os requisitos ou lista d
         3.2 Se usuario estiver bloqueado: Retornar exceção
 
     4. Bloquear / Desbloquear usuario:        
-        
+
 
 
 
@@ -180,20 +162,6 @@ O termo se refere à preparação de backlog  (que são os requisitos ou lista d
             Exception:
                 UserPostException: -> Classe de exceção;
 
-<<<<<<< HEAD
-        Usecases:
-            Service:
-                UserService -> Interface;
-                UserServiceImpl -> Implementação;               
-
-
-        Repository:
-            Repository:
-                UserRepository -> Interface de comunicação com BD;
-
-
-        GatewayRepository:
-=======
 
         Repository:
             Repository:
@@ -217,17 +185,12 @@ O termo se refere à preparação de backlog  (que são os requisitos ou lista d
                 SwaggerConfig -> Bean responsavel pela config do Swagger
 
 
-
-
-
-
         GatewayRepository:
             LdapRepository:
                 GatewayLdapRepository -> Interface de comunicação entre os módulos
 
             NotifyRepository:
                 GatewayNotifyRepository -> Interface de comunicação entre os módulos
-
 
         Other'sRepositoies: ex: LDAP
             Gateway:
@@ -239,8 +202,7 @@ O termo se refere à preparação de backlog  (que são os requisitos ou lista d
 
             Client:
                 LdapClient -> Client de integração com LDAP            
->>>>>>> 21a26b7a45d577bc4cb108321739c7eeb97c7d06
-        
+
 
 
 #### Padrão de logs
