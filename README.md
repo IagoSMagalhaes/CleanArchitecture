@@ -62,6 +62,8 @@ O termo se refere à preparação de backlog  (que são os requisitos ou lista d
 
     [Design Pattern's]           Clean Architecture / Strategy / Chain Of Responsability / Builder
 
+    [Mensageria]                 Rabbit 
+
     [Documentação do Projeto]    Swagger
 
 
@@ -121,7 +123,7 @@ O termo se refere à preparação de backlog  (que são os requisitos ou lista d
 
 ###### FrontEnd
 
-    N/A
+    https://github.com/IagoSMagalhaes/Flutter
 
 
 #### Banco de Dados
