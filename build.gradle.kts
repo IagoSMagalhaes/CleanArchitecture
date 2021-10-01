@@ -9,7 +9,7 @@ plugins {
 	kotlin("plugin.jpa") version "1.5.21"
 }
 
-group = "com.asset.management"
+group = "com.example.cleanArchitecture"
 version = "0.0.1-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_1_8
 
@@ -55,9 +55,20 @@ dependencies {
 	implementation("io.springfox:springfox-swagger-ui:2.9.2")
 
 
+	testImplementation("org.junit.jupiter:junit-jupiter-api:5.3.1")
+	testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.3.1")
+	testImplementation("io.mockk:mockk:1.10.2")
+
+
 	//Test
+	implementation("org.springframework:spring-test:5.3.5")
+	implementation("org.springframework.boot:spring-boot-starter-test")
+	implementation("org.springframework.boot:spring-boot-starter-test")
+
+
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.springframework.restdocs:spring-restdocs-mockmvc")
+	testImplementation("junit:junit:4.13.1")
 	//testImplementation("org.springframework.security:spring-security-test")
 
 

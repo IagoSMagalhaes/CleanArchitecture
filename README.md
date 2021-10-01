@@ -38,7 +38,11 @@
 ## Objetivos
 
 
+<<<<<<< HEAD
 Abordar os conteudos: Ecossistema Spring, Kotlin e o Clean Architectura e outros Design Pattern's na prática
+=======
+Abordar os conteudos: Ecossistema Spring, Kotlin, Clean Architectura e outros Design Pattern's na prática
+>>>>>>> 21a26b7a45d577bc4cb108321739c7eeb97c7d06
 
 
 
@@ -61,8 +65,22 @@ O termo se refere à preparação de backlog  (que são os requisitos ou lista d
     [Autenticação]               SpringSecurity / oAuth2 / JWT
 
     [Design Pattern's]           Clean Architecture / Strategy / Chain Of Responsability / Builder
+<<<<<<< HEAD
+=======
 
-    [Documentação do Projeto]    Swagger
+    [Documentação]               Swagger
+
+
+###### Premissas
+
+    Gerenciar dados dos usuarios;
+>>>>>>> 21a26b7a45d577bc4cb108321739c7eeb97c7d06
+
+    DataBase própria;
+
+    Criação do usuario no LDAP;
+
+    Notificar em Tópico os usuarios criados;
 
 
 ###### Premissas
@@ -162,6 +180,7 @@ O termo se refere à preparação de backlog  (que são os requisitos ou lista d
             Exception:
                 UserPostException: -> Classe de exceção;
 
+<<<<<<< HEAD
         Usecases:
             Service:
                 UserService -> Interface;
@@ -174,6 +193,53 @@ O termo se refere à preparação de backlog  (que são os requisitos ou lista d
 
 
         GatewayRepository:
+=======
+
+        Repository:
+            Repository:
+                UserRepository -> Interface de comunicação com BD;
+            Domain
+                User -> Classe de referencia ao BD;
+            Config
+                DataBaseConfig -> Bean de configuração do BD
+
+
+        Usecases:
+            Service:
+                UserService -> Interface;
+                UserServiceImpl -> Implementação;          
+
+
+        Web:
+            Controller:
+                UserController -> Camada responsável por receber as requisições;
+            Config
+                SwaggerConfig -> Bean responsavel pela config do Swagger
+
+
+
+
+
+
+        GatewayRepository:
+            LdapRepository:
+                GatewayLdapRepository -> Interface de comunicação entre os módulos
+
+            NotifyRepository:
+                GatewayNotifyRepository -> Interface de comunicação entre os módulos
+
+
+        Other'sRepositoies: ex: LDAP
+            Gateway:
+                GatewayLdapRepositoryImpl -> Implementação do acesso ao módulo do LDAP
+
+            Service:
+                LdapService -> Interface da camada de negócio
+                LdapServiceImpl -> Impl da camada de negócio
+
+            Client:
+                LdapClient -> Client de integração com LDAP            
+>>>>>>> 21a26b7a45d577bc4cb108321739c7eeb97c7d06
         
 
 

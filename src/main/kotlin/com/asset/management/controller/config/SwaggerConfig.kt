@@ -1,4 +1,5 @@
-package com.asset.management.swagger
+
+package com.example.cleanArchitecture.controller.config
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
