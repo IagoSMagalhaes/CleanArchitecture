@@ -13,8 +13,8 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc
 //@EnableSwagger2
 @EnableWebMvc
 @ComponentScan(value = ["com.example.cleanArchitecture"])
-@EntityScan(basePackages = ["com.example.cleanArchitecture.repository.domain"])
-@EnableJpaRepositories(basePackages = ["com.example.cleanArchitecture.repository.repository"])
+@EntityScan(basePackages = ["com.example.cleanArchitecture.repository"])
+@EnableJpaRepositories(basePackages = ["com.example.cleanArchitecture.repository"])
 class Boot {
 
 	companion object {
