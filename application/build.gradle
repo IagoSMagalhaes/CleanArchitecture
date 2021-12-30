@@ -1,0 +1,42 @@
+plugins {
+    id 'application'
+    id 'kotlin'
+}
+
+group 'com.example.clean.architecture'
+version '0.0.1-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    //implementation "org.jetbrains.kotlin:kotlin-stdlib"
+    implementation project(':controller')
+    implementation project(':service')
+    implementation project(':repository')
+    implementation project(':entities')
+    implementation project(':gatewayRepository')
+    implementation project(':strategyDomainRepository')
+
+    implementation 'org.springframework:spring-context:5.3.9'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.5.4'
+    implementation 'org.springframework:spring-web:5.3.9'
+    implementation 'org.springframework:spring-webmvc:5.3.6'
+
+    implementation("io.springfox:springfox-boot-starter:3.0.0")
+    implementation("io.springfox:springfox-swagger2:3.0.0")
+    implementation("io.springfox:springfox-swagger-ui:2.9.2")
+
+    implementation("org.springframework.boot:spring-boot-starter-test:2.5.4"){
+        exclude module : 'commons-logging'
+    }
+
+    //implementation 'org.springframework.hateoas:spring-hateoas:0.25.0.RELEASE'
+
+    //implementation 'org.springframework.boot:spring-boot-starter-log4j2:2.5.4'
+
+
+
+}
+

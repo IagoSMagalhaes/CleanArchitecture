@@ -1,0 +1,41 @@
+plugins {
+    id 'application'
+    id 'kotlin'
+    //id 'org.jetbrains.kotlin.jvm' version '1.5.10'
+}
+
+group 'com.example.clean.architecture'
+version '0.0.1-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    implementation project(':entities')
+    implementation project(':service')
+    implementation project(':gatewayRepository')
+
+
+
+    //SPRING
+    implementation 'org.springframework:spring-webmvc:5.3.6'
+    implementation 'org.springframework:spring-web:5.3.9'
+/*
+    implementation("org.springframework.boot:spring-boot-starter-parent:2.4.0"){
+        exclude module : 'spring-boot-starter-logging'
+        exclude module: 'logback-classic'
+    }
+
+ */
+
+    //SWAGGER
+    implementation("io.springfox:springfox-boot-starter:3.0.0")
+    implementation("io.springfox:springfox-swagger2:3.0.0")
+    implementation("io.springfox:springfox-swagger-ui:2.9.2")
+
+    //SERVLET
+    compileOnly 'javax.servlet:servlet-api:2.5'
+
+}
