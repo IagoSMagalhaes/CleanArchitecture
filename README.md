@@ -1,56 +1,90 @@
-# Getting Started
 
-### Reference Documentation
+<h1 align="center">
+    <a>🚀 CleanArchitecture</a>
+</h1>
+<p align="center">Microservico Template com Clean Architecture</p>
 
-* [Objetivos](#Objetivos)
+* [Sobre](#Sobre)
+
+
+* [Documentação](#Documentação)
 
 
 * [Grooming](#Grooming)
+  * [Sistema](#sistema)
+  * [Premissas](#premissas)  
+  * [Cenários](#premissas)  
+
+    
+* [Principais Fluxos](#principais-fluxos)
+  * [Criando Usuario](#criando-usuario)
+  * [Buscando Usuario](#buscando-usuario)
+  * [Alterando Usuario](#alterando-usuario)
+  * [Deletando Usuario](#deletando-usuario)
 
 
-* [Sistema](#Sistema)
+* [Entradas](#entradas)
+  * [HTTP](#http)
+  * [Fila](#fila)
+  
+
+* [Banco de Dados](#banco-de-dados)
+  * [Diagram](#diagram)
+  * [Scripts](#scripts)
+  
+
+* [Testes](#testes)
+  * [Unitários](#unitario)
+  * [Integrado](#integrado)
 
 
-* [Premissas](#Premissas)
+* [Tecnologias](#tecnologias)
+  * [Spring Boot](#spring-boot)
+  * [Spring Data](#spring-data)
+  * [Spring Security](#spring-data)
+  * [JUnit](#junit)
+  * [Mockito](#mockito)
+  * [PostgreSQL](#postgre-sql)
+  
+
+* [Design Patter'n](#design-pattern)
+  * [Clean Architecture](#clean-architecture)
+  * [Strategy](#strategy)
+  * [Builder](#builder)
+  * [Server Driven UI](#server-driven-ui)
+  * [Estrutura de Packages / Nomeclatura dos arquivos](#estrutura-de-packges)  
+  * [Padrão de Logs](#padrão-de-logs)
+  
+
+* [Personas](#personas)
 
 
-* [Ações](#Ações)
 
 
-* [Cenarios](#Cenarios)
+## Sobre
+
+- Este é o microservico template com Clean Architecture;
 
 
-* [Filas](#Filas)
+- Possui conexão com banco de dados. (PostgreSQL)
 
 
-* [Banco de Dados](#BancoDeDados)
+- O intuito desse projeto é abordar os conteudos: Ecossistema Spring, Kotlin, Clean Architecture e outros Design Pattern's na prática
 
 
-* [Estrutura de Packages / Padrão nomeclatura arquivos](#)
 
+## Documentação
 
-* [Padrão de logs](#Padrãodelogs)
-
-
-* [Link's reference](#Link'sreference)
-
-
-## Objetivos
-
-
-Abordar os conteudos: Ecossistema Spring, Kotlin e o Clean Architectura e outros Design Pattern's na prática
-
-
+- http://localhost:8081/swagger-ui/index.html#/
 
 ## Grooming
 
 
-O termo se refere à preparação de backlog  (que são os requisitos ou lista de pendências) e é mais adequadamente conhecido como refinamento. É o ato de detalhar, entender mais profundamente, adicionar características, estimar, priorizar e manter o backlog do produto vivo.
+- O termo se refere à preparação de backlog  (que são os requisitos ou lista de pendências) e é mais adequadamente conhecido como refinamento. É o ato de detalhar, entender mais profundamente, adicionar características, estimar, priorizar e manter o backlog do produto vivo.
 
+#### Sistema
 
-##### Sistema
-
-                    UserMicroservice
+                    HumanGenerator
 
     [Servidor]                   Spring Boot
 
@@ -62,12 +96,14 @@ O termo se refere à preparação de backlog  (que são os requisitos ou lista d
 
     [Design Pattern's]           Clean Architecture / Strategy / Chain Of Responsability / Builder
 
+    [Mensageria]                 Rabbit 
+
     [Documentação do Projeto]    Swagger
 
 
-###### Premissas
+##### Premissas
 
-    Gerenciar dados dos usuarios;
+    Gerenciar dados de humanos;
 
     DataBase própria;
 
@@ -76,17 +112,7 @@ O termo se refere à preparação de backlog  (que são os requisitos ou lista d
     Notificar em Tópico os usuarios criados;
 
 
-###### Ações
-
-
-    1. Criar usuario                    POST localhost:8080/v1/user        
-    2. Buscar usuario                   GET  localhost:8080/v1/user
-    3. Alterar dados usuario            PUT  localhost:8080/v1/user
-    4. Bloquear / Desbloquear usuario   PUT  localhost:8080/v1/user
-
-
-
-###### Cenarios
+##### Cenários
 
     1.Criar Usuario:
         1.1 Criar usuario na base PostgreSQL;
@@ -102,9 +128,29 @@ O termo se refere à preparação de backlog  (que são os requisitos ou lista d
         3.1 Se usuario não estiver bloqueado:Alterar dados na base PostgreSQL
         3.2 Se usuario estiver bloqueado: Retornar exceção
 
-    4. Bloquear / Desbloquear usuario:        
+    4. Bloquear / Desbloquear usuario: 
 
 
+## Principais Fluxos
+
+#### Criando um Usuario;
+
+#### Criando um humano;
+
+#### Buscando um humano;
+
+
+
+## Entradas
+
+#### HTTP
+
+    1. Criar usuario                    POST localhost:8080/v1/user        
+    2. Buscar usuario                   GET  localhost:8080/v1/user
+    3. Alterar dados usuario            PUT  localhost:8080/v1/user
+    4. Bloquear / Desbloquear usuario   PUT  localhost:8080/v1/user
+
+#### Fila
 
 
 ###### Filas
@@ -115,16 +161,12 @@ O termo se refere à preparação de backlog  (que são os requisitos ou lista d
     Routingkey DeadLetter: NotifyCreateUserDL
 
 
-###### Integrações Externas
 
-    N/A
+## Banco de Dados
 
-###### FrontEnd
+#### Diagram
 
-    N/A
-
-
-#### Banco de Dados
+#### Scripts
 
                     Create database users;			
 			--DROP DATABASE users;
@@ -144,14 +186,62 @@ O termo se refere à preparação de backlog  (que são os requisitos ou lista d
 
 
 
-#### Estrutura de Packages / Padrão nomeclatura arquivos
+
+## Testes
+
+#### Unitários
+
+#### Integrado
 
 
-        Entities: 
-            Domain:
+## Tecnologias
+
+#### Spring Boot
+
+#### Spring Data
+
+#### Spring Security
+
+#### JUnit
+
+#### Mockito
+
+#### PostgreSQL
+        Clean Architecture    
+
+        Strategy              
+
+        Builder               https://pt.wikipedia.org/wiki/Builder
+
+        Swagger               https://medium.com/@raphaelbluteau/spring-boot-swagger-documentando-sua-api-automaticamente-27903293aeb6
+
+
+## Design Patter'n
+
+#### Clean Architecture
+
+- https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html
+
+#### Strategy
+
+- https://en.wikipedia.org/wiki/Strategy_pattern
+
+
+#### Builder
+
+
+#### Server Driven UI
+
+- https://vitor-ramos.medium.com/entendendo-o-server-driven-ui-adb469add630
+
+
+#### Estrutura de Packages / Nomeclatura dos arquivos
+
+            Entities:
+              Domain:
                 User -> Objjeto pertinente a camada do banco;
                 UserEntity -> Objeto para transacionar fora da camada de repositorio;
-            
+
             DTO:
                 RequestNotifieCreateUserEntity -> Objeto de request para integrações
                 ResponseNotifieCreateUserEntity -> Objeto de retorno de request para integrações
@@ -201,39 +291,35 @@ O termo se refere à preparação de backlog  (que são os requisitos ou lista d
                 LdapServiceImpl -> Impl da camada de negócio
 
             Client:
-                LdapClient -> Client de integração com LDAP            
+                LdapClient -> Client de integração com LDAP 
 
 
 
-#### Padrão de logs
+#### Padrão de Logs
 
         runCatching {
-            LOG.info("START {} user: {} body {}", methodName/service?, cpf, body)
+            // LOG.info("START {} user: {} body {}", methodName/service?, cpf, body)
 
             service.execute();
 
         }.onFailure {
-            LOG.error("ERROR {} user: {} statusCode: {} cause: {} message: {}", methodName/service?, cpf, statusCodeResponse, causeResponse, messageResponse)
+            // LOG.error("ERROR {} user: {} statusCode: {} cause: {} message: {}", methodName/service?, cpf, statusCodeResponse, causeResponse, messageResponse)
             
             throw it
 
         }.onSucesss {
-            LOG.info("END {} user: {}", methodName/service?, cpf)
+            // LOG.info("END {} user: {}", methodName/service?, cpf)
         }
 
 
-#### Link's reference
+## Personas
 
-        Clean Architecture    https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html
-
-        Strategy              https://en.wikipedia.org/wiki/Strategy_pattern
-
-        Builder               https://pt.wikipedia.org/wiki/Builder
-
-        Swagger               https://medium.com/@raphaelbluteau/spring-boot-swagger-documentando-sua-api-automaticamente-27903293aeb6
+- Robert Martin -> Clean Code && Clean Architecture
 
 
-#### Personas
+## Contact
+
+- https://www.linkedin.com/in/iagomagalh%C3%A3es/
 
 
-Robert Martin -> Clean Code && Clean Architecture
+
