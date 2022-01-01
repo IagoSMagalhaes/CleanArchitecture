@@ -38,4 +38,8 @@ dependencies {
     //SERVLET
     compileOnly 'javax.servlet:servlet-api:2.5'
 
+    // https://mvnrepository.com/artifact/javax.validation/validation-api
+    implementation("javax.validation:validation-api:2.0.1.Final")
+
+
 }

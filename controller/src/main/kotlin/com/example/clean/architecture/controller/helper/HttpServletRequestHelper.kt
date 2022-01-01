@@ -73,14 +73,42 @@ fun Map<String, List<String>>.getId(required: Boolean) : Long? {
 
 }
 
-fun Map<String, List<String>>.getIdAsset(required: Boolean) : Long? {
+fun Map<String, List<String>>.getName(required: Boolean) : String? {
 
 	return when {
-		this.containsKey("idAsset") -> {
-			return this.getValue("idAsset")[0].toLong()
+		this.containsKey("name") -> {
+			return this.getValue("name")[0]
 		}
 		required -> {
-			throw IllegalArgumentException("idAsset obrigatório")
+			throw IllegalArgumentException("name obrigatório")
+		}
+		else -> null
+	}
+
+}
+
+fun Map<String, List<String>>.getCellphone(required: Boolean) : String? {
+
+	return when {
+		this.containsKey("cellphone") -> {
+			return this.getValue("cellphone")[0]
+		}
+		required -> {
+			throw IllegalArgumentException("cellphone obrigatório")
+		}
+		else -> null
+	}
+
+}
+
+fun Map<String, List<String>>.getEmail(required: Boolean) : String? {
+
+	return when {
+		this.containsKey("email") -> {
+			return this.getValue("email")[0]
+		}
+		required -> {
+			throw IllegalArgumentException("email obrigatório")
 		}
 		else -> null
 	}

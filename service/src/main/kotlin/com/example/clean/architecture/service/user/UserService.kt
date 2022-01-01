@@ -1,6 +1,7 @@
 package com.example.clean.architecture.service.user
 
 import com.example.clean.architecture.entities.user.domain.UserEntity
+import com.example.clean.architecture.entities.user.dto.request.RequestGetUserEntity
 import com.example.clean.architecture.entities.user.dto.request.RequestPostUserEntity
 import com.example.clean.architecture.entities.user.dto.request.RequestPutUserEntity
 
@@ -8,6 +9,8 @@ import com.example.clean.architecture.entities.user.dto.request.RequestPutUserEn
 interface UserService {
 
 	fun get() : List<UserEntity>
+
+	fun getBy(body: RequestGetUserEntity) : List<UserEntity>
 
 	fun post(body: RequestPostUserEntity)
 

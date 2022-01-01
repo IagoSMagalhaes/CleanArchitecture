@@ -1,7 +1,7 @@
 package com.example.clean.architecture.service.user.impl
 
 import com.example.clean.architecture.entities.user.domain.UserEntity
-import com.example.clean.architecture.entities.user.dto.request.RequestDeleteUserEntity
+import com.example.clean.architecture.entities.user.dto.request.RequestGetUserEntity
 import com.example.clean.architecture.entities.user.dto.request.RequestPostUserEntity
 import com.example.clean.architecture.entities.user.dto.request.RequestPutUserEntity
 import com.example.clean.architecture.entities.user.dto.request.toEntity
@@ -14,9 +14,9 @@ import com.example.clean.architecture.repository.user.domain.toDomain
 import com.example.clean.architecture.repository.user.domain.toEntity
 import com.example.clean.architecture.repository.user.repository.UserRepository
 import com.example.clean.architecture.service.user.UserService
-import jdk.nashorn.internal.runtime.logging.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
+import java.util.*
 
 
 @Service
@@ -36,7 +36,7 @@ open class UserServiceImpl(val repository: UserRepository) : UserService {
 
 		}.onFailure {
 
-			LOG.error("ERROR GET User message: {} causeMessage: {}", it.message, it.cause!!.message)
+			LOG.error("ERROR GET User message: {} causeMessage: {}", it.message, it.cause?.message)
 
 			throw UserGetException()
 
@@ -47,6 +47,57 @@ open class UserServiceImpl(val repository: UserRepository) : UserService {
 		}
 
 		return response.toEntity()
+	}
+
+	override fun getBy(body: RequestGetUserEntity): List<UserEntity> {
+
+		LOG.info("START GET User")
+
+		var response = emptyList<User>()
+
+		runCatching {
+
+			response = when {
+
+				body.perId() -> buildPerId(body)
+
+				body.perName() -> repository.findByNameIn(listOf(body.name!!))
+
+				body.perCellphone() -> repository.findByCellphoneIn(listOf(body.cellphone!!))
+
+				body.perEmail() -> repository.findByEmailIn(listOf(body.email!!))
+
+				else -> listOf()
+			}
+
+		}.onFailure {
+
+			LOG.error("ERROR GET User message: {} causeMessage: {}", it.message, it.cause?.message)
+
+			throw UserGetException()
+
+		}.onSuccess {
+
+			LOG.info("END GET User response: {}", response)
+
+		}
+
+		return response.toEntity()
+	}
+
+	private fun buildPerId(body: RequestGetUserEntity): List<User> {
+		val user = repository.findById(body.id!!)
+
+		return getIsPresent(user)
+	}
+
+
+	private fun getIsPresent(user: Optional<User>): List<User> {
+		return if (user.isPresent) {
+			listOf(user.get())
+		} else {
+			listOf()
+		}
 	}
 
 	override fun post(body: RequestPostUserEntity) {
@@ -61,7 +112,7 @@ open class UserServiceImpl(val repository: UserRepository) : UserService {
 
 		}.onFailure {
 
-			LOG.error("ERROR POST User body: {} message: {} causeMessage: {}", body, it.message, it.cause!!.message)
+			LOG.error("ERROR POST User body: {} message: {} causeMessage: {}", body, it.message, it.cause?.message)
 
 			throw UserPostException()
 
@@ -79,13 +130,13 @@ open class UserServiceImpl(val repository: UserRepository) : UserService {
 
 		runCatching {
 
-			val domain = body.user.toEntity(1L).toDomain()
+			val domain = body.toEntity().toDomain()
 
 			repository.save(domain)
 
 		}.onFailure {
 
-			LOG.error("ERROR PUT User body: {} message: {} causeMessage: {}", body, it.message, it.cause!!.message)
+			LOG.error("ERROR PUT User body: {} message: {} causeMessage: {}", body, it.message, it.cause?.message)
 
 			throw UserPutException()
 
@@ -107,7 +158,7 @@ open class UserServiceImpl(val repository: UserRepository) : UserService {
 
 		}.onFailure {
 
-			LOG.error("ERROR DELETE User body: {} message: {} causeMessage: {}", id, it.message, it.cause!!.message)
+			LOG.error("ERROR DELETE User body: {} message: {} causeMessage: {}", id, it.message, it.cause?.message)
 
 			throw UserDeleteException()
 

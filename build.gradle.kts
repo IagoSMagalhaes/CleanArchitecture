@@ -1,3 +1,4 @@
+import jdk.nashorn.internal.objects.NativeRegExp.test
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -28,5 +29,14 @@ tasks.withType<KotlinCompile> {
 }
 
 tasks.withType<Test> {
+	useJUnitPlatform()
+}
+
+dependencies {
+	implementation("org.junit.jupiter:junit-jupiter-engine:5.8.1")
+
+}
+
+tasks.test {
 	useJUnitPlatform()
 }

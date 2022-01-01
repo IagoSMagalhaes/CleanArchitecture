@@ -26,7 +26,7 @@ open class StateServiceImpl(val stateRepository: StateRepository)  {
 			stateRepository.save(stateSave)
 
 		}.onFailure {
-			// LOG.error("ERROR POST State message: {} causeMessage: {}", it.message, it.cause!!.message)
+			// LOG.error("ERROR POST State message: {} causeMessage: {}", it.message, it.cause?.message)
 
 			throw Exception()
 

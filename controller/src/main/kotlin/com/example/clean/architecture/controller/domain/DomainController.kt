@@ -4,6 +4,8 @@ import com.example.clean.architecture.controller.helper.getHeaders
 import com.example.clean.architecture.controller.helper.getQuery
 import com.example.clean.architecture.entities.domain.domain.DomainEntity
 import com.example.clean.architecture.gatewayRepository.domainRepository.GatewayDomainRepository
+import io.swagger.annotations.ApiImplicitParam
+import io.swagger.annotations.ApiImplicitParams
 import io.swagger.annotations.ApiOperation
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -23,7 +25,10 @@ class DomainController(val service: GatewayDomainRepository, val request: HttpSe
 	@GetMapping("/v1")
 	@CrossOrigin
 	@ApiOperation("Find all domain's ", response = HttpStatus::class)
-	//@ApiImplicitParam(value = "brand", name = "brand")
+	@ApiImplicitParams( value = [
+		ApiImplicitParam(name = "domain", required = true, value = "Country State City", paramType = "header"),
+		ApiImplicitParam(name = "query", required = false, paramType = "header")
+	])
 	fun get(): ResponseEntity<List<DomainEntity>> {
 
 		val domain = request.getHeaders().getDomain(true)!!

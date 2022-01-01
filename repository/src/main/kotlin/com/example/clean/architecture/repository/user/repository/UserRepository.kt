@@ -9,5 +9,9 @@ import org.springframework.stereotype.Repository
 interface UserRepository : JpaRepository<User, Long> {
 
     fun findByNameIn(name: List<String>) : List<User>
+
+    fun findByCellphoneIn(cellphone: List<String>) : List<User>
+
+    fun findByEmailIn(email: List<String>) : List<User>
 }
 

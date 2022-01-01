@@ -35,8 +35,13 @@
 
 * [Testes](#testes)
   * [Unitários](#unitario)
+    * [Lógica](#logica)
+    * [Exceção](#exceção)
+    
   * [Integrado](#integrado)
-
+    * [Lógica](#logica)
+    * [Exceção](#exceção)
+    
 
 * [Tecnologias](#tecnologias)
   * [Spring Boot](#spring-boot)
@@ -63,13 +68,15 @@
 
 ## Sobre
 
-- Este é o microservico template com Clean Architecture;
+- Este é um template de microserviço com o padrão Clean Architecture;
+
+
+- O intuito desse projeto é abordar os conteudos: Ecossistema Spring, Kotlin, Clean Architecture e outros Design Pattern's na prática
 
 
 - Possui conexão com banco de dados. (PostgreSQL)
 
 
-- O intuito desse projeto é abordar os conteudos: Ecossistema Spring, Kotlin, Clean Architecture e outros Design Pattern's na prática
 
 
 
@@ -191,7 +198,47 @@
 
 #### Unitários
 
+##### Lógica
+
+![img.png](readme/unit_test_logic_one.png)
+
+![img_1.png](readme/unit_test_logic_two.png)
+
+
+##### Exceção
+
+
+![img_1.png](readme/unit_test_exception.png)
+
+
+##### Links
+
+- https://resources.jetbrains.com/storage/products/kotlinconf2018/slides/4_Best%20Practices%20for%20Unit%20Testing%20in%20Kotlin.pdf
+
+
+- https://kotlinlang.org/docs/jvm-test-using-junit.html#what-s-next
+
+
+- https://www.petrikainulainen.net/programming/testing/running-kotlin-tests-with-gradle/
+
+
 #### Integrado
+
+##### Lógica
+
+
+##### Exceção
+
+
+##### Links
+
+- https://learning.postman.com/docs/writing-scripts/script-references/test-examples/
+
+
+- https://learning.postman.com/docs/writing-scripts/test-scripts/
+
+
+- https://learning.postman.com/docs/writing-scripts/intro-to-scripts/
 
 
 ## Tecnologias
@@ -239,7 +286,7 @@
 
             Entities:
               Domain:
-                User -> Objjeto pertinente a camada do banco;
+                User -> Objeto pertinente a camada do banco;
                 UserEntity -> Objeto para transacionar fora da camada de repositorio;
 
             DTO:
@@ -298,17 +345,17 @@
 #### Padrão de Logs
 
         runCatching {
-            // LOG.info("START {} user: {} body {}", methodName/service?, cpf, body)
+             LOG.info("START {} user: {} body {}", methodName/service?, cpf, body)
 
             service.execute();
 
         }.onFailure {
-            // LOG.error("ERROR {} user: {} statusCode: {} cause: {} message: {}", methodName/service?, cpf, statusCodeResponse, causeResponse, messageResponse)
+             LOG.error("ERROR {} user: {} statusCode: {} cause: {} message: {}", methodName/service?, cpf, statusCodeResponse, causeResponse, messageResponse)
             
             throw it
 
         }.onSucesss {
-            // LOG.info("END {} user: {}", methodName/service?, cpf)
+             LOG.info("END {} user: {}", methodName/service?, cpf)
         }
 
 
