@@ -1,0 +1,876 @@
+{
+	"info": {
+		"_postman_id": "2d9394d3-6546-432d-89ca-612eaa3a51f2",
+		"name": "Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Logic",
+			"item": [
+				{
+					"name": "Create",
+					"item": [
+						{
+							"name": "Create User",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"  pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response is OK\", function () {\r",
+											"  const responseJson = pm.response.json();\r",
+											"  pm.expect(responseJson).to.eql(\"OK\");\r",
+											"});\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "accept",
+										"value": "*/*"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"active\": true,\r\n    \"cellphone\": \"11912345678\",\r\n    \"email\": \"iago@gmail.com\",\r\n    \"name\": \"Iago Magalhaes\"\r\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8081/user/v1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"user",
+										"v1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Check Create User",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"  pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Validate Response attribute [id]\", function () {\r",
+											"  const attribute = pm.response.json().first().id;\r",
+											"\r",
+											"  pm.expect(attribute).to.be.not.null;\r",
+											"  \r",
+											"  pm.expect(attribute).to.be.a(\"number\")\r",
+											"\r",
+											"  pm.expect(attribute).to.eql(1);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Validate Response attribute [name]\", function () {\r",
+											"  const attribute = pm.response.json().first().name;\r",
+											"\r",
+											"  pm.expect(attribute).to.be.not.null;\r",
+											"\r",
+											"  pm.expect(attribute).to.be.a(\"string\")\r",
+											"\r",
+											"  pm.expect(attribute).to.eql(\"Iago Magalhaes\");\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Validate Response attribute [cellphone]\", function () {\r",
+											"  const attribute = pm.response.json().first().cellphone;\r",
+											"\r",
+											"  pm.expect(attribute).to.be.not.null;\r",
+											"\r",
+											"  pm.expect(attribute).to.be.a(\"string\")\r",
+											"\r",
+											"  pm.expect(attribute).to.eql(\"11912345678\");\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Validate Response attribute [email]\", function () {\r",
+											"  const attribute = pm.response.json().first().email;\r",
+											"\r",
+											"  pm.expect(attribute).to.be.not.null;\r",
+											"  \r",
+											"  pm.expect(attribute).to.be.a(\"string\")\r",
+											"\r",
+											"  pm.expect(attribute).to.eql(\"iago@gmail.com\");\r",
+											"});\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "accept",
+										"value": "*/*"
+									},
+									{
+										"key": "cellphone",
+										"value": "",
+										"disabled": true
+									},
+									{
+										"key": "email",
+										"value": "",
+										"disabled": true
+									},
+									{
+										"key": "id",
+										"value": "1"
+									},
+									{
+										"key": "name",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8081/user/v1/by",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"user",
+										"v1",
+										"by"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Update",
+					"item": [
+						{
+							"name": "Update User Copy",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"  pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response is OK\", function () {\r",
+											"  const responseJson = pm.response.json();\r",
+											"  pm.expect(responseJson).to.eql(\"OK\");\r",
+											"});\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "accept",
+										"value": "*/*"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\r\n        \"active\": true,\r\n        \"cellphone\": \"11987654321\",\r\n        \"email\": \"iagoseixeiromagalhaes@gmail.com\",\r\n        \"id\": 1,\r\n        \"name\": \"Iago Seixeiro Magalhaes\"\r\n\r\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8081/user/v1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"user",
+										"v1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Check Update User",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"  pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Validate Response attribute [id]\", function () {\r",
+											"  const attribute = pm.response.json().first().id;\r",
+											"\r",
+											"  pm.expect(attribute).to.be.not.null;\r",
+											"  \r",
+											"  pm.expect(attribute).to.be.a(\"number\")\r",
+											"\r",
+											"  pm.expect(attribute).to.eql(1);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Validate Response attribute [name]\", function () {\r",
+											"  const attribute = pm.response.json().first().name;\r",
+											"\r",
+											"  pm.expect(attribute).to.be.not.null;\r",
+											"\r",
+											"  pm.expect(attribute).to.be.a(\"string\")\r",
+											"\r",
+											"  pm.expect(attribute).to.eql(\"Iago Seixeiro Magalhaes\");\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Validate Response attribute [cellphone]\", function () {\r",
+											"  const attribute = pm.response.json().first().cellphone;\r",
+											"\r",
+											"  pm.expect(attribute).to.be.not.null;\r",
+											"\r",
+											"  pm.expect(attribute).to.be.a(\"string\")\r",
+											"\r",
+											"  pm.expect(attribute).to.eql(\"11987654321\");\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Validate Response attribute [email]\", function () {\r",
+											"  const attribute = pm.response.json().first().email;\r",
+											"\r",
+											"  pm.expect(attribute).to.be.not.null;\r",
+											"  \r",
+											"  pm.expect(attribute).to.be.a(\"string\")\r",
+											"\r",
+											"  pm.expect(attribute).to.eql(\"iagoseixeiromagalhaes@gmail.com\");\r",
+											"});\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "accept",
+										"value": "*/*"
+									},
+									{
+										"key": "cellphone",
+										"value": "",
+										"disabled": true
+									},
+									{
+										"key": "email",
+										"value": "",
+										"disabled": true
+									},
+									{
+										"key": "id",
+										"value": "1"
+									},
+									{
+										"key": "name",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8081/user/v1/by",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"user",
+										"v1",
+										"by"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Delete",
+					"item": [
+						{
+							"name": "Delete User",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"  pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response is OK\", function () {\r",
+											"  const responseJson = pm.response.json();\r",
+											"  pm.expect(responseJson).to.eql(\"OK\");\r",
+											"});\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "accept",
+										"value": "*/*"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "1"
+								},
+								"url": {
+									"raw": "http://localhost:8081/user/v1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"user",
+										"v1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Check Delete User",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"  pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Validate Response is empty\", function () {\r",
+											"  const attribute = pm.response.json();\r",
+											"\r",
+											"    pm.expect(attribute).to.be.empty;\r",
+											"});\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "accept",
+										"value": "*/*"
+									},
+									{
+										"key": "cellphone",
+										"value": "",
+										"disabled": true
+									},
+									{
+										"key": "email",
+										"value": "",
+										"disabled": true
+									},
+									{
+										"key": "id",
+										"value": "1"
+									},
+									{
+										"key": "name",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8081/user/v1/by",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"user",
+										"v1",
+										"by"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Exception",
+			"item": [
+				{
+					"name": "Create",
+					"item": [
+						{
+							"name": "Required Name",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"  pm.response.to.have.status(400);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Validate Response attribute [httpStatusCode]\", function () {\r",
+											"  const attribute = pm.response.json().httpStatusCode;\r",
+											"\r",
+											"  pm.expect(attribute).to.be.not.null;\r",
+											"  \r",
+											"  pm.expect(attribute).to.be.a(\"number\")\r",
+											"\r",
+											"  pm.expect(attribute).to.eql(400);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Validate Response attribute [codeMessage]\", function () {\r",
+											"  const attribute = pm.response.json().codeMessage;\r",
+											"\r",
+											"  pm.expect(attribute).to.be.not.null;\r",
+											"  \r",
+											"  pm.expect(attribute).to.be.a(\"string\")\r",
+											"\r",
+											"  pm.expect(attribute).to.eql(\"JSON parse error: Instantiation of [simple type, class com.example.clean.architecture.entities.user.dto.request.RequestPostUserEntity] value failed for JSON property name due to missing (therefore NULL) value for creator parameter name which is a non-nullable type; nested exception is com.fasterxml.jackson.module.kotlin.MissingKotlinParameterException: Instantiation of [simple type, class com.example.clean.architecture.entities.user.dto.request.RequestPostUserEntity] value failed for JSON property name due to missing (therefore NULL) value for creator parameter name which is a non-nullable type\\n at [Source: (PushbackInputStream); line: 5, column: 1] (through reference chain: com.example.clean.architecture.entities.user.dto.request.RequestPostUserEntity[\\\"name\\\"])\");\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Validate Response attribute [message]\", function () {\r",
+											"  const attribute = pm.response.json().message;\r",
+											"\r",
+											"  pm.expect(attribute).to.be.not.null;\r",
+											"  \r",
+											"  pm.expect(attribute).to.be.a(\"string\")\r",
+											"\r",
+											"  pm.expect(attribute).to.eql(\"JSON parse error: Instantiation of [simple type, class com.example.clean.architecture.entities.user.dto.request.RequestPostUserEntity] value failed for JSON property name due to missing (therefore NULL) value for creator parameter name which is a non-nullable type; nested exception is com.fasterxml.jackson.module.kotlin.MissingKotlinParameterException: Instantiation of [simple type, class com.example.clean.architecture.entities.user.dto.request.RequestPostUserEntity] value failed for JSON property name due to missing (therefore NULL) value for creator parameter name which is a non-nullable type\\n at [Source: (PushbackInputStream); line: 5, column: 1] (through reference chain: com.example.clean.architecture.entities.user.dto.request.RequestPostUserEntity[\\\"name\\\"])\");\r",
+											"});\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "accept",
+										"value": "*/*"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"active\": true,\r\n    \"cellphone\": \"11912345678\",\r\n    \"email\": \"iago@gmail.com\"\r\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8081/user/v1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"user",
+										"v1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Required Email",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"  pm.response.to.have.status(400);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Validate Response attribute [httpStatusCode]\", function () {\r",
+											"  const attribute = pm.response.json().httpStatusCode;\r",
+											"\r",
+											"  pm.expect(attribute).to.be.not.null;\r",
+											"  \r",
+											"  pm.expect(attribute).to.be.a(\"number\")\r",
+											"\r",
+											"  pm.expect(attribute).to.eql(400);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Validate Response attribute [codeMessage]\", function () {\r",
+											"  const attribute = pm.response.json().codeMessage;\r",
+											"\r",
+											"  pm.expect(attribute).to.be.not.null;\r",
+											"  \r",
+											"  pm.expect(attribute).to.be.a(\"string\")\r",
+											"\r",
+											"  pm.expect(attribute).to.eql(\"JSON parse error: Instantiation of [simple type, class com.example.clean.architecture.entities.user.dto.request.RequestPostUserEntity] value failed for JSON property email due to missing (therefore NULL) value for creator parameter email which is a non-nullable type; nested exception is com.fasterxml.jackson.module.kotlin.MissingKotlinParameterException: Instantiation of [simple type, class com.example.clean.architecture.entities.user.dto.request.RequestPostUserEntity] value failed for JSON property email due to missing (therefore NULL) value for creator parameter email which is a non-nullable type\\n at [Source: (PushbackInputStream); line: 5, column: 1] (through reference chain: com.example.clean.architecture.entities.user.dto.request.RequestPostUserEntity[\\\"email\\\"])\");\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Validate Response attribute [message]\", function () {\r",
+											"  const attribute = pm.response.json().message;\r",
+											"\r",
+											"  pm.expect(attribute).to.be.not.null;\r",
+											"  \r",
+											"  pm.expect(attribute).to.be.a(\"string\")\r",
+											"\r",
+											"  pm.expect(attribute).to.eql(\"JSON parse error: Instantiation of [simple type, class com.example.clean.architecture.entities.user.dto.request.RequestPostUserEntity] value failed for JSON property email due to missing (therefore NULL) value for creator parameter email which is a non-nullable type; nested exception is com.fasterxml.jackson.module.kotlin.MissingKotlinParameterException: Instantiation of [simple type, class com.example.clean.architecture.entities.user.dto.request.RequestPostUserEntity] value failed for JSON property email due to missing (therefore NULL) value for creator parameter email which is a non-nullable type\\n at [Source: (PushbackInputStream); line: 5, column: 1] (through reference chain: com.example.clean.architecture.entities.user.dto.request.RequestPostUserEntity[\\\"email\\\"])\");\r",
+											"});\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "accept",
+										"value": "*/*"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"active\": true,\r\n    \"cellphone\": \"11912345678\",\r\n    \"name\": \"Iago Magalhaes\"\r\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8081/user/v1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"user",
+										"v1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Required Cellphone",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"  pm.response.to.have.status(400);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Validate Response attribute [httpStatusCode]\", function () {\r",
+											"  const attribute = pm.response.json().httpStatusCode;\r",
+											"\r",
+											"  pm.expect(attribute).to.be.not.null;\r",
+											"  \r",
+											"  pm.expect(attribute).to.be.a(\"number\")\r",
+											"\r",
+											"  pm.expect(attribute).to.eql(400);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Validate Response attribute [codeMessage]\", function () {\r",
+											"  const attribute = pm.response.json().codeMessage;\r",
+											"\r",
+											"  pm.expect(attribute).to.be.not.null;\r",
+											"  \r",
+											"  pm.expect(attribute).to.be.a(\"string\")\r",
+											"\r",
+											"  pm.expect(attribute).to.eql(\"JSON parse error: Instantiation of [simple type, class com.example.clean.architecture.entities.user.dto.request.RequestPostUserEntity] value failed for JSON property cellphone due to missing (therefore NULL) value for creator parameter cellphone which is a non-nullable type; nested exception is com.fasterxml.jackson.module.kotlin.MissingKotlinParameterException: Instantiation of [simple type, class com.example.clean.architecture.entities.user.dto.request.RequestPostUserEntity] value failed for JSON property cellphone due to missing (therefore NULL) value for creator parameter cellphone which is a non-nullable type\\n at [Source: (PushbackInputStream); line: 5, column: 1] (through reference chain: com.example.clean.architecture.entities.user.dto.request.RequestPostUserEntity[\\\"cellphone\\\"])\");\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Validate Response attribute [message]\", function () {\r",
+											"  const attribute = pm.response.json().message;\r",
+											"\r",
+											"  pm.expect(attribute).to.be.not.null;\r",
+											"  \r",
+											"  pm.expect(attribute).to.be.a(\"string\")\r",
+											"\r",
+											"  pm.expect(attribute).to.eql(\"JSON parse error: Instantiation of [simple type, class com.example.clean.architecture.entities.user.dto.request.RequestPostUserEntity] value failed for JSON property cellphone due to missing (therefore NULL) value for creator parameter cellphone which is a non-nullable type; nested exception is com.fasterxml.jackson.module.kotlin.MissingKotlinParameterException: Instantiation of [simple type, class com.example.clean.architecture.entities.user.dto.request.RequestPostUserEntity] value failed for JSON property cellphone due to missing (therefore NULL) value for creator parameter cellphone which is a non-nullable type\\n at [Source: (PushbackInputStream); line: 5, column: 1] (through reference chain: com.example.clean.architecture.entities.user.dto.request.RequestPostUserEntity[\\\"cellphone\\\"])\");\r",
+											"});\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "accept",
+										"value": "*/*"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"active\": true,\r\n    \"email\": \"iago@gmail.com\",\r\n    \"name\": \"Iago Magalhaes\"\r\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8081/user/v1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"user",
+										"v1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Update",
+					"item": [
+						{
+							"name": "Required ID",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"  pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response is OK\", function () {\r",
+											"  const responseJson = pm.response.json();\r",
+											"  pm.expect(responseJson).to.eql(\"OK\");\r",
+											"});\r",
+											"\r",
+											"\r",
+											"\r",
+											"/*\r",
+											"pm.test(\"Status code is 400\", function () {\r",
+											"  pm.response.to.have.status(400);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Validate Response attribute [httpStatusCode]\", function () {\r",
+											"  const attribute = pm.response.json().httpStatusCode;\r",
+											"\r",
+											"  pm.expect(attribute).to.be.not.null;\r",
+											"  \r",
+											"  pm.expect(attribute).to.be.a(\"number\")\r",
+											"\r",
+											"  pm.expect(attribute).to.eql(400);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Validate Response attribute [codeMessage]\", function () {\r",
+											"  const attribute = pm.response.json().codeMessage;\r",
+											"\r",
+											"  pm.expect(attribute).to.be.not.null;\r",
+											"  \r",
+											"  pm.expect(attribute).to.be.a(\"string\")\r",
+											"\r",
+											"  pm.expect(attribute).to.eql(\"Required request body is missing: public final org.springframework.http.ResponseEntity<org.springframework.http.HttpStatus> com.example.clean.architecture.controller.user.UserController.delete(long)\");\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Validate Response attribute [message]\", function () {\r",
+											"  const attribute = pm.response.json().message;\r",
+											"\r",
+											"  pm.expect(attribute).to.be.not.null;\r",
+											"  \r",
+											"  pm.expect(attribute).to.be.a(\"string\")\r",
+											"\r",
+											"  pm.expect(attribute).to.eql(\"Required request body is missing: public final org.springframework.http.ResponseEntity<org.springframework.http.HttpStatus> com.example.clean.architecture.controller.user.UserController.delete(long)\");\r",
+											"});*/\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "accept",
+										"value": "*/*"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\r\n        \"active\": true,\r\n        \"cellphone\": \"11987654321\",\r\n        \"email\": \"iagoseixeiromagalhaes@gmail.com\",\r\n        \"name\": \"Iago Seixeiro Magalhaes\"\r\n\r\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8081/user/v1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"user",
+										"v1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Delete",
+					"item": [
+						{
+							"name": "Required ID",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"  pm.response.to.have.status(400);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Validate Response attribute [httpStatusCode]\", function () {\r",
+											"  const attribute = pm.response.json().httpStatusCode;\r",
+											"\r",
+											"  pm.expect(attribute).to.be.not.null;\r",
+											"  \r",
+											"  pm.expect(attribute).to.be.a(\"number\")\r",
+											"\r",
+											"  pm.expect(attribute).to.eql(400);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Validate Response attribute [codeMessage]\", function () {\r",
+											"  const attribute = pm.response.json().codeMessage;\r",
+											"\r",
+											"  pm.expect(attribute).to.be.not.null;\r",
+											"  \r",
+											"  pm.expect(attribute).to.be.a(\"string\")\r",
+											"\r",
+											"  pm.expect(attribute).to.eql(\"Required request body is missing: public final org.springframework.http.ResponseEntity<org.springframework.http.HttpStatus> com.example.clean.architecture.controller.user.UserController.delete(long)\");\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Validate Response attribute [message]\", function () {\r",
+											"  const attribute = pm.response.json().message;\r",
+											"\r",
+											"  pm.expect(attribute).to.be.not.null;\r",
+											"  \r",
+											"  pm.expect(attribute).to.be.a(\"string\")\r",
+											"\r",
+											"  pm.expect(attribute).to.eql(\"Required request body is missing: public final org.springframework.http.ResponseEntity<org.springframework.http.HttpStatus> com.example.clean.architecture.controller.user.UserController.delete(long)\");\r",
+											"});\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "accept",
+										"value": "*/*"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8081/user/v1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"user",
+										"v1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}
