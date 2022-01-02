@@ -260,8 +260,7 @@ https://dbdiagram.io/d/604fca9cfcdcb6230b244b20
 
 #### Integrado
 
-![Output sample](https://github.com/IagoSMagalhaes/CleanArchitecture/blob/master/readme/images/Postman%202022-01-02%2018-36-30.mp4)
-![Output sample](https://github.com/IagoSMagalhaes/CleanArchitecture/blob/master/readme/images/Postman%202022-01-02%2018-36-30_gif.gif)
+![Output sample](https://github.com/IagoSMagalhaes/CleanArchitecture/blob/master/readme/images/test_integration.gif)
 
 ##### Lógica
 
