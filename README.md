@@ -260,6 +260,9 @@ https://dbdiagram.io/d/604fca9cfcdcb6230b244b20
 
 #### Integrado
 
+![Output sample](https://github.com/IagoSMagalhaes/CleanArchitecture/blob/master/readme/images/Postman%202022-01-02%2018-36-30.mp4)
+![Output sample](https://github.com/IagoSMagalhaes/CleanArchitecture/blob/master/readme/images/Postman%202022-01-02%2018-36-30_gif.gif)
+
 ##### Lógica
 
 ![img.png](readme/images/integration_test_logic.png)
@@ -295,6 +298,33 @@ https://dbdiagram.io/d/604fca9cfcdcb6230b244b20
 - Extension Function
 
 #### Spring Boot
+
+    O que é: Framework responsavel por construir o servidor de aplicação onde a REGRA DE NEGOCIO será executada
+    
+    Pra que serve:  Facilitar o processo de configuração e publicação de aplicações que utilizem o ecossistema Spring.
+    
+    Conceitos: Injeção de Depêndencias, Bean,
+    
+    Anotações:
+    @SpringBootApplication ->
+    @EnableWebMvc ->
+    @ComponentScan(value = ["com.example"]) ->
+    @EntityScan(basePackages = ["com.example"]) ->
+    @EnableJpaRepositories(basePackages = ["com.example"]) ->
+    @Configuration  ->
+    @Bean ->
+    
+    Exemplos:
+    
+    Iago: Spring Boot é o framework (tecnologia) que permite construir um servidor de aplicação e
+    injetar as dependencias necessárias para execução do serviço.
+    
+    Ele nos facilita na configuração do servidor, com ele, o desenvolvedor abstrai essa responsabilidade.
+    
+    Com a evolução do SpringBoot, permitiu-se a evolução da arquitetura de microservicos.
+    
+    Link:https://blog.geekhunter.com.br/tudo-o-que-voce-precisa-saber-sobre-o-spring-boot/
+
 
 #### Spring Data
 
