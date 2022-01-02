@@ -16,6 +16,13 @@ dependencies {
     implementation project(':repository')
     implementation project(':gatewayRepository')
 
+    //TEST
+    //testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+    //testImplementation("org.mockito:mockito-junit-jupiter:3.12.4")
+    //testImplementation("junit:junit:4.12")
+    //testImplementation "io.mockk:mockk:1.9.3"
+    //testImplementation 'org.springframework.boot:spring-boot-starter-test:2.5.4'
+
     implementation 'org.springframework:spring-context:5.3.9'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.5.4'
 }

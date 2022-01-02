@@ -13,6 +13,7 @@ repositories {
 dependencies {
 
     //PROJECTS
+    implementation project(':gatewayRepository')
     implementation project(':repository')
     implementation project(':entities')
 
@@ -22,15 +23,12 @@ dependencies {
     implementation 'org.springframework:spring-web:5.3.9'
 
 
-    // https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-engine
+    //TEST
     testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
     testImplementation("org.mockito:mockito-junit-jupiter:3.12.4")
     testImplementation("junit:junit:4.12")
     testImplementation "io.mockk:mockk:1.9.3"
-
-    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-test
     testImplementation 'org.springframework.boot:spring-boot-starter-test:2.5.4'
-   // testImplementation(kotlin("test"))
 
 
 

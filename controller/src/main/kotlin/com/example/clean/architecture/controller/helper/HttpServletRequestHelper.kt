@@ -2,8 +2,10 @@ package com.example.clean.architecture.controller.helper
 
 
 import org.springframework.util.LinkedCaseInsensitiveMap
+import java.lang.IllegalArgumentException
 import java.util.*
 import javax.servlet.http.HttpServletRequest
+
 
 fun HttpServletRequest.getHeaders() : Map<String, List<String>> {
 	val headers = LinkedCaseInsensitiveMap<List<String>>(Locale.ENGLISH)
@@ -11,11 +13,12 @@ fun HttpServletRequest.getHeaders() : Map<String, List<String>> {
 
 	while (names.hasMoreElements()){
 		val name = names.nextElement();
-		headers[name.toString()] = listOf(this.getHeaders(name.toString()).toString())
+		 headers[name.toString()] = this.getHeaders(name as String).toList() as List<String>
 	}
 
 	return headers;
 }
+
 
 fun Map<String, List<String>>.getAuthorization(required: Boolean) : String? {
 

@@ -35,18 +35,24 @@
 
 * [Testes](#testes)
   * [Unitários](#unitario)
-    * [Lógica](#logica)
-    * [Exceção](#exceção)
+    * [Lógica](#unit-logica)
+    * [Exceção](#unit-exceção)
+    * [Stratégias](#unit-stratégias)
     
   * [Integrado](#integrado)
-    * [Lógica](#logica)
-    * [Exceção](#exceção)
+    * [Lógica](#integrate-logica)
+    * [Exceção](#integrate-exceção)
+    * [Stratégias](#integrate-stratégias)
     
 
 * [Tecnologias](#tecnologias)
+  * [Kotlin](#kotlin)
   * [Spring Boot](#spring-boot)
   * [Spring Data](#spring-data)
   * [Spring Security](#spring-data)
+  * [Spring Actuator](#spring-data)
+  * [Spring LDAP](#spring-ldap)
+  * [RabbitMQ](#rabbit-mq)
   * [JUnit](#junit)
   * [Mockito](#mockito)
   * [PostgreSQL](#postgre-sql)
@@ -91,7 +97,7 @@
 
 #### Sistema
 
-                    HumanGenerator
+                    CleanArchitecture
 
     [Servidor]                   Spring Boot
 
@@ -105,18 +111,18 @@
 
     [Mensageria]                 Rabbit 
 
-    [Documentação do Projeto]    Swagger
+    [Documentação]               Swagger
 
 
 ##### Premissas
 
-    Gerenciar dados de humanos;
+    Gerenciar dados do usuario;
 
     DataBase própria;
 
     Criação do usuario no LDAP;
 
-    Notificar em Tópico os usuarios criados;
+    Notificação CRM pós criação;
 
 
 ##### Cenários
@@ -140,11 +146,11 @@
 
 ## Principais Fluxos
 
-#### Criando um Usuario;
+#### Criando usuario;
 
-#### Criando um humano;
+#### Alterando usuário;
 
-#### Buscando um humano;
+#### Deletando usuário;
 
 
 
@@ -159,9 +165,6 @@
 
 #### Fila
 
-
-###### Filas
-
     INP: NotifyCreateUser.INP
     RoutingKey: NotifyCreateUser
     DeadLetter: NotifyCreateUser.BCK.INP
@@ -173,23 +176,51 @@
 
 #### Diagram
 
+![img.png](readme/images/bd_diagram_v2.png)
+
+https://dbdiagram.io/d/604fca9cfcdcb6230b244b20
+
+
 #### Scripts
 
                     Create database users;			
 			--DROP DATABASE users;
 			
-			grant all privileges on database users to postgres;			
+			grant all privileges on database users to postgres;	
+
+			CREATE TABLE public.tb_type_user(
+			id_type_user bigint PRIMARY KEY,
+			name varchar(255),
+			active boolean,
+			dh_create timestamp,
+			dh_update timestamp,
+			dh_exclude timestamp);
 			
-			CREATE TABLE public.tb_usuario(
-			id_usuario bigint PRIMARY KEY,
-			nome varchar(255),
-			telefone varchar(255),
+			CREATE TABLE public.tb_user(
+			id_user bigint PRIMARY KEY,
+			name varchar(255),
+			id_type_user bigint,
+			cellphone varchar(255),
 			email varchar(255),
-			ativo boolean,
-			bloqueado boolean,
-			dh_criacao timestamp,
-			dh_alteracao timestamp,
-			dh_exclusao timestamp);
+			active boolean,
+			blocked boolean,
+			dh_create timestamp,
+			dh_update timestamp,
+			dh_exclude timestamp);
+
+			CREATE TABLE public.tb_user_address(
+			id_user_address bigint PRIMARY KEY,
+			id_user bigint,
+			cellphone varchar(255),
+			country varchar(255),
+			state varchar(255),
+			city varchar(255),
+			district varchar(255),
+			street varchar(255),
+			zip_code varchar(255),
+			dh_create timestamp,
+			dh_update timestamp,
+			dh_exclude timestamp);
 
 
 
@@ -200,15 +231,20 @@
 
 ##### Lógica
 
-![img.png](readme/unit_test_logic_one.png)
+![img.png](readme/images/unit_test_logic_one.png)
 
-![img_1.png](readme/unit_test_logic_two.png)
+![img_1.png](readme/images/unit_test_logic_two.png)
 
 
 ##### Exceção
 
 
-![img_1.png](readme/unit_test_exception.png)
+![img_1.png](readme/images/unit_test_exception.png)
+
+
+##### Stratégias
+
+![img.png](readme/images/unit_test_strategy.png)
 
 
 ##### Links
@@ -226,9 +262,16 @@
 
 ##### Lógica
 
+![img.png](readme/images/integration_test_logic.png)
+
 
 ##### Exceção
 
+![img.png](readme/images/integration_test_exception.png)
+
+##### Stratégias
+
+![img.png](readme/images/integration_test_strategy.png)
 
 ##### Links
 
@@ -243,11 +286,25 @@
 
 ## Tecnologias
 
+#### Koltin
+
+- Declarando funções
+
+- Tratando exceção / sucesso
+
+- Extension Function
+
 #### Spring Boot
 
 #### Spring Data
 
 #### Spring Security
+
+#### Spring Actuator
+
+#### Spring LDAP
+
+#### RabbitMQ
 
 #### JUnit
 

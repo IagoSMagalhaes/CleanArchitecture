@@ -3,7 +3,7 @@ import com.example.clean.architecture.controller.helper.getDomain
 import com.example.clean.architecture.controller.helper.getHeaders
 import com.example.clean.architecture.controller.helper.getQuery
 import com.example.clean.architecture.entities.domain.domain.DomainEntity
-import com.example.clean.architecture.gatewayRepository.domainRepository.GatewayDomainRepository
+import com.example.clean.architecture.gatewayRepository.domainRepository.domain.GatewayDomainRepository
 import io.swagger.annotations.ApiImplicitParam
 import io.swagger.annotations.ApiImplicitParams
 import io.swagger.annotations.ApiOperation

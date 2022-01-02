@@ -4,11 +4,10 @@ import com.example.clean.architecture.entities.user.domain.UserEntity
 import com.example.clean.architecture.entities.user.dto.request.RequestGetUserEntity
 import com.example.clean.architecture.entities.user.dto.request.RequestPostUserEntity
 import com.example.clean.architecture.entities.user.dto.request.RequestPutUserEntity
-import com.example.clean.architecture.service.user.UserService
+import com.example.clean.architecture.strategyDomainRepository.service.user.UserService
 import io.swagger.annotations.ApiOperation
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
-import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.*
 import javax.servlet.http.HttpServletRequest
 import javax.validation.Valid

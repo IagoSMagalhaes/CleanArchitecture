@@ -16,6 +16,7 @@ dependencies {
     implementation project(':entities')
     implementation project(':service')
     implementation project(':gatewayRepository')
+    implementation project(':strategyDomainRepository')
 
 
 
@@ -40,6 +41,15 @@ dependencies {
 
     // https://mvnrepository.com/artifact/javax.validation/validation-api
     implementation("javax.validation:validation-api:2.0.1.Final")
+
+    //KOTLIN
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.12.4")
+   // implementation("org.jetbrains.kotlin:kotlin-reflect")
+
+    // https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-stdlib-jdk8
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.5.31")
+
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.2.1")
 
 
 }
