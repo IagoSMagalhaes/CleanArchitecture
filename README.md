@@ -375,6 +375,14 @@ https://dbdiagram.io/d/604fca9cfcdcb6230b244b20
 
 #### Spring Actuator
 
+    O que é: Spring Boot Actuator é um subprojeto do Spring Boot Framework. Ele usa pontos de extremidade HTTP para expor informações operacionais sobre qualquer aplicativo em execução.
+
+    Conteúdo completo no link seguinte, dispensa comentários.
+
+    Links: https://springframework.guru/actuator-in-spring-boot/
+
+![img.png](readme/images/actuator_json.png)
+x
 #### Spring LDAP
 
 #### RabbitMQ
