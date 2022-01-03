@@ -65,6 +65,9 @@
   * [Server Driven UI](#server-driven-ui)
   * [Estrutura de Packages / Nomeclatura dos arquivos](#estrutura-de-packges)  
   * [Padrão de Logs](#padrão-de-logs)
+  * [Clean Code](#clean-code)
+  * [SOLID](#solid)
+  * [GitFlow](#git-flow)
   
 
 * [Personas](#personas)
@@ -229,6 +232,20 @@ https://dbdiagram.io/d/604fca9cfcdcb6230b244b20
 
 #### Unitários
 
+    O que é: São testes feitos pelo desenvolvedor para garantir que o que precisa ser feito, está sendo feito
+    
+    Pra que serve: Manter tudo que está funcionando OK, por ex, se um desenvolvedor mexer em uma regra PARANDO de salvar um registro que deveria ser salvo, o teste unitário irá acusar erro
+    
+    Conceitos: Tabelas, Sequences
+    
+    Tecnologias:
+    
+    Exemplos:
+    
+    Links: https://www.devmedia.com.br/e-ai-como-voce-testa-seus-codigos/39478
+
+
+
 ##### Lógica
 
 ![img.png](readme/images/unit_test_logic_one.png)
@@ -315,7 +332,7 @@ https://dbdiagram.io/d/604fca9cfcdcb6230b244b20
     
     Exemplos:
     
-    Iago: Spring Boot é o framework (tecnologia) que permite construir um servidor de aplicação e
+    Spring Boot é o framework (tecnologia) que permite construir um servidor de aplicação e
     injetar as dependencias necessárias para execução do serviço.
     
     Ele nos facilita na configuração do servidor, com ele, o desenvolvedor abstrai essa responsabilidade.
@@ -327,37 +344,138 @@ https://dbdiagram.io/d/604fca9cfcdcb6230b244b20
 
 #### Spring Data
 
+    O que é: O SpringData é um projeto da SpringSource com proposta de unificar e facilitar o acesso a diferentes tecnologias de armazenamento de dados, como bancos de dados relacionais (PostgreSQL , Oracle) e os NoSQL (DynamoDB, ElasticSource).
+    
+    Pra que serve: Framework que provê acesso a bases de dados através da JPA.
+    
+    Conceitos: namedQuery, query, DataSourceConfiguration
+    
+    Anotações:
+
+    
+    @Table ->
+    @Entity ->
+    @Colunm ->
+    @OneToOne ->
+    @OneToMany ->
+    @Repository ->
+    @Query ->
+    @Transacional ->
+    
+    Exemplos:
+    Links: https://www.infoq.com/br/articles/spring-data-intro/#:~:text=O%20SpringData%20%C3%A9%20um%20projeto,dados%20relacionais%20e%20os%20NoSQL.
+    
+    Spring Data é o framework (tecnologia) que gerencia a interface de comunicação com o Banco de Dados e
+    todo o relacionamento das entidades (TABELAS)
+
+
+
+
 #### Spring Security
 
 #### Spring Actuator
 
+    O que é: Spring Boot Actuator é um subprojeto do Spring Boot Framework. Ele usa pontos de extremidade HTTP para expor informações operacionais sobre qualquer aplicativo em execução.
+
+    Conteúdo completo no link seguinte, dispensa comentários.
+
+    Links: https://springframework.guru/actuator-in-spring-boot/
+
+![img.png](readme/images/actuator_json.png)
+x
 #### Spring LDAP
 
 #### RabbitMQ
+
+    O que é: Mensageria é um conceito que define que sistemas distribuídos, possam se comunicar por meio de troca de mensagens (evento), sendo estas mensagens “gerenciadas” por um Message Broker (servidor/módulo de mensagens).”
+    
+    Pra que serve: Processamento ASSÍNCRONO
+
+    O processamento assíncrono é amplamente utilizado principalmente no sentido de resiliencia e no cenario onde NÃO há RETORNO
+    ex: resiliencia: pense em um software que executa a abertura de conta, ele precisa fazer 15 integrações para conseguir abrir a conta... isso tanto pode demorar 2min quanto der erro em alguma dessas etapas.
+    
+    No fluxo assíncrono com Fila, o usuario faz a solicitação da abertura da conta e no mesmo momento ja recebe um OK, o usuario nao fica aguardando os 2 min, a aplicação se encarrega de AVISAR o usuario quando houver concluido o fluxo.
+    ex: sem retorno: Atualização de sessão. não tem retorno, o usuario não precisa aguardar.
+    
+    Conceitos:
+        RoutingKey -> Chave de roteamento para fila
+    
+        DeadLetter -> Cemitérios de filas mortas. Ex: mensagens que dão exceção por algum motivo, caem na deadletter para serem analisadas/ reprocessadas
+    
+    Tecnologias: RabbitMQ, Kafka, SQS
+    
+    Exemplos:
+    
+    Links: https://rockcontent.com/br/blog/postgresql/
+    https://4linux.com.br/o-que-e-postgresql/
+    
+    
 
 #### JUnit
 
 #### Mockito
 
 #### PostgreSQL
-        Clean Architecture    
 
-        Strategy              
+    O que é: PostgreSQL é um sistema gerenciador de banco de dados objeto-relacional baseado no POSTGRES, Versão 4.2, desenvolvido na Universidade da Califórnia no Departamento de Ciências da Computação em Berkeley, o qual foi pioneiro em muitos conceitos que vieram a estar disponíveis em alguns bancos de dados comerciais mais tarde
+    
+    Pra que serve: Banco de dados responsavel por armazenar as tabelas, sequences, e todos os registros.
+    
+    Conceitos: Tabelas, Sequences
+    
+        SELECT -> Buscar Registro. select * from schema.tb_usuario where documento = '12345678'
+    
+        UPDATE -> Atualizar Registro. update schema.tb_usuario set telefone = '' where documento = '12345678'
+    
+        DELETE -: Deletar registro. delete from schema.tb_usuario where documento = '123545768'
 
-        Builder               https://pt.wikipedia.org/wiki/Builder
 
-        Swagger               https://medium.com/@raphaelbluteau/spring-boot-swagger-documentando-sua-api-automaticamente-27903293aeb6
+    Exemplos:
+
+    Links: https://rockcontent.com/br/blog/postgresql/
+
+           https://4linux.com.br/o-que-e-postgresql/
+    
+    
 
 
 ## Design Patter'n
 
 #### Clean Architecture
 
-- https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html
+    O que é: Arquitetura Limpa (Clean Architecture) é um padrão arquitetural proposto por Robert Martin – mais conhecido como Uncle Bob – com o objetivo de promover a implementação de sistemas que favorecem reusabilidade de código, coesão, independência de tecnologia e testabilidade. Se quisermos adotar a classificação do Capítulo 7, a Arquitetura Limpa pode ser considerada como uma arquitetura em camadas.
+             É um padrão organizicional de projeto que visa o encapsulamento dos repositórios, otimizando a delegação de responsabilidade, reaproveitamento dos modulos entre os microservicos e o isolamento da camada de service para o banco de dados
+    
+    Pra que serve:
+    
+    Conceitos: Entidades e Casos de Uso, Adaptadores
+    
+    Tecnologias:
+    
+    Exemplos:
+    
+    Links: https://engsoftmoderna.info/artigos/arquitetura-limpa.html
+           
+           https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html
+
+
 
 #### Strategy
 
-- https://en.wikipedia.org/wiki/Strategy_pattern
+    O que é: Strategy é um padrão de projeto de software (do inglês design pattern), pode ser chamado de policy. Este padrão foi documentado no Catálogo GOF (Gang of Four), sendo categorizado como um padrão comportamental de desenvolvimento de software.  De modo que delega as responsabilidades adquiridas pelas entidades, atribuindo, portanto, o comportamento. Assim a comunicação entre os objetos é aprimorada, pois há a distribuição das responsabilidades.
+    
+    Pra que serve: Otimizar soluções
+    
+    Conceitos:
+    
+    Tecnologias:
+    
+    Exemplos:
+    
+    Links: https://www.devmedia.com.br/estudo-e-aplicacao-do-padrao-de-projeto-strategy/25856
+           
+    https://pt.wikipedia.org/wiki/Strategy
+
 
 
 #### Builder
@@ -443,6 +561,59 @@ https://dbdiagram.io/d/604fca9cfcdcb6230b244b20
         }.onSucesss {
              LOG.info("END {} user: {}", methodName/service?, cpf)
         }
+
+
+#### Clean Code
+
+    O que é: Por que estamos falando tanto sobre código limpo (Clean Code) e por que isto é tão importante para nós? De fato a manutenção de um software é tão importante quanto sua construção.
+    
+    Como relatado por Robert C. Martin em seu livro clássico, Clean Code, um Best Seller da nossa área, algumas práticas e visões são importantíssimas para mantermos a vida do nosso software.
+    
+    Pra que serve: As empresas investem milhões em softwares todo ano, mas com tantas mudanças no time e nas tecnologias, como fazer este investimento durar? Como garantir uma boa manutenção, durabilidade, vida ao software? Segundo Uncle Bob, as práticas abaixo são o caminho. Boas praticas para melhorar a manutenção do software
+    
+    Conceitos:
+    
+    Exemplos:
+    
+    Links: https://balta.io/blog/clean-code
+
+
+
+#### SOLID
+
+    O que é: Boas praticas na programação.
+    
+    Pra que serve:
+    
+    Conceitos:
+    
+    S.O.L.I.D: Os 5 princípios da POO
+    S — Single Responsiblity Principle (Princípio da responsabilidade única)
+    O — Open-Closed Principle (Princípio Aberto-Fechado)
+    L — Liskov Substitution Principle (Princípio da substituição de Liskov)
+    I — Interface Segregation Principle (Princípio da Segregação da Interface)
+    D — Dependency Inversion Principle (Princípio da inversão da dependência)
+    
+    Exemplos:
+    Links: https://medium.com/desenvolvendo-com-paixao/o-que-%C3%A9-solid-o-guia-completo-para-voc%C3%AA-entender-os-5-princ%C3%ADpios-da-poo-2b937b3fc530
+
+
+
+#### GitFlow
+
+    O que é: Fluxo de trabalho -> Fluxo de gerenciamento de código   PADRÕES
+
+    Pra que serve: Manter uma estrutura de varios desenvolvimentos em paralelo
+    
+    Conceitos: MASTER , FEATURE , RELEASE, HOTFIX
+    
+    Exemplos:
+    Links: https://www.atlassian.com/br/git/tutorials/comparing-workflows/gitflow-workflow
+    
+    
+    Padrão de gerenciamento de código, boas práticas.
+
+
 
 
 ## Personas
