@@ -1,6 +1,6 @@
 package com.example.clean.architecture.repository.typeUser.domain
 
-import com.example.clean.architecture.entities.typeUser.domain.TypeUserEntity
+import com.example.clean.architecture.entities.cleanArchitecture.typeUser.domain.TypeUserEntity
 import com.sun.istack.NotNull
 import java.time.LocalDateTime
 import javax.persistence.*

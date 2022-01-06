@@ -1,7 +1,7 @@
 package com.example.clean.architecture.controller.config
 
-import com.example.clean.architecture.entities.abstract.ApiError
-import com.example.clean.architecture.entities.auth.exception.AuthUnauthorizedException
+import com.example.clean.architecture.entities.cleanArchitecture.abstract.ApiError
+import com.example.clean.architecture.entities.cleanArchitecture.auth.exception.AuthUnauthorizedException
 import org.slf4j.LoggerFactory
 //import org.slf4j.LoggerFactory
 import org.springframework.context.MessageSource

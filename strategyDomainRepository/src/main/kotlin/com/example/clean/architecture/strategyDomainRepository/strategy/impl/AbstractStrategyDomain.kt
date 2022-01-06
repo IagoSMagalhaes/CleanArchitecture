@@ -1,7 +1,7 @@
 package com.example.clean.architecture.strategyDomainRepository.strategy.impl
 
-import com.example.clean.architecture.entities.domain.dto.response.ResponseGetStrategyDomainEntity
-import com.example.clean.architecture.entities.domain.enun.DomainEnum
+import com.example.clean.architecture.entities.otherRepositories.domain.dto.response.ResponseGetStrategyDomainEntity
+import com.example.clean.architecture.entities.otherRepositories.domain.enun.DomainEnum
 import com.example.clean.architecture.strategyDomainRepository.service.AbstractDomainService
 
 

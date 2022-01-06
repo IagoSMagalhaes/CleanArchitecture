@@ -1,7 +1,7 @@
 package com.example.clean.architecture.strategyDomainRepository.service.user.impl.service
 
-import com.example.clean.architecture.entities.user.dto.request.RequestPostUserEntity
-import com.example.clean.architecture.entities.user.dto.request.RequestPutUserEntity
+import com.example.clean.architecture.entities.cleanArchitecture.user.dto.request.RequestPostUserEntity
+import com.example.clean.architecture.entities.cleanArchitecture.user.dto.request.RequestPutUserEntity
 import com.example.clean.architecture.repository.user.domain.User
 import com.example.clean.architecture.repository.user.repository.UserRepository
 import com.example.clean.architecture.strategyDomainRepository.service.user.impl.UserServiceImpl

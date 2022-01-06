@@ -1,17 +1,19 @@
 package com.example.clean.architecture.strategyDomainRepository.service.user.impl
 
-import com.example.clean.architecture.entities.user.domain.UserEntity
-import com.example.clean.architecture.entities.user.dto.request.RequestGetUserEntity
-import com.example.clean.architecture.entities.user.dto.request.RequestPostUserEntity
-import com.example.clean.architecture.entities.user.dto.request.RequestPutUserEntity
-import com.example.clean.architecture.entities.user.dto.request.toEntity
-import com.example.clean.architecture.entities.user.exception.UserDeleteException
-import com.example.clean.architecture.entities.user.exception.UserGetException
-import com.example.clean.architecture.entities.user.exception.UserPostException
-import com.example.clean.architecture.entities.user.exception.UserPutException
+import com.example.clean.architecture.entities.cleanArchitecture.user.domain.UserEntity
+import com.example.clean.architecture.entities.cleanArchitecture.user.dto.request.RequestGetUserEntity
+import com.example.clean.architecture.entities.cleanArchitecture.user.dto.request.RequestPostUserEntity
+import com.example.clean.architecture.entities.cleanArchitecture.user.dto.request.RequestPutUserEntity
+import com.example.clean.architecture.entities.cleanArchitecture.user.dto.request.toEntity
+import com.example.clean.architecture.entities.cleanArchitecture.user.exception.UserDeleteException
+import com.example.clean.architecture.entities.cleanArchitecture.user.exception.UserGetException
+import com.example.clean.architecture.entities.cleanArchitecture.user.exception.UserPostException
+import com.example.clean.architecture.entities.cleanArchitecture.user.exception.UserPutException
+import com.example.clean.architecture.gatewayRepository.otherRepositories.ldap.GatewayLdapUserRepository
 import com.example.clean.architecture.repository.user.domain.User
 import com.example.clean.architecture.repository.user.domain.toDomain
 import com.example.clean.architecture.repository.user.domain.toEntity
+import com.example.clean.architecture.repository.user.domain.toRequestPostLdapUserEntity
 import com.example.clean.architecture.repository.user.repository.UserRepository
 import com.example.clean.architecture.strategyDomainRepository.service.user.UserService
 import org.slf4j.LoggerFactory
@@ -20,7 +22,8 @@ import java.util.*
 
 
 @Service
-open class UserServiceImpl(val repository: UserRepository) : UserService {
+open class UserServiceImpl(val repository: UserRepository,
+							val gatewayLdapUserRepository: GatewayLdapUserRepository) : UserService {
 
 	 val LOG = LoggerFactory.getLogger(UserServiceImpl::class.java)
 
@@ -109,6 +112,10 @@ open class UserServiceImpl(val repository: UserRepository) : UserService {
 			val domain = body.toEntity().toDomain()
 
 			repository.save(domain)
+
+			val ldap = domain.toRequestPostLdapUserEntity()
+
+			gatewayLdapUserRepository.post(ldap)
 
 		}.onFailure {
 

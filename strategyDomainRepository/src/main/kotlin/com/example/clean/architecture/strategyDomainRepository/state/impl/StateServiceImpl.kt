@@ -1,6 +1,6 @@
 package com.example.clean.architecture.domainRepository.state.impl
 
-import com.example.clean.architecture.entities.domain.state.dto.request.RequestPostStateEntity
+import com.example.clean.architecture.entities.otherRepositories.domain.state.dto.request.RequestPostStateEntity
 import com.example.clean.architecture.repository.domain.state.domain.State
 import com.example.clean.architecture.repository.domain.state.repository.StateRepository
 import org.springframework.stereotype.Service

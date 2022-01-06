@@ -1,11 +1,11 @@
 package com.example.clean.architecture.strategyDomainRepository.service.user.impl.exception
 
-import com.example.clean.architecture.entities.user.dto.request.RequestPostUserEntity
-import com.example.clean.architecture.entities.user.dto.request.RequestPutUserEntity
-import com.example.clean.architecture.entities.user.exception.UserDeleteException
-import com.example.clean.architecture.entities.user.exception.UserGetException
-import com.example.clean.architecture.entities.user.exception.UserPostException
-import com.example.clean.architecture.entities.user.exception.UserPutException
+import com.example.clean.architecture.entities.cleanArchitecture.user.dto.request.RequestPostUserEntity
+import com.example.clean.architecture.entities.cleanArchitecture.user.dto.request.RequestPutUserEntity
+import com.example.clean.architecture.entities.cleanArchitecture.user.exception.UserDeleteException
+import com.example.clean.architecture.entities.cleanArchitecture.user.exception.UserGetException
+import com.example.clean.architecture.entities.cleanArchitecture.user.exception.UserPostException
+import com.example.clean.architecture.entities.cleanArchitecture.user.exception.UserPutException
 import com.example.clean.architecture.repository.user.repository.UserRepository
 import com.example.clean.architecture.strategyDomainRepository.service.user.impl.UserServiceImpl
 import io.mockk.clearMocks

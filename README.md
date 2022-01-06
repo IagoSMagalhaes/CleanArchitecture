@@ -382,8 +382,12 @@ https://dbdiagram.io/d/604fca9cfcdcb6230b244b20
     Links: https://springframework.guru/actuator-in-spring-boot/
 
 ![img.png](readme/images/actuator_json.png)
-x
+
 #### Spring LDAP
+
+
+
+- https://www.baeldung.com/spring-data-ldap
 
 #### RabbitMQ
 

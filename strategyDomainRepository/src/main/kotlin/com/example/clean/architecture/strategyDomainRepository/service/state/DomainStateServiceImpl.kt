@@ -1,6 +1,6 @@
 package com.example.clean.architecture.strategyDomainRepository.service.state
 
-import com.example.clean.architecture.entities.domain.domain.DomainEntity
+import com.example.clean.architecture.entities.otherRepositories.domain.domain.DomainEntity
 import com.example.clean.architecture.strategyDomainRepository.service.AbstractDomainService
 import org.springframework.stereotype.Service
 
