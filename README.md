@@ -412,6 +412,7 @@ https://dbdiagram.io/d/604fca9cfcdcb6230b244b20
     
     Links: https://rockcontent.com/br/blog/postgresql/
     https://4linux.com.br/o-que-e-postgresql/
+    https://www.cloudamqp.com/blog/part4-rabbitmq-for-beginners-exchanges-routing-keys-bindings.html
     
     
 

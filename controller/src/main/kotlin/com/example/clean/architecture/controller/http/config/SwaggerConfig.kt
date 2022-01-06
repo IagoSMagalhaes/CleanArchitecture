@@ -1,5 +1,5 @@
 
-package com.example.clean.architecture.controller.config
+package com.example.clean.architecture.controller.http.config
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration

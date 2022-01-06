@@ -19,6 +19,7 @@ dependencies {
     implementation project(':strategyDomainRepository')
 
 
+    implementation("org.springframework.amqp:spring-rabbit:2.3.6")
 
     //SPRING
     implementation 'org.springframework:spring-webmvc:5.3.6'

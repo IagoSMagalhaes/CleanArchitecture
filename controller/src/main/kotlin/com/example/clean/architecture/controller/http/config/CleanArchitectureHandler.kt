@@ -1,4 +1,4 @@
-package com.example.clean.architecture.controller.config
+package com.example.clean.architecture.controller.http.config
 
 import com.example.clean.architecture.entities.cleanArchitecture.abstract.ApiError
 import com.example.clean.architecture.entities.cleanArchitecture.auth.exception.AuthUnauthorizedException

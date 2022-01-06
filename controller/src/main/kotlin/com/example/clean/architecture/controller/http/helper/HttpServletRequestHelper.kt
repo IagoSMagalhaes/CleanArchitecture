@@ -1,4 +1,4 @@
-package com.example.clean.architecture.controller.helper
+package com.example.clean.architecture.controller.http.helper
 
 
 import org.springframework.util.LinkedCaseInsensitiveMap

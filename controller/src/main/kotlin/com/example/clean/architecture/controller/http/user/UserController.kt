@@ -1,4 +1,4 @@
-package com.example.clean.architecture.controller.user
+package com.example.clean.architecture.controller.http.user
 
 import com.example.clean.architecture.entities.cleanArchitecture.user.domain.UserEntity
 import com.example.clean.architecture.entities.cleanArchitecture.user.dto.request.RequestGetUserEntity

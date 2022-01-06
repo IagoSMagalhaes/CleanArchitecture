@@ -1,7 +1,7 @@
-package com.example.clean.architecture.controller.domain
-import com.example.clean.architecture.controller.helper.getDomain
-import com.example.clean.architecture.controller.helper.getHeaders
-import com.example.clean.architecture.controller.helper.getQuery
+package com.example.clean.architecture.controller.http.domain
+import com.example.clean.architecture.controller.http.helper.getDomain
+import com.example.clean.architecture.controller.http.helper.getHeaders
+import com.example.clean.architecture.controller.http.helper.getQuery
 import com.example.clean.architecture.entities.otherRepositories.domain.domain.DomainEntity
 import com.example.clean.architecture.gatewayRepository.otherRepositories.domainRepository.domain.GatewayDomainRepository
 import io.swagger.annotations.ApiImplicitParam
