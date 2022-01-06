@@ -1,7 +1,7 @@
 package com.example.clean.architecture.strategyDomainRepository.gateway.domain
 
 import com.example.clean.architecture.strategyDomainRepository.service.impl.DomainServiceImpl
-import com.example.clean.architecture.gatewayRepository.domainRepository.domain.GatewayDomainRepository
+import com.example.clean.architecture.gatewayRepository.otherRepositories.domainRepository.domain.GatewayDomainRepository
 import org.springframework.context.annotation.Configuration
 
 

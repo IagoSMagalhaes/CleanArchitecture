@@ -1,9 +1,9 @@
 package com.example.clean.architecture.controller.user
 
-import com.example.clean.architecture.entities.user.domain.UserEntity
-import com.example.clean.architecture.entities.user.dto.request.RequestGetUserEntity
-import com.example.clean.architecture.entities.user.dto.request.RequestPostUserEntity
-import com.example.clean.architecture.entities.user.dto.request.RequestPutUserEntity
+import com.example.clean.architecture.entities.cleanArchitecture.user.domain.UserEntity
+import com.example.clean.architecture.entities.cleanArchitecture.user.dto.request.RequestGetUserEntity
+import com.example.clean.architecture.entities.cleanArchitecture.user.dto.request.RequestPostUserEntity
+import com.example.clean.architecture.entities.cleanArchitecture.user.dto.request.RequestPutUserEntity
 import com.example.clean.architecture.strategyDomainRepository.service.user.UserService
 import io.swagger.annotations.ApiOperation
 import org.springframework.http.HttpStatus

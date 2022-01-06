@@ -2,7 +2,7 @@ package com.example.clean.architecture.strategyDomainRepository.strategy.strateg
 
 import com.example.clean.architecture.strategyDomainRepository.service.AbstractDomainService
 import com.example.clean.architecture.strategyDomainRepository.service.state.DomainStateServiceImpl
-import com.example.clean.architecture.entities.domain.enun.DomainEnum
+import com.example.clean.architecture.entities.otherRepositories.domain.enun.DomainEnum
 import com.example.clean.architecture.strategyDomainRepository.strategy.impl.AbstractStrategyDomain
 import org.springframework.stereotype.Service
 

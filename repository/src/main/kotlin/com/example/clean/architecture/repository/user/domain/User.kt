@@ -1,6 +1,7 @@
 package com.example.clean.architecture.repository.user.domain
 
-import com.example.clean.architecture.entities.user.domain.UserEntity
+import com.example.clean.architecture.entities.cleanArchitecture.user.domain.UserEntity
+import com.example.clean.architecture.entities.otherRepositories.ldap.user.dto.request.RequestPostLdapUserEntity
 import com.sun.istack.NotNull
 import java.time.LocalDateTime
 import javax.persistence.*
@@ -48,6 +49,9 @@ open class User (
 
 
 fun List<User>.toEntity() = map { it.toEntity() }
+
+
+fun User.toRequestPostLdapUserEntity() = RequestPostLdapUserEntity( name!!, "001122")
 
 fun User.toEntity() = UserEntity(id = id,
 								 name = name,

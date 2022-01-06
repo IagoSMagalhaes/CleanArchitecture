@@ -1,6 +1,6 @@
 package com.example.clean.architecture.strategyDomainRepository.service.impl
 
-import com.example.clean.architecture.entities.domain.domain.DomainEntity
+import com.example.clean.architecture.entities.otherRepositories.domain.domain.DomainEntity
 import com.example.clean.architecture.strategyDomainRepository.strategy.factory.StrategyDomainFactory
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service

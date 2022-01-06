@@ -1,9 +1,8 @@
 package com.example.clean.architecture.controller.strategy
 import com.example.clean.architecture.controller.helper.getDomain
 import com.example.clean.architecture.controller.helper.getHeaders
-import com.example.clean.architecture.entities.domain.dto.response.ResponseGetStrategyDomainEntity
-import com.example.clean.architecture.gatewayRepository.domainRepository.strategy.GatewayStrategyDomainRepository
-import com.example.clean.architecture.strategyDomainRepository.strategy.impl.AbstractStrategyDomain
+import com.example.clean.architecture.entities.otherRepositories.domain.dto.response.ResponseGetStrategyDomainEntity
+import com.example.clean.architecture.gatewayRepository.otherRepositories.domainRepository.strategy.GatewayStrategyDomainRepository
 import io.swagger.annotations.ApiImplicitParam
 import io.swagger.annotations.ApiImplicitParams
 import io.swagger.annotations.ApiOperation

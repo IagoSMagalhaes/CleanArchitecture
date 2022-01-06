@@ -1,7 +1,7 @@
 package com.example.clean.architecture.strategyDomainRepository.service.typeUser.impl
 
-import com.example.clean.architecture.entities.typeUser.domain.TypeUserEntity
-import com.example.clean.architecture.entities.typeUser.exception.TypeUserGetException
+import com.example.clean.architecture.entities.cleanArchitecture.typeUser.domain.TypeUserEntity
+import com.example.clean.architecture.entities.cleanArchitecture.typeUser.exception.TypeUserGetException
 import com.example.clean.architecture.repository.typeUser.domain.TypeUser
 import com.example.clean.architecture.repository.typeUser.domain.toEntity
 import com.example.clean.architecture.repository.typeUser.repository.TypeUserRepository
