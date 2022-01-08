@@ -13,7 +13,7 @@ repositories {
 dependencies {
     //implementation "org.jetbrains.kotlin:kotlin-stdlib"
     implementation project(':controller')
-    implementation project(':service')
+    implementation project(':usecases')
     implementation project(':repository')
     implementation project(':entities')
     implementation project(':gatewayRepository')

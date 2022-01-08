@@ -4,8 +4,8 @@ import com.example.clean.architecture.entities.cleanArchitecture.user.domain.Use
 import com.example.clean.architecture.entities.cleanArchitecture.user.dto.request.RequestGetUserEntity
 import com.example.clean.architecture.entities.cleanArchitecture.user.dto.request.RequestPostUserEntity
 import com.example.clean.architecture.entities.cleanArchitecture.user.dto.request.RequestPutUserEntity
-import com.example.clean.architecture.strategyDomainRepository.service.chainOfResponsability.impl.ChainOfResponsabilityCreateUserServiceImpl
-import com.example.clean.architecture.strategyDomainRepository.service.user.UserService
+import com.example.clean.architecture.usecases.service.chainOfResponsability.impl.ChainOfResponsabilityCreateUserUsecaseImpl
+import com.example.clean.architecture.usecases.service.user.UserUsecase
 import io.swagger.annotations.ApiOperation
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -16,7 +16,7 @@ import javax.validation.Valid
 @RequestMapping("/user")
 @RestController
 @ApiOperation(tags = ["User CRUD"], value = "Layer responsible to recevie request to manager Create/Read/Update/Delete the User entity")
-open class UserController(val service: UserService, val chainOfResponsabilityCreateUser: ChainOfResponsabilityCreateUserServiceImpl) {
+open class UserController(val service: UserUsecase, val chainOfResponsabilityCreateUser: ChainOfResponsabilityCreateUserUsecaseImpl) {
 
 
 	@GetMapping("/v1")

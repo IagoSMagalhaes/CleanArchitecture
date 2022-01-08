@@ -14,7 +14,7 @@ repositories {
 dependencies {
 
     implementation project(':entities')
-    implementation project(':service')
+    implementation project(':usecases')
 
     implementation project(':strategyDomainRepository')
 
