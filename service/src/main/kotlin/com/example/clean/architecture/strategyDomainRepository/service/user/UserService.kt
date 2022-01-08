@@ -14,6 +14,8 @@ interface UserService {
 
 	fun post(body: RequestPostUserEntity)
 
+	fun createUser(body: RequestPostUserEntity)
+
     fun put(body: RequestPutUserEntity)
 
 	fun delete(id: Long)

@@ -1,6 +1,8 @@
 package com.example.clean.architecture.entities.cleanArchitecture.user.dto.request
 
 import com.example.clean.architecture.entities.cleanArchitecture.user.domain.UserEntity
+import com.example.clean.architecture.entities.otherRepositories.ldap.user.dto.request.RequestPostLdapUserEntity
+import com.example.clean.architecture.entities.otherRepositories.notify.dto.request.RequestPostNotifyCreateUserEntity
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import java.util.*
 import javax.validation.constraints.NotNull
@@ -18,3 +20,8 @@ fun RequestPostUserEntity.toEntity() = UserEntity(name = name,
                                            email = email,
                                            active = active,
                                             image = image?.let { Base64.getDecoder().decode(it)})
+
+
+fun RequestPostUserEntity.toRequestPostLdapUserEntity() = RequestPostLdapUserEntity( name, "001122")
+
+fun RequestPostUserEntity.toRequestPostNotifyCreateUserEntity() = RequestPostNotifyCreateUserEntity( name, email, cellphone)

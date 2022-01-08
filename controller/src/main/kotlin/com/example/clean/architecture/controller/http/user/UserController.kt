@@ -9,14 +9,13 @@ import io.swagger.annotations.ApiOperation
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
-import javax.servlet.http.HttpServletRequest
 import javax.validation.Valid
 
 
 @RequestMapping("/user")
 @RestController
 @ApiOperation(tags = ["User CRUD"], value = "Layer responsible to recevie request to manager Create/Read/Update/Delete the User entity")
-open class UserController(val service: UserService, val request: HttpServletRequest) {
+open class UserController(val service: UserService) {
 
 
 	@GetMapping("/v1")
@@ -45,7 +44,7 @@ open class UserController(val service: UserService, val request: HttpServletRequ
 	@ApiOperation("Save User", response = HttpStatus::class)
 	fun post(@Valid @RequestBody body: RequestPostUserEntity): ResponseEntity<HttpStatus> {
 
-		service.post(body)
+		service.createUser(body)
 
 		return ResponseEntity.ok(HttpStatus.OK)
 	}

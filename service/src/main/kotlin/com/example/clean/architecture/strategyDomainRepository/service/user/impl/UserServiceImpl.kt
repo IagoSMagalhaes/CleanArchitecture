@@ -9,12 +9,11 @@ import com.example.clean.architecture.entities.cleanArchitecture.user.exception.
 import com.example.clean.architecture.entities.cleanArchitecture.user.exception.UserGetException
 import com.example.clean.architecture.entities.cleanArchitecture.user.exception.UserPostException
 import com.example.clean.architecture.entities.cleanArchitecture.user.exception.UserPutException
-import com.example.clean.architecture.gatewayRepository.otherRepositories.ldap.GatewayLdapUserRepository
 import com.example.clean.architecture.repository.user.domain.User
 import com.example.clean.architecture.repository.user.domain.toDomain
 import com.example.clean.architecture.repository.user.domain.toEntity
-import com.example.clean.architecture.repository.user.domain.toRequestPostLdapUserEntity
 import com.example.clean.architecture.repository.user.repository.UserRepository
+import com.example.clean.architecture.strategyDomainRepository.service.chainOfResponsability.ChainOfResponsabilityCreateUserService
 import com.example.clean.architecture.strategyDomainRepository.service.user.UserService
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
@@ -23,7 +22,8 @@ import java.util.*
 
 @Service
 open class UserServiceImpl(val repository: UserRepository,
-							val gatewayLdapUserRepository: GatewayLdapUserRepository) : UserService {
+						   val chainCreateUser: ChainOfResponsabilityCreateUserService
+) : UserService {
 
 	 val LOG = LoggerFactory.getLogger(UserServiceImpl::class.java)
 
@@ -111,11 +111,13 @@ open class UserServiceImpl(val repository: UserRepository,
 
 			val domain = body.toEntity().toDomain()
 
+
+			//this flux is possible construct strategy for execute. [StrategyRepository, StrategyLdap, StrategyNotify]
 			repository.save(domain)
 
-			val ldap = domain.toRequestPostLdapUserEntity()
+		//	resolveLDAP(domain)
 
-			gatewayLdapUserRepository.post(ldap)
+		//	resolveNotify(domain)
 
 		}.onFailure {
 
@@ -130,6 +132,7 @@ open class UserServiceImpl(val repository: UserRepository,
 		}
 	}
 
+	override fun createUser(body: RequestPostUserEntity) = chainCreateUser.execute(body)
 
 	override fun put(body: RequestPutUserEntity){
 

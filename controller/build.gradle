@@ -15,10 +15,10 @@ dependencies {
 
     implementation project(':entities')
     implementation project(':service')
-    implementation project(':gatewayRepository')
+
     implementation project(':strategyDomainRepository')
 
-
+    implementation project(':gatewayRepository')
     implementation("org.springframework.amqp:spring-rabbit:2.3.6")
 
     //SPRING

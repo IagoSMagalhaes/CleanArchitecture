@@ -1,0 +1,22 @@
+plugins {
+    id 'application'
+    id 'kotlin'
+}
+
+group 'com.example.clean.architecture'
+version '0.0.1-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    implementation project(':entities')
+    implementation project(':gatewayRepository')
+
+
+    implementation 'org.springframework:spring-context:5.3.9'
+    implementation("org.springframework.amqp:spring-rabbit:2.3.6")
+    implementation 'org.springframework:spring-web:5.3.9'
+}
