@@ -2,13 +2,13 @@ package com.example.clean.architecture.strategyDomainRepository.service.chainOfR
 
 import com.example.clean.architecture.entities.cleanArchitecture.user.dto.request.RequestPostUserEntity
 import com.example.clean.architecture.strategyDomainRepository.service.chainOfResponsability.ChainOfResponsabilityCreateUserService
-import com.example.clean.architecture.strategyDomainRepository.service.chainOfResponsability.impl.handlers.repository.ChainCreateUserHandlerRepository
+import com.example.clean.architecture.strategyDomainRepository.service.chainOfResponsability.impl.handlers.repository.ChainHandlerRepositoryCreateUser
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
 
 
 @Service
-open class ChainOfResponsabilityCreateUserServiceImpl(val chainRepository: ChainCreateUserHandlerRepository) : ChainOfResponsabilityCreateUserService {
+open class ChainOfResponsabilityCreateUserServiceImpl(val chainRepository: ChainHandlerRepositoryCreateUser) : ChainOfResponsabilityCreateUserService {
 
 	val LOG = LoggerFactory.getLogger(ChainOfResponsabilityCreateUserServiceImpl::class.java)
 

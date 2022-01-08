@@ -3,7 +3,7 @@ package com.example.clean.architecture.gatewayRepository.otherRepositories.notif
 import com.example.clean.architecture.entities.otherRepositories.notify.dto.request.RequestPostNotifyCreateUserEntity
 
 
-interface GatewayProducerNotifyCreateUserRepository {
+open interface GatewayProducerNotifyCreateUserRepository {
 
 	fun produce(body: RequestPostNotifyCreateUserEntity)
 }

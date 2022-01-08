@@ -3,7 +3,7 @@ package com.example.clean.architecture.strategyDomainRepository.service.chainOfR
 import com.example.clean.architecture.entities.cleanArchitecture.user.dto.request.RequestPostUserEntity
 
 
-interface ChainCreateUserHandlerService {
+interface ChainHandlerCreateUserService {
 
 	fun execute(body: RequestPostUserEntity)
 

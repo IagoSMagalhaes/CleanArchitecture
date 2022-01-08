@@ -50,6 +50,7 @@
   * [Spring Boot](#spring-boot)
   * [Spring Data](#spring-data)
   * [Spring Security](#spring-data)
+  * [Spring Feign](#spring-feign)
   * [Spring Actuator](#spring-data)
   * [Spring LDAP](#spring-ldap)
   * [RabbitMQ](#rabbit-mq)
@@ -61,6 +62,7 @@
 * [Design Patter'n](#design-pattern)
   * [Clean Architecture](#clean-architecture)
   * [Strategy](#strategy)
+  * [Chain Of Responsability](#chain-of-responsability)
   * [Builder](#builder)
   * [Server Driven UI](#server-driven-ui)
   * [Estrutura de Packages / Nomeclatura dos arquivos](#estrutura-de-packges)  
@@ -373,6 +375,17 @@ https://dbdiagram.io/d/604fca9cfcdcb6230b244b20
 
 #### Spring Security
 
+
+
+
+#### Spring Feign
+
+    O que é:
+
+    Links: https://docs.spring.io/spring-cloud-openfeign/docs/current/reference/html/
+
+
+
 #### Spring Actuator
 
     O que é: Spring Boot Actuator é um subprojeto do Spring Boot Framework. Ele usa pontos de extremidade HTTP para expor informações operacionais sobre qualquer aplicativo em execução.
@@ -480,6 +493,22 @@ https://dbdiagram.io/d/604fca9cfcdcb6230b244b20
     Links: https://www.devmedia.com.br/estudo-e-aplicacao-do-padrao-de-projeto-strategy/25856
            
     https://pt.wikipedia.org/wiki/Strategy
+
+
+#### Chain Of Responsability
+
+    O que é: 
+    
+    Pra que serve: Otimizar soluções
+    
+    Conceitos:
+    
+    Tecnologias:
+    
+    Exemplos:
+    
+    Links: https://pt.wikipedia.org/wiki/Chain_of_Responsibility
+
 
 
 

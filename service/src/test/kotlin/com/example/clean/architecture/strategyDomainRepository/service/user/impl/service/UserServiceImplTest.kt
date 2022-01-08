@@ -25,7 +25,7 @@ internal class UserServiceImplTest {
 
     private val repo: UserRepository = mockk()
 
-    private val service: UserServiceImpl = UserServiceImpl(repo, mockk())
+    private val service: UserServiceImpl = UserServiceImpl(repo)
 
     @BeforeEach
     fun init() {

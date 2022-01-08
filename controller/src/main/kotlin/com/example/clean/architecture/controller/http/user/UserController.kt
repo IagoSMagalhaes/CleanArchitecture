@@ -4,6 +4,7 @@ import com.example.clean.architecture.entities.cleanArchitecture.user.domain.Use
 import com.example.clean.architecture.entities.cleanArchitecture.user.dto.request.RequestGetUserEntity
 import com.example.clean.architecture.entities.cleanArchitecture.user.dto.request.RequestPostUserEntity
 import com.example.clean.architecture.entities.cleanArchitecture.user.dto.request.RequestPutUserEntity
+import com.example.clean.architecture.strategyDomainRepository.service.chainOfResponsability.impl.ChainOfResponsabilityCreateUserServiceImpl
 import com.example.clean.architecture.strategyDomainRepository.service.user.UserService
 import io.swagger.annotations.ApiOperation
 import org.springframework.http.HttpStatus
@@ -15,7 +16,7 @@ import javax.validation.Valid
 @RequestMapping("/user")
 @RestController
 @ApiOperation(tags = ["User CRUD"], value = "Layer responsible to recevie request to manager Create/Read/Update/Delete the User entity")
-open class UserController(val service: UserService) {
+open class UserController(val service: UserService, val chainOfResponsabilityCreateUser: ChainOfResponsabilityCreateUserServiceImpl) {
 
 
 	@GetMapping("/v1")
@@ -44,7 +45,7 @@ open class UserController(val service: UserService) {
 	@ApiOperation("Save User", response = HttpStatus::class)
 	fun post(@Valid @RequestBody body: RequestPostUserEntity): ResponseEntity<HttpStatus> {
 
-		service.createUser(body)
+		chainOfResponsabilityCreateUser.execute(body)
 
 		return ResponseEntity.ok(HttpStatus.OK)
 	}
