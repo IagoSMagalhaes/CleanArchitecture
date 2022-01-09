@@ -1,8 +1,8 @@
-package com.example.cleanArchitecture.notifyRepository.service.impl
+package com.example.clean.architecture.service.impl
 
 import com.example.clean.architecture.entities.otherRepositories.notify.dto.request.RequestPostNotifyCreateUserEntity
 import com.example.clean.architecture.entities.otherRepositories.notify.exception.PostNotifyCreateUserException
-import com.example.cleanArchitecture.notifyRepository.service.ProducerNotifyCreateUserService
+import com.example.clean.architecture.service.ProducerNotifyCreateUserService
 import org.slf4j.LoggerFactory
 import org.springframework.amqp.rabbit.core.RabbitTemplate
 import org.springframework.stereotype.Service
