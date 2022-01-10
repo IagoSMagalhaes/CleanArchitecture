@@ -25,6 +25,5 @@ open class DataBaseConfig(@Value("\${spring.datasource.postgre.username:postgres
 		dataSource.password( password)
 
 		return dataSource.build()
-
 	}
 }

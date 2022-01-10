@@ -1,4 +1,4 @@
-package com.example.clean.architecture.usecases.security.service
+package com.example.clean.architecture.controller.security.service
 
 import org.springframework.security.core.userdetails.UserDetails
 

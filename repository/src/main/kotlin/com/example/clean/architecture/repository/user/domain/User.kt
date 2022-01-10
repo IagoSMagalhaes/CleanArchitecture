@@ -1,9 +1,6 @@
 package com.example.clean.architecture.repository.user.domain
 
 import com.example.clean.architecture.entities.cleanArchitecture.user.domain.UserEntity
-import com.example.clean.architecture.entities.otherRepositories.ldap.user.dto.request.RequestPostLdapUserEntity
-import com.example.clean.architecture.entities.otherRepositories.notify.dto.request.RequestPostNotifyCreateUserEntity
-import com.sun.istack.NotNull
 import java.time.LocalDateTime
 import javax.persistence.*
 
@@ -12,25 +9,24 @@ import javax.persistence.*
 @Table(schema = "public", name = "tb_usuario")
 open class User (
 
-
-	@javax.persistence.Id
+	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id_usuario", nullable = false)
+	@Column(name = "id_user", nullable = false)
 	open var id: Long? = null,
 
-	@NotNull
-	@Column(name = "nome")
-	//@Size(min=2, max=30)
+	@Column(name = "name")
 	open val name: String? = null,
 
-	@Column(name = "telefone")
-	//@Min(18)
+	@Column(name = "login")
+	open val login: String? = null,
+
+	@Column(name = "cellphone")
 	open val cellphone: String? = null,
 
 	@Column(name = "email")
 	open val email: String? = null,
 
-	@Column(name = "ativo")
+	@Column(name = "active")
 	open val active: Boolean? = null,
 
 	@Lob
@@ -38,24 +34,18 @@ open class User (
 	@Column(name = "image")
 	open val image: ByteArray? = null,
 
-	@Column(name = "dh_criacao")
+	@Column(name = "dh_create")
 	open val dateCreate: LocalDateTime? = LocalDateTime.now(),
 
-	@Column(name = "dh_alteracao")
+	@Column(name = "dh_update")
 	open val dateUpdate: LocalDateTime? = null,
 
-
-	@Column(name = "dh_exclusao")
+	@Column(name = "dh_exclude")
 	open val dateExclude: LocalDateTime? = null)
 
 
 fun List<User>.toEntity() = map { it.toEntity() }
 
-
-fun User.toRequestPostLdapUserEntity() = RequestPostLdapUserEntity( name!!, "001122")
-
-
-fun User.toRequestPostNotifyCreateUserEntity() = RequestPostNotifyCreateUserEntity( name!!, email!!, cellphone!!)
 
 fun User.toEntity() = UserEntity(id = id,
 								 name = name,

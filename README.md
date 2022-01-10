@@ -4,6 +4,10 @@
 </h1>
 <p align="center">Microservico Template com Clean Architecture</p>
 
+
+# 🏁 Tópicos
+
+
 * [Sobre](#Sobre)
 
 
@@ -72,6 +76,7 @@
   * [GitFlow](#git-flow)
   
 
+* [Readme](#readme)
 * [Personas](#personas)
 
 
@@ -93,6 +98,7 @@
 
 ## Documentação
 
+### Swagger
 - http://localhost:8081/swagger-ui/index.html#/
 
 ## Grooming
@@ -112,7 +118,7 @@
 
     [Autenticação]               SpringSecurity / oAuth2 / JWT
 
-    [Design Pattern's]           Clean Architecture / Strategy / Chain Of Responsability / Builder
+    [Design Pattern's]           Clean Architecture / Strategy / Chain Of Responsability / Builder / Server Driven UI
 
     [Mensageria]                 Rabbit 
 
@@ -127,7 +133,7 @@
 
     Criação do usuario no LDAP;
 
-    Notificação CRM pós criação;
+    Notificação Admin / CRM pós criação;
 
 
 ##### Cenários
@@ -135,15 +141,16 @@
     1.Criar Usuario:
         1.1 Criar usuario na base PostgreSQL;
         1.2 Criar usuario no LDAP;
-        1.3 Disparar notificação para o ADM;
+        1.3 Disparar notificação para o ADM / CRM;
 
     2.Buscar Usuario:
         2.1 Buscar todos usuarios;
-        2.2 Buscar usuario por CPF;
+        2.2 Buscar usuario por documento;
         2.3 Buscar usuario por nome;
+        2.3 Buscar usuario por email;
 
     3.Alterar dados usuario:
-        3.1 Se usuario não estiver bloqueado:Alterar dados na base PostgreSQL
+        3.1 Se usuario não estiver bloqueado: Alterar dados na base PostgreSQL
         3.2 Se usuario estiver bloqueado: Retornar exceção
 
     4. Bloquear / Desbloquear usuario: 
@@ -152,6 +159,12 @@
 ## Principais Fluxos
 
 #### Criando usuario;
+
+![img_1.png](readme/images/diagram_create_user.png)
+
+#### Buscando usuários;
+
+![img.png](readme/images/diagram_get_user.png)
 
 #### Alterando usuário;
 
@@ -170,11 +183,15 @@
 
 #### Fila
 
-    INP: NotifyCreateUser.INP
+    INP: NotifyCreateUserAdmin.INP
     RoutingKey: NotifyCreateUser
-    DeadLetter: NotifyCreateUser.BCK.INP
-    Routingkey DeadLetter: NotifyCreateUserDL
+    DeadLetter: NotifyCreateUserAdmin.DL.INP
+    Routingkey DeadLetter: NotifyCreateUserAdminDL
 
+    INP: NotifyCreateUserCRM.INP
+    RoutingKey: NotifyCreateUser
+    DeadLetter: NotifyCreateUserCRM.DL.INP
+    Routingkey DeadLetter: NotifyCreateUserCRMDL
 
 
 ## Banco de Dados
@@ -305,9 +322,9 @@ https://dbdiagram.io/d/604fca9cfcdcb6230b244b20
 - https://learning.postman.com/docs/writing-scripts/intro-to-scripts/
 
 
-## Tecnologias
+# 🛠 Tecnologias
 
-#### Koltin
+#### Kotlin
 
 - Declarando funções
 
@@ -315,8 +332,25 @@ https://dbdiagram.io/d/604fca9cfcdcb6230b244b20
 
 - Extension Function
 
-#### Spring Boot
+## Spring Boot
 
+```kotlin
+@SpringBootApplication
+@EnableWebMvc
+@ComponentScan(value = ["com.example.clean.architecture"])
+@EntityScan(basePackages = ["com.example.clean.architecture.repository"])
+@EnableJpaRepositories(basePackages = ["com.example.clean.architecture.repository"])
+class Boot {
+
+	companion object {
+		@JvmStatic
+		fun main(args: Array<String>) {
+			runApplication<Boot>(*args)
+		}
+	}
+}
+```
+    
     O que é: Framework responsavel por construir o servidor de aplicação onde a REGRA DE NEGOCIO será executada
     
     Pra que serve:  Facilitar o processo de configuração e publicação de aplicações que utilizem o ecossistema Spring.
@@ -344,7 +378,85 @@ https://dbdiagram.io/d/604fca9cfcdcb6230b244b20
     Link:https://blog.geekhunter.com.br/tudo-o-que-voce-precisa-saber-sobre-o-spring-boot/
 
 
-#### Spring Data
+## Spring Data
+
+### Domain
+
+```kotlin
+@Entity
+@Table(schema = "public", name = "tb_usuario")
+class User (
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id_user", nullable = false)
+	var id: Long? = null,
+
+	@Column(name = "name")
+	val name: String? = null,
+
+	@Column(name = "login")
+	val login: String? = null,
+
+	@Column(name = "cellphone")
+	val cellphone: String? = null,
+
+	@Column(name = "email")
+	val email: String? = null,
+
+	@Column(name = "active")
+	val active: Boolean? = null,
+	
+	@Lob
+	@Basic(fetch = FetchType.LAZY)
+	@Column(name = "image")
+	val image: ByteArray? = null,
+
+	@Column(name = "dh_create")
+	val dateCreate: LocalDateTime? = LocalDateTime.now(),
+
+	@Column(name = "dh_update")
+	val dateUpdate: LocalDateTime? = null,
+
+	@Column(name = "dh_exclude")
+	val dateExclude: LocalDateTime? = null)
+```
+### Repository
+```kotlin
+@Repository
+interface UserRepository : JpaRepository<User, Long> {
+
+    fun findByNameIn(name: List<String>) : List<User>
+
+    fun findByCellphoneIn(cellphone: List<String>) : List<User>
+
+    fun findByEmailIn(email: List<String>) : List<User>
+}
+```
+### DatabaseConfig
+
+```kotlin
+@Configuration
+class DataBaseConfig(@Value("\${spring.datasource.postgre.username:postgres}") val user: String,
+					 @Value("\${spring.datasource.postgre.password:postgres}") val password: String,
+					 @Value("\${spring.datasource.postgre.url:jdbc:postgresql://localhost:5432/users}") val url: String,
+					 @Value("\${spring.database.postgre.driverClassName:org.postgresql.Driver}") val driverClassName: String) {
+
+	@Bean
+	fun getDataSource(): DataSource? {
+
+		val dataSource = DataSourceBuilder.create()
+
+		dataSource.driverClassName(driverClassName)
+		dataSource.url(url)
+		dataSource.username(user)
+		dataSource.password( password)
+
+		return dataSource.build()
+	}
+}
+```
+
 
     O que é: O SpringData é um projeto da SpringSource com proposta de unificar e facilitar o acesso a diferentes tecnologias de armazenamento de dados, como bancos de dados relacionais (PostgreSQL , Oracle) e os NoSQL (DynamoDB, ElasticSource).
     
@@ -373,20 +485,91 @@ https://dbdiagram.io/d/604fca9cfcdcb6230b244b20
 
 
 
-#### Spring Security
+## Spring Security
+
+### Config
+```kotlin
+@EnableWebSecurity
+@Configuration
+open class SecurityConfig(val usecase: SecurityUsecaseImpl) : WebSecurityConfigurerAdapter() {
+
+	@Throws(Exception::class)
+	override fun configure(http: HttpSecurity) {
+		http
+			.httpBasic()
+			.and()
+			.authorizeRequests()
+			.antMatchers("/swagger-ui.html/**").permitAll()
+			.antMatchers(HttpMethod.POST, "/user/v1").hasAnyRole("POST_USER", "ADMIN")
+			.antMatchers(HttpMethod.GET, "/user/v1").hasAnyRole("GET_ALL_USER", "ADMIN")
+			.antMatchers(HttpMethod.PUT, "/user/v1").hasAnyRole("PUT_USER", "ADMIN")
+			.antMatchers(HttpMethod.DELETE, "/user/v1").hasAnyRole("DELETE_USER", "ADMIN")
+			.antMatchers(HttpMethod.POST, "/landing/page/v1").permitAll()
+			.and()
+			.csrf().disable()
+			.headers().frameOptions().disable()
+	}
+
+	@Throws(Exception::class)
+	override fun configure(builder: AuthenticationManagerBuilder) {
+		builder
+			.userDetailsService(usecase)
+			.passwordEncoder(BCryptPasswordEncoder())
+	}
+}
+```
+
+### Service
+
+```kotlin
+@Service
+class SecurityUsecaseImpl(val userUsecase: UserUsecase) : UserDetailsService {
+
+	@Throws(UsernameNotFoundException::class)
+	override fun loadUserByUsername(name: String): UserDetails {
+
+		val user = userUsecase.getBy(RequestGetUserEntity(name = name)).first()
+
+		return UserSystemEntity(user.name!!, user.login!!, user.password!!, authorities(user.typeUser))
+	}
+
+	private fun authorities(typeUser: TypeUserEntity?) = typeUser?.permission?.map {
+					SimpleGrantedAuthority("ROLE_$it")
+			}.orEmpty()
+}
+```
 
 
 
+## Spring Feign
 
-#### Spring Feign
+### Config
+
+```kotlin
+@Configuration
+@EnableFeignClients(basePackages = {"com.example.clean.architecture})
+class FeignConfig(){}
+```
+
+### Client
+
+```kotlin
+@FeignClient(value = "crmClient", url = "\${ur.api.crm}")
+interface CRMClient{
+
+    @PostMapping("/user/v1")
+    fun notifyCreateUser(@RequestBody body: RequestPostNotifyCreateUserCRMEntity)
+
+}
+```
 
     O que é:
 
     Links: https://docs.spring.io/spring-cloud-openfeign/docs/current/reference/html/
+            https://www.baeldung.com/spring-cloud-openfeign
 
 
-
-#### Spring Actuator
+## Spring Actuator
 
     O que é: Spring Boot Actuator é um subprojeto do Spring Boot Framework. Ele usa pontos de extremidade HTTP para expor informações operacionais sobre qualquer aplicativo em execução.
 
@@ -396,13 +579,199 @@ https://dbdiagram.io/d/604fca9cfcdcb6230b244b20
 
 ![img.png](readme/images/actuator_json.png)
 
-#### Spring LDAP
+## Spring LDAP
 
+### Domain
+
+```kotlin
+@Entry(
+	base = "ou=users",
+	objectClasses = ["person", "inetOrgPerson", "top"]
+)
+class LdapUser (
+
+	@Id
+	var id: Long? = null,
+
+	@Attribute(name = "cn")
+	val name: String? = null,
+
+	@Attribute(name = "cn")
+	val password: String? = null
+)
+```
+
+### Repository
+
+```kotlin
+@Repository
+interface LdapUserRepository : LdapRepository<LdapUser> {
+
+    fun findByName(name: String?): LdapUser?
+
+    fun findByNameAndPassword(name: String?, password: String?): LdapUser?
+
+    fun findByNameLikeIgnoreCase(name: String?): List<LdapUser>
+}
+```
+
+### Config
+
+```kotlin
+@Configuration
+@EnableLdapRepositories(basePackages = ["com.example.clean.architecture.ldapRepository"])
+open class LdapConfig()
+```
 
 
 - https://www.baeldung.com/spring-data-ldap
 
-#### RabbitMQ
+## RabbitMQ
+
+### Config
+```kotlin
+@Configuration
+@EnableRabbit
+open class RabbitConfig(@Value("\${rabbit.exchange}") val exchange: String,
+                        @Value("\${rabbit.virtualhost}") val virtualHost: String,
+                        @Value("\${rabbit.host}") val host: String,
+                        @Value("\${rabbit.port}") val port: String,
+                        @Value("\${rabbit.username}") val username: String,
+                        @Value("\${rabbit.password}") val password: String){
+
+    @Bean
+    @Primary
+    open fun getConnectionFactory(): ConnectionFactory {
+
+        val factory = CachingConnectionFactory(host, port.toInt())
+
+        factory.virtualHost = virtualHost
+        factory.username = username
+        factory.setPassword(password)
+        factory.rabbitConnectionFactory.isAutomaticRecoveryEnabled = true
+        factory.rabbitConnectionFactory.requestedHeartbeat = 15
+
+        return factory
+    }
+    
+    @Bean
+    open fun rabbitTemplate(connectionFactory: ConnectionFactory) : RabbitTemplate {
+        val template = RabbitTemplate(connectionFactory)
+
+        template.exchange = exchange
+
+        template.messageConverter = producerJacksonMessageConverter()
+
+        return template
+    }
+
+    @Bean
+    open fun producerJacksonMessageConverter() = Jackson2JsonMessageConverter()
+
+    @Bean
+    open fun generalExchange() = TopicExchange(exchange, true, false)
+
+}
+
+```
+### Bean Config Create QUEUE
+
+```kotlin
+@Configuration
+open class QueueNotifyCreateUserAdminConfig(@Value("\${queue.notify.create.user.admin.inp}") val queue: String,
+                                            @Value("\${queue.notify.create.user.admin.inp.dl}") val queueDeadletter: String,
+                                            @Value("\${rabbit.exchange}" )val exchange: String,
+                                            @Value("\${queue.notify.create.user.routing.key}") val routingKey: String,
+                                            @Value("\${queue.notify.create.user.admin.routing.key.dl}") val routingKeyDL: String) {
+
+    @Bean
+    @Primary
+    open fun createQueueNotifyCreateUserAdmin() = QueueBuilder.durable(queue)
+            .withArgument("x-dead-letter-exchange", exchange)
+            .withArgument("x-dead-letter-routing-key", routingKeyDL)
+            .build()
+
+    @Bean
+    open fun binding(queue: Queue?, generalExchange: TopicExchange?) =
+        BindingBuilder.bind(queue).to(generalExchange).with(routingKey)
+
+
+    @Bean
+    open fun createQueueNotifyCreateUserAdminDeadLetter() =
+        QueueBuilder.durable(queueDeadletter).build()
+
+    @Bean
+    open fun createQueueNotifyCreateUserAdminDeadLetterBinding(generalExchange: TopicExchange?) =
+        BindingBuilder.bind(createQueueNotifyCreateUserDeadLetter()).to(generalExchange).with(routingKeyDL)
+
+}
+```
+
+### Listener
+
+```kotlin
+@Controller
+open class NotifyCreateUserCRMListener(val gatewayNotifyCRMRepository: GatewayNotifyCreateUserCRMRepository) {
+
+    val LOG = LoggerFactory.getLogger(NotifyCreateUserCRMListener::class.java)
+
+	@RabbitListener(queues = ["NotifyCreateUserCRM.INP"])
+	fun onMessage(body: RequestPostNotifyCreateUserCRMEntity){
+
+        val method = "NotifyCreateUserCRMListener"
+
+        runCatching {
+
+            LOG.info("START RABBIT $method message: ")
+
+            gatewayNotifyCRMRepository.notifyCRM(body)
+
+        }.onFailure {
+
+            LOG.error("ERROR RABBIT $method  message: ${it.message} localizedMessage: ${it.localizedMessage}" )
+
+            throw it
+
+        }.onSuccess {
+            
+            LOG.info("END RABBIT $method ")
+        }
+	}
+}
+```
+
+### Producer
+
+```kotlin
+@Service
+open class ProducerNotifyCreateUserUsecaseImpl(val rabbitTemplate: RabbitTemplate) : ProducerNotifyCreateUserUsecase {
+
+	 val LOG = LoggerFactory.getLogger(ProducerNotifyCreateUserUsecaseImpl::class.java)
+
+
+	override fun produce(body: RequestPostNotifyCreateUserEntity) {
+
+		val methodName = "Produce Notify Create User"
+
+		runCatching {
+
+			LOG.info("START $methodName body: $body")
+
+			rabbitTemplate.send("routingkey", body)
+
+		}.onFailure {
+
+			LOG.error("ERROR $methodName message: {} localizeMessage: {}", it.message, it.localizedMessage)
+
+			throw PostNotifyCreateUserException()
+
+		}.onSuccess {
+			LOG.info("END $methodName")
+
+		}
+	}
+}
+```
 
     O que é: Mensageria é um conceito que define que sistemas distribuídos, possam se comunicar por meio de troca de mensagens (evento), sendo estas mensagens “gerenciadas” por um Message Broker (servidor/módulo de mensagens).”
     
@@ -433,7 +802,7 @@ https://dbdiagram.io/d/604fca9cfcdcb6230b244b20
 
 #### Mockito
 
-#### PostgreSQL
+## PostgreSQL
 
     O que é: PostgreSQL é um sistema gerenciador de banco de dados objeto-relacional baseado no POSTGRES, Versão 4.2, desenvolvido na Universidade da Califórnia no Departamento de Ciências da Computação em Berkeley, o qual foi pioneiro em muitos conceitos que vieram a estar disponíveis em alguns bancos de dados comerciais mais tarde
     
@@ -457,7 +826,7 @@ https://dbdiagram.io/d/604fca9cfcdcb6230b244b20
     
 
 
-## Design Patter'n
+# Design Patter'n
 
 #### Clean Architecture
 
@@ -497,6 +866,105 @@ https://dbdiagram.io/d/604fca9cfcdcb6230b244b20
 
 #### Chain Of Responsability
 
+![img.png](readme/images/chain_of_responsability_package.png)
+
+##### Abstract
+
+```kotlin
+
+interface ChainHandlerCreateUserService {
+
+  fun execute(body: RequestPostUserEntity)
+
+  fun next(body: RequestPostUserEntity)
+
+}
+```
+
+##### Usecase
+
+```kotlin
+@Service
+open class ChainOfResponsabilityCreateUserUsecaseImpl(val chainRepository: ChainHandlerRepositoryCreateUser) :
+	ChainOfResponsabilityCreateUserUsecase {
+
+	val LOG = LoggerFactory.getLogger(ChainOfResponsabilityCreateUserUsecaseImpl::class.java)
+
+	override fun execute(body: RequestPostUserEntity) {
+
+		val methodName = "ChainOfResponsabilityCreateUser"
+
+		runCatching {
+
+			LOG.info("START $methodName body: $body")
+
+			chainRepository.execute(body)
+
+		}.onFailure {
+
+			LOG.error("ERROR $methodName message: ${it.message} localizedMessage: ${it.localizedMessage}")
+
+			throw it
+
+		}.onSuccess {
+
+			LOG.info("END $methodName")
+		}
+	}
+}
+
+```
+
+##### HandleRepository
+
+```kotlin
+@Service
+open class ChainHandlerRepositoryCreateUser(val service: UserUsecase, val chainLdap: ChainHandlerLdapCreateUser)
+	: ChainHandlerCreateUserService {
+
+	override fun execute(body: RequestPostUserEntity) = service.post(body)
+																.also { next(body) }
+
+	override fun next(body: RequestPostUserEntity) = chainLdap.execute(body)
+}
+```
+
+##### HandleLDAP
+
+```kotlin
+@Service
+open class ChainHandlerLdapCreateUser(val gatewayLdapUserRepository: GatewayLdapUserRepository,
+									  val chainNotify: ChainHandlerNotifyCreateUser
+) : ChainHandlerCreateUserService {
+
+	override fun execute(body: RequestPostUserEntity)
+			= gatewayLdapUserRepository.post(body.toRequestPostLdapUserEntity())
+										 .also { next(body) }
+
+	override fun next(body: RequestPostUserEntity) = chainNotify.execute(body)
+}
+```
+
+##### HandleNotify
+
+```kotlin
+@Service
+open class ChainHandlerNotifyCreateUser(val gatewayProducerNotifyCreateUserRepository: GatewayProducerNotifyCreateUserRepository
+) : ChainHandlerCreateUserService {
+
+	val LOG = LoggerFactory.getLogger(ChainHandlerNotifyCreateUser::class.java)
+
+	override fun execute(body: RequestPostUserEntity) =
+						gatewayProducerNotifyCreateUserRepository.produce(body.toRequestPostNotifyCreateUserEntity())
+																	.also { next(body) }
+
+	override fun next(body: RequestPostUserEntity) =
+		LOG.info("END Flux ChainOfResponsabilityCreateUser user ${body.name}")
+
+}
+```
+
+
     O que é: 
     
     Pra que serve: Otimizar soluções
@@ -511,7 +979,6 @@ https://dbdiagram.io/d/604fca9cfcdcb6230b244b20
 
 
 
-
 #### Builder
 
 
@@ -522,14 +989,18 @@ https://dbdiagram.io/d/604fca9cfcdcb6230b244b20
 
 #### Estrutura de Packages / Nomeclatura dos arquivos
 
-            Entities:
-              Domain:
+![img.png](readme/images/packages.png)
+
+        Entities:
+            Domain:
                 User -> Objeto pertinente a camada do banco;
                 UserEntity -> Objeto para transacionar fora da camada de repositorio;
 
             DTO:
-                RequestNotifieCreateUserEntity -> Objeto de request para integrações
-                ResponseNotifieCreateUserEntity -> Objeto de retorno de request para integrações
+                Request:
+                  RequestNotifieCreateUserEntity -> Objeto de request para integrações
+                Response:
+                  ResponseNotifieCreateUserEntity -> Objeto de retorno de request para integrações
 
             Enum:
                 TypeUserEnum: -> Referencia de Enum;
@@ -567,34 +1038,50 @@ https://dbdiagram.io/d/604fca9cfcdcb6230b244b20
             NotifyRepository:
                 GatewayNotifyRepository -> Interface de comunicação entre os módulos
 
-        Other'sRepositoies: ex: LDAP
+        LdapRepository:
             Gateway:
                 GatewayLdapRepositoryImpl -> Implementação do acesso ao módulo do LDAP
 
-            Service:
-                LdapService -> Interface da camada de negócio
-                LdapServiceImpl -> Impl da camada de negócio
+            Usecase:
+                LdapUsecase -> Interface da camada de negócio
+                LdapUsecaseImpl -> Impl da camada de negócio
+
+        NotifyRepository:
+            Gateway:
+                GatewayNotifyRepositoryImpl -> Implementação do acesso ao módulo do Notify
+
+            Usecase:
+                ProducerNotifyCreateUserUsecase -> Interface da camada de negócio
+                ProducerNotifyCreateUserUsecaseImpl -> Impl da camada de negócio
 
             Client:
-                LdapClient -> Client de integração com LDAP 
+                CRMClient -> Client de integração com CRM 
 
 
 
 #### Padrão de Logs
 
-        runCatching {
-             LOG.info("START {} user: {} body {}", methodName/service?, cpf, body)
+```kotlin
+ val method = "POST User"
 
-            service.execute();
+runCatching {
+  
+  LOG.info("START $method user: $document body: $body")
 
-        }.onFailure {
-             LOG.error("ERROR {} user: {} statusCode: {} cause: {} message: {}", methodName/service?, cpf, statusCodeResponse, causeResponse, messageResponse)
-            
-            throw it
+  service.execute();
 
-        }.onSucesss {
-             LOG.info("END {} user: {}", methodName/service?, cpf)
-        }
+}.onFailure {
+  
+  LOG.error("ERROR $method user: $document statusCode: {} cause: {} message: {}",  statusCodeResponse, causeResponse, messageResponse)
+
+  throw it
+
+}.onSucesss {
+  LOG.info("END $method user: $document")
+}
+```
+
+        
 
 
 #### Clean Code
@@ -648,7 +1135,11 @@ https://dbdiagram.io/d/604fca9cfcdcb6230b244b20
     Padrão de gerenciamento de código, boas práticas.
 
 
+## Readme
 
+- https://docs.github.com/pt/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax
+
+- https://blog.rocketseat.com.br/como-fazer-um-bom-readme/
 
 ## Personas
 

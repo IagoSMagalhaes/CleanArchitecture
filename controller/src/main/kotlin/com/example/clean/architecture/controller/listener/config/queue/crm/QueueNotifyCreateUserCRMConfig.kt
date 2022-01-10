@@ -1,5 +1,5 @@
 
-package com.example.clean.architecture.controller.listener.config.queue
+package com.example.clean.architecture.controller.listener.config.queue.crm
 
 import org.springframework.amqp.core.BindingBuilder
 import org.springframework.amqp.core.Queue
@@ -9,25 +9,25 @@ import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.context.annotation.Primary
-
+/*
 
 @Configuration
-open class QueueNotifyCreateUserConfig(@Value("\${queue.notify.create.user.inp}") val queue: String,
-                                       @Value("\${queue.notify.create.user.inp.dl}") val queueDeadletter: String,
-                                       @Value("\${rabbit.exchange}" )val exchange: String,
-                                       @Value("\${queue.notify.create.user.routing.key}") val routingKey: String,
-                                       @Value("\${queue.notify.create.user.routing.key.dl}") val routingKeyDL: String
+open class QueueNotifyCreateUserCRMConfig(@Value("\${queue.notify.create.user.crm.inp}") val queue: String,
+                                          @Value("\${queue.notify.create.user.crm.inp.dl}") val queueDeadletter: String,
+                                          @Value("\${rabbit.exchange}" )val exchange: String,
+                                          @Value("\${queue.notify.create.user.routing.key}") val routingKey: String,
+                                          @Value("\${queue.notify.create.user.crm.routing.key.dl}") val routingKeyDL: String
 ) {
 
     @Bean
     @Primary
-    open fun createQueueNotifyCreateUser() = QueueBuilder.durable(queue)
+    open fun createQueueNotifyCreateUserCRM() = QueueBuilder.durable(queue)
             .withArgument("x-dead-letter-exchange", exchange)
             .withArgument("x-dead-letter-routing-key", routingKeyDL)
             .build()
 
     @Bean
-    open fun binding(queue: Queue?, generalExchange: TopicExchange?) =
+    open fun bindingCRM(queue: Queue?, generalExchange: TopicExchange?) =
         BindingBuilder.bind(queue).to(generalExchange).with(routingKey)
 
 /*
@@ -43,3 +43,6 @@ open class QueueNotifyCreateUserConfig(@Value("\${queue.notify.create.user.inp}"
 
 }
 
+
+
+ */

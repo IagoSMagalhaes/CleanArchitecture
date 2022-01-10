@@ -1,9 +1,9 @@
-package com.example.clean.architecture.service
+package com.example.clean.architecture.notifyRepository.service.producer
 
 import com.example.clean.architecture.entities.otherRepositories.notify.dto.request.RequestPostNotifyCreateUserEntity
 
 
-interface ProducerNotifyCreateUserService {
+interface ProducerNotifyCreateUserUsecase {
 
 	fun produce(body: RequestPostNotifyCreateUserEntity)
 }

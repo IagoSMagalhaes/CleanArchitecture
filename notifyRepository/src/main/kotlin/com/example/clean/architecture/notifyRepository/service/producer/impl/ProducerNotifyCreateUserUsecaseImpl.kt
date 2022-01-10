@@ -1,17 +1,17 @@
-package com.example.clean.architecture.service.impl
+package com.example.clean.architecture.notifyRepository.service.producer.impl
 
 import com.example.clean.architecture.entities.otherRepositories.notify.dto.request.RequestPostNotifyCreateUserEntity
 import com.example.clean.architecture.entities.otherRepositories.notify.exception.PostNotifyCreateUserException
-import com.example.clean.architecture.service.ProducerNotifyCreateUserService
+import com.example.clean.architecture.notifyRepository.service.producer.ProducerNotifyCreateUserUsecase
 import org.slf4j.LoggerFactory
 import org.springframework.amqp.rabbit.core.RabbitTemplate
 import org.springframework.stereotype.Service
 
 
 @Service
-open class ProducerNotifyCreateUserServiceImpl(val rabbitTemplate: RabbitTemplate) : ProducerNotifyCreateUserService {
+open class ProducerNotifyCreateUserUsecaseImpl(val rabbitTemplate: RabbitTemplate) : ProducerNotifyCreateUserUsecase {
 
-	 val LOG = LoggerFactory.getLogger(ProducerNotifyCreateUserServiceImpl::class.java)
+	 val LOG = LoggerFactory.getLogger(ProducerNotifyCreateUserUsecaseImpl::class.java)
 
 
 	override fun produce(body: RequestPostNotifyCreateUserEntity) {

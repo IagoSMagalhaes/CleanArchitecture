@@ -33,7 +33,5 @@ open class ChainOfResponsabilityCreateUserUsecaseImpl(val chainRepository: Chain
 
 			LOG.info("END $methodName")
 		}
-
 	}
-
 }

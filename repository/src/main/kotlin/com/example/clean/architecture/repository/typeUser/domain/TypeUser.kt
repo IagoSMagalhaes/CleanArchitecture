@@ -2,12 +2,17 @@ package com.example.clean.architecture.repository.typeUser.domain
 
 import com.example.clean.architecture.entities.cleanArchitecture.typeUser.domain.TypeUserEntity
 import com.sun.istack.NotNull
+import com.vladmihalcea.hibernate.type.json.JsonBinaryType
+import org.hibernate.annotations.Type
+import org.hibernate.annotations.TypeDef
+import org.hibernate.annotations.TypeDefs
 import java.time.LocalDateTime
 import javax.persistence.*
 
 
 @Entity
 @Table(schema = "public", name = "tb_type_user")
+@TypeDefs(value = [TypeDef(name = "jsonb", typeClass = JsonBinaryType::class)])
 open class TypeUser (
 
 
@@ -24,9 +29,9 @@ open class TypeUser (
 	@Column(name = "sg")
 	open val sg: String? = null,
 
-	//@NotNull
-	//@Column(name = "permission")
-	//open val permission: List<String>? = emptyList(),
+	@Type(type = "jsonb")
+	@Column(columnDefinition = "jsonb")
+	open val permission: List<String>? = emptyList(),
 
 	@Column(name = "active")
 	open val active: Boolean? = null,
@@ -45,7 +50,7 @@ fun List<TypeUser>.toEntity() = map { it.toEntity() }
 
 fun TypeUser.toEntity() = TypeUserEntity(id = id,
 								 name = name,
-							//	permission = permission,
+								permission = permission,
 								sg = sg,
 								 active = active,
 								 dateCreate	  = dateCreate,
@@ -56,7 +61,7 @@ fun List<TypeUserEntity>.toDomain() = map { it.toDomain() }
 
 fun TypeUserEntity.toDomain() = TypeUser(id = id,
 								 name = name,
-								// permission = permission,
+								 permission = permission,
 								 sg = sg,
 								 active = active,
 								 dateCreate = dateCreate,

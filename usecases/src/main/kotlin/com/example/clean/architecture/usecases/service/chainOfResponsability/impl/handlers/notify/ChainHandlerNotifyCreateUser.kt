@@ -2,7 +2,7 @@ package com.example.clean.architecture.usecases.service.chainOfResponsability.im
 
 import com.example.clean.architecture.entities.cleanArchitecture.user.dto.request.RequestPostUserEntity
 import com.example.clean.architecture.entities.cleanArchitecture.user.dto.request.toRequestPostNotifyCreateUserEntity
-import com.example.clean.architecture.gatewayRepository.otherRepositories.notifyRepository.GatewayProducerNotifyCreateUserRepository
+import com.example.clean.architecture.gatewayRepository.otherRepositories.notifyRepository.producer.GatewayProducerNotifyCreateUserRepository
 import com.example.clean.architecture.usecases.service.chainOfResponsability.impl.handlers.ChainHandlerCreateUserService
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service

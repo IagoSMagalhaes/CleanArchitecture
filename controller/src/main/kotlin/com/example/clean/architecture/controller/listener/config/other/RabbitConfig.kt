@@ -35,9 +35,7 @@ open class RabbitConfig(@Value("\${rabbit.exchange}") val exchange: String,
         factory.rabbitConnectionFactory.requestedHeartbeat = 15
 
         return factory
-
     }
-
 
     @Bean
     open fun rabbitTemplate(connectionFactory: ConnectionFactory) : RabbitTemplate {

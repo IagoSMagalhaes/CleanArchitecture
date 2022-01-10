@@ -19,4 +19,7 @@ dependencies {
     implementation 'org.springframework:spring-context:5.3.9'
     implementation("org.springframework.amqp:spring-rabbit:2.3.6")
     implementation 'org.springframework:spring-web:5.3.9'
+
+
+
 }

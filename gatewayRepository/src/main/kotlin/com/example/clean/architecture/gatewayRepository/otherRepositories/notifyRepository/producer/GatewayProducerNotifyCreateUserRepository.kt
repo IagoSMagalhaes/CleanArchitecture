@@ -1,4 +1,4 @@
-package com.example.clean.architecture.gatewayRepository.otherRepositories.notifyRepository
+package com.example.clean.architecture.gatewayRepository.otherRepositories.notifyRepository.producer
 
 import com.example.clean.architecture.entities.otherRepositories.notify.dto.request.RequestPostNotifyCreateUserEntity
 

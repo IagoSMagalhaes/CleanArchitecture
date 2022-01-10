@@ -1,4 +1,4 @@
-package com.example.clean.architecture.usecases.security.service.impl
+package com.example.clean.architecture.controller.security.service.impl
 
 import com.example.clean.architecture.entities.cleanArchitecture.typeUser.domain.TypeUserEntity
 import com.example.clean.architecture.entities.cleanArchitecture.user.dto.request.RequestGetUserEntity

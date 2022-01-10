@@ -2,13 +2,12 @@ package com.example.clean.architecture.controller.http.user
 
 import com.example.clean.architecture.entities.cleanArchitecture.user.domain.UserEntity
 import com.example.clean.architecture.entities.cleanArchitecture.user.dto.request.RequestGetUserEntity
-import com.example.clean.architecture.entities.cleanArchitecture.user.dto.request.RequestPostUserEntity
 import com.example.clean.architecture.entities.cleanArchitecture.user.dto.request.RequestPutUserEntity
-import com.example.clean.architecture.usecases.service.chainOfResponsability.impl.ChainOfResponsabilityCreateUserUsecaseImpl
 import com.example.clean.architecture.usecases.service.user.UserUsecase
 import io.swagger.annotations.ApiOperation
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
+import org.springframework.security.access.annotation.Secured
 import org.springframework.web.bind.annotation.*
 import javax.validation.Valid
 
@@ -16,11 +15,12 @@ import javax.validation.Valid
 @RequestMapping("/user")
 @RestController
 @ApiOperation(tags = ["User CRUD"], value = "Layer responsible to recevie request to manager Create/Read/Update/Delete the User entity")
-open class UserController(val service: UserUsecase, val chainOfResponsabilityCreateUser: ChainOfResponsabilityCreateUserUsecaseImpl) {
+open class UserController(val service: UserUsecase) {
 
 
 	@GetMapping("/v1")
 	@CrossOrigin
+	@Secured("ROLE_ADMIN")
 	@ApiOperation("Find all users", response = HttpStatus::class)
 	fun get(): ResponseEntity<List<UserEntity>> {
 
@@ -39,17 +39,6 @@ open class UserController(val service: UserUsecase, val chainOfResponsabilityCre
 
 		return ResponseEntity.ok(response)
 	}
-
-
-	@PostMapping("/v1")
-	@ApiOperation("Save User", response = HttpStatus::class)
-	fun post(@Valid @RequestBody body: RequestPostUserEntity): ResponseEntity<HttpStatus> {
-
-		chainOfResponsabilityCreateUser.execute(body)
-
-		return ResponseEntity.ok(HttpStatus.OK)
-	}
-
 
 	@PutMapping("/v1")
 	@ApiOperation("Update User", response = HttpStatus::class)
