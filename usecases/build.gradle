@@ -1,0 +1,47 @@
+plugins {
+    id 'application'
+    id 'kotlin'
+}
+
+group 'com.example.clean.architecture'
+version '0.0.1-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    //PROJECTS
+    implementation project(':gatewayRepository')
+    implementation project(':repository')
+    implementation project(':entities')
+
+    //SPRING
+    implementation 'org.springframework:spring-context:5.3.9'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.5.4'
+    implementation 'org.springframework:spring-web:5.3.9'
+
+
+    implementation("org.springframework.security:spring-security-core:5.5.2")
+    implementation("org.springframework.security:spring-security-web:5.5.2")
+    implementation("org.springframework.security:spring-security-config:5.5.2")
+
+
+
+
+
+    //TEST
+    testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+    testImplementation("org.mockito:mockito-junit-jupiter:3.12.4")
+    testImplementation("junit:junit:4.12")
+    testImplementation "io.mockk:mockk:1.9.3"
+    testImplementation 'org.springframework.boot:spring-boot-starter-test:2.5.4'
+
+
+
+}
+
+test {
+    useJUnitPlatform()
+}
