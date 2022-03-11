@@ -33,8 +33,8 @@ internal class UserServiceImplTest {
     }
 
     @Test
-    @DisplayName("Validate GET All users")
-    fun `Validate GET All users call findAll`() {
+    @DisplayName("WHEN EXECUTE UserService get() VALIDATE EXECUTE userRepository findAll()")
+    fun `WHEN EXECUTE UserService get() VALIDATE EXECUTE userRepository findAll()`() {
 
         every { repo.findAll() } returns listOf()
 
@@ -44,7 +44,8 @@ internal class UserServiceImplTest {
     }
 
     @Test
-    fun `Validate POST call save`() {
+    @DisplayName("WHEN EXECUTE UserService post(body) VALIDATE EXECUTE userRepository save(any)")
+    fun `WHEN EXECUTE UserService post(body) VALIDATE EXECUTE userRepository save(any)`() {
 
         every { repo.save(any()) } returns build()
 
@@ -56,7 +57,8 @@ internal class UserServiceImplTest {
     }
 
     @Test
-    fun `Validate PUT call save`() {
+    @DisplayName("WHEN EXECUTE UserService put(body) VALIDATE EXECUTE userRepository save(any)")
+    fun `WHEN EXECUTE UserService put(body) VALIDATE EXECUTE userRepository save(any)`() {
 
         every { repo.save(any()) } returns build()
 
@@ -68,7 +70,8 @@ internal class UserServiceImplTest {
     }
 
     @Test
-    fun `Validate DELETE call deleteById`() {
+    @DisplayName("WHEN EXECUTE UserService delete(body) VALIDATE EXECUTE userRepository deleteById(any)")
+    fun `WHEN EXECUTE UserService delete(body) VALIDATE EXECUTE userRepository deleteById(any)`() {
 
        // every { repo.deleteById(any()) }
 

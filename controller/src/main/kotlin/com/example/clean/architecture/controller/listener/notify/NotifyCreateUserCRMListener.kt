@@ -4,6 +4,7 @@ import com.example.clean.architecture.entities.otherRepositories.crm.dto.request
 import com.example.clean.architecture.gatewayRepository.otherRepositories.notifyRepository.crm.GatewayNotifyCreateUserCRMRepository
 import com.example.clean.architecture.gatewayRepository.otherRepositories.notifyRepository.producer.GatewayProducerNotifyCreateUserRepository
 import org.slf4j.LoggerFactory
+import org.springframework.amqp.AmqpRejectAndDontRequeueException
 import org.springframework.amqp.rabbit.annotation.RabbitListener
 import org.springframework.stereotype.Controller
 
@@ -28,7 +29,7 @@ open class NotifyCreateUserCRMListener(val gatewayNotifyCRMRepository: GatewayNo
 
             LOG.error("ERROR RABBIT $method  message: ${it.message} localizedMessage: ${it.localizedMessage}" )
 
-            throw it
+            throw AmqpRejectAndDontRequeueException(it.message)
 
         }.onSuccess {
 

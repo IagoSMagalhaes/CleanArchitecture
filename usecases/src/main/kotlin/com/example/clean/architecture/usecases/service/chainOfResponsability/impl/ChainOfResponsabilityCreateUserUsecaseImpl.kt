@@ -19,19 +19,19 @@ open class ChainOfResponsabilityCreateUserUsecaseImpl(val chainRepository: Chain
 
 		runCatching {
 
-			LOG.info("START $methodName body: $body")
+			LOG.info("START $methodName user: ${body.name} body: $body")
 
 			chainRepository.execute(body)
 
 		}.onFailure {
 
-			LOG.error("ERROR $methodName message: ${it.message} localizedMessage: ${it.localizedMessage}")
+			LOG.error("ERROR $methodName user: ${body.name}  message: ${it.message} localizedMessage: ${it.localizedMessage}")
 
 			throw it
 
 		}.onSuccess {
 
-			LOG.info("END $methodName")
+			LOG.info("END $methodName user: ${body.name} ")
 		}
 	}
 }

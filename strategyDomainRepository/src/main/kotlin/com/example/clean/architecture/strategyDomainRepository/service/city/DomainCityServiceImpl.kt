@@ -10,6 +10,7 @@ open class DomainCityServiceImpl() : AbstractDomainService {
 
 	//TODO - IMPLEMENTAR BUSCANDO DO REPOSITORY
 	override fun get(domain: String, query: String?) =
-		listOf(DomainEntity("Guarulhos", "Guarulhos"),DomainEntity("São Paulo", "SP"))
+		listOf(DomainEntity("Guarulhos", "Guarulhos"),
+			   DomainEntity("São Paulo", "SP"))
 
 }

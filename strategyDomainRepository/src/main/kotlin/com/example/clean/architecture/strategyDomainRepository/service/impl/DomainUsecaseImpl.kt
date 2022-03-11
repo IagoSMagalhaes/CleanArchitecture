@@ -7,10 +7,9 @@ import org.springframework.stereotype.Service
 
 
 @Service
-open class DomainServiceImpl(val factory: StrategyDomainFactory) {
+open class DomainUsecaseImpl(val factory: StrategyDomainFactory) {
 
-	 val LOG = LoggerFactory.getLogger(DomainServiceImpl::class.java)
-
+	 val LOG = LoggerFactory.getLogger(DomainUsecaseImpl::class.java)
 
 	fun get(domain: String, query: String?) : List<DomainEntity> {
 
@@ -18,13 +17,12 @@ open class DomainServiceImpl(val factory: StrategyDomainFactory) {
 
 		val strategy = factory.get(domain)
 
-		LOG.info("GET Domain strategy: {} service: {}", strategy?.domain, strategy?.service.toString())
+		LOG.info("GET Domain strategy: {} service: {}", strategy.domain, strategy.service.toString())
 
-		val response = strategy?.get(domain, query)
+		val response = strategy.get(domain, query)
 
-		LOG.info("GET Domain strategy: {} response: {}", strategy?.domain, response)
+		LOG.info("GET Domain strategy: {} response: {}", strategy.domain, response)
 
-		return response.orEmpty()
+		return response
 	}
-
 }
