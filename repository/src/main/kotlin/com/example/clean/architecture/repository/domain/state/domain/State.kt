@@ -1,7 +1,9 @@
 package com.example.clean.architecture.repository.domain.state.domain
 
+import com.example.clean.architecture.entities.repositoryDomain.state.domain.StateEntity
 import com.sun.istack.NotNull
 import javax.persistence.*
+
 //import javax.validation.constraints.Size
 
 
@@ -24,31 +26,24 @@ open class State (
 	@Column(name = "initials")
 	open val initials: String? = null)
 
-/*
 
-fun List<Asset>.toEntity() = map { it.toEntity() }
 
-fun Asset.toEntity() = AssetEntity(id = id,
-								 name = assetName,
-								 fullValue = fullValue,
-								type = type,
-								 manager = manager
-								// active = active,
-							//	 dateCreate = dateCreate,
-							//	 dateUpdate = dateUpdate,
-						//		 dateExclude = dateExclude
+fun List<State>.toEntity() = map { it.toEntity() }
+
+fun State.toEntity() = StateEntity(id = id,
+								 fullName = fullName,
+								 initials = initials
+								 //dateCreate = dateCreate,
+								 //dateUpdate = dateUpdate,
+								 //dateExclude = dateExclude
 		 )
 
-fun List<AssetEntity>.toDomain() = map { it.toDomain() }
+//fun List<StateEntity>.toDomain() = map { it.toDomain() }
 
-fun AssetEntity.toDomain() = Asset(id = id,
-	assetName = name,
-	type = type,
-	fullValue = fullValue,
-	manager = manager,
-	active = active,
-	dateCreate = dateCreate,
-	dateUpdate = dateUpdate,
-	dateExclude = dateExclude)
 
- */
+fun List<StateEntity>.toDomainEntity() = map { it.toDomainEntity() }
+
+fun StateEntity.toDomainEntity() = com.example.clean.architecture.entities.otherRepositories.domain.domain.DomainEntity(
+	label = fullName,
+	value = initials)
+

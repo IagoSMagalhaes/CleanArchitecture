@@ -14,11 +14,9 @@ open class ChainHandlerNotifyCreateUser(val gatewayProducerNotifyCreateUserRepos
 
 	val LOG = LoggerFactory.getLogger(ChainHandlerNotifyCreateUser::class.java)
 
-	override fun execute(body: RequestPostUserEntity) =
-						gatewayProducerNotifyCreateUserRepository.produce(body.toRequestPostNotifyCreateUserEntity())
-																	.also { next(body) }
+	override fun execute(body: RequestPostUserEntity) = gatewayProducerNotifyCreateUserRepository.produce(body.toRequestPostNotifyCreateUserEntity())
+																								 .also { next(body) }
 
-	override fun next(body: RequestPostUserEntity) =
-		LOG.info("END Flux ChainOfResponsabilityCreateUser user ${body.name}")
+	override fun next(body: RequestPostUserEntity) = LOG.info("END Flux ChainOfResponsabilityCreateUser user ${body.name}")
 
 }

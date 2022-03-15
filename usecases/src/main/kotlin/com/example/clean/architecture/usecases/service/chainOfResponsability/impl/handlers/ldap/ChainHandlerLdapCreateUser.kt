@@ -13,9 +13,8 @@ open class ChainHandlerLdapCreateUser(val gatewayLdapUserRepository: GatewayLdap
 									  val chainNotify: ChainHandlerNotifyCreateUser
 ) : ChainHandlerCreateUserService {
 
-	override fun execute(body: RequestPostUserEntity)
-			= gatewayLdapUserRepository.post(body.toRequestPostLdapUserEntity())
-										 .also { next(body) }
+	override fun execute(body: RequestPostUserEntity) = gatewayLdapUserRepository.post(body.toRequestPostLdapUserEntity())
+										 										 .also { next(body) }
 
 	override fun next(body: RequestPostUserEntity) = chainNotify.execute(body)
 }

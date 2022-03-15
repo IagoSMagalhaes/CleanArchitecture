@@ -50,12 +50,12 @@
 									"raw": "{\r\n    \"active\": true,\r\n    \"cellphone\": \"11912345678\",\r\n    \"email\": \"iago@gmail.com\",\r\n    \"name\": \"Iago Magalhaes\"\r\n}"
 								},
 								"url": {
-									"raw": "http://localhost:8081/user/v1",
+									"raw": "http://localhost:8080/user/v1",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
-									"port": "8081",
+									"port": "8080",
 									"path": [
 										"user",
 										"v1"
@@ -149,12 +149,12 @@
 									}
 								],
 								"url": {
-									"raw": "http://localhost:8081/user/v1/by",
+									"raw": "http://localhost:8080/user/v1/by",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
-									"port": "8081",
+									"port": "8080",
 									"path": [
 										"user",
 										"v1",
@@ -208,12 +208,12 @@
 									"raw": "{\r\n\r\n        \"active\": true,\r\n        \"cellphone\": \"11987654321\",\r\n        \"email\": \"iagoseixeiromagalhaes@gmail.com\",\r\n        \"id\": 1,\r\n        \"name\": \"Iago Seixeiro Magalhaes\"\r\n\r\n}"
 								},
 								"url": {
-									"raw": "http://localhost:8081/user/v1",
+									"raw": "http://localhost:8080/user/v1",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
-									"port": "8081",
+									"port": "8080",
 									"path": [
 										"user",
 										"v1"
@@ -307,12 +307,12 @@
 									}
 								],
 								"url": {
-									"raw": "http://localhost:8081/user/v1/by",
+									"raw": "http://localhost:8080/user/v1/by",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
-									"port": "8081",
+									"port": "8080",
 									"path": [
 										"user",
 										"v1",
@@ -366,12 +366,12 @@
 									"raw": "1"
 								},
 								"url": {
-									"raw": "http://localhost:8081/user/v1",
+									"raw": "http://localhost:8080/user/v1",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
-									"port": "8081",
+									"port": "8080",
 									"path": [
 										"user",
 										"v1"
@@ -431,12 +431,12 @@
 									}
 								],
 								"url": {
-									"raw": "http://localhost:8081/user/v1/by",
+									"raw": "http://localhost:8080/user/v1/by",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
-									"port": "8081",
+									"port": "8080",
 									"path": [
 										"user",
 										"v1",
@@ -520,12 +520,12 @@
 									"raw": "{\r\n    \"active\": true,\r\n    \"cellphone\": \"11912345678\",\r\n    \"email\": \"iago@gmail.com\"\r\n}"
 								},
 								"url": {
-									"raw": "http://localhost:8081/user/v1",
+									"raw": "http://localhost:8080/user/v1",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
-									"port": "8081",
+									"port": "8080",
 									"path": [
 										"user",
 										"v1"
@@ -598,12 +598,12 @@
 									"raw": "{\r\n    \"active\": true,\r\n    \"cellphone\": \"11912345678\",\r\n    \"name\": \"Iago Magalhaes\"\r\n}"
 								},
 								"url": {
-									"raw": "http://localhost:8081/user/v1",
+									"raw": "http://localhost:8080/user/v1",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
-									"port": "8081",
+									"port": "8080",
 									"path": [
 										"user",
 										"v1"
@@ -676,12 +676,12 @@
 									"raw": "{\r\n    \"active\": true,\r\n    \"email\": \"iago@gmail.com\",\r\n    \"name\": \"Iago Magalhaes\"\r\n}"
 								},
 								"url": {
-									"raw": "http://localhost:8081/user/v1",
+									"raw": "http://localhost:8080/user/v1",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
-									"port": "8081",
+									"port": "8080",
 									"path": [
 										"user",
 										"v1"
@@ -771,12 +771,12 @@
 									"raw": "{\r\n\r\n        \"active\": true,\r\n        \"cellphone\": \"11987654321\",\r\n        \"email\": \"iagoseixeiromagalhaes@gmail.com\",\r\n        \"name\": \"Iago Seixeiro Magalhaes\"\r\n\r\n}"
 								},
 								"url": {
-									"raw": "http://localhost:8081/user/v1",
+									"raw": "http://localhost:8080/user/v1",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
-									"port": "8081",
+									"port": "8080",
 									"path": [
 										"user",
 										"v1"
@@ -854,12 +854,12 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "http://localhost:8081/user/v1",
+									"raw": "http://localhost:8080/user/v1",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
-									"port": "8081",
+									"port": "8080",
 									"path": [
 										"user",
 										"v1"
