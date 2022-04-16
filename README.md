@@ -853,35 +853,33 @@ open class NotifyCreateUserCRMListener(val gatewayNotifyCRMRepository: GatewayNo
 
 ```kotlin
 @Service
-open class ProducerNotifyCreateUserUsecaseImpl(val rabbitTemplate: RabbitTemplate) : ProducerNotifyCreateUserUsecase {
+class ProducerNotifyCreateUserUsecaseImpl(val rabbitTemplate: RabbitTemplate) : ProducerNotifyCreateUserUsecase {
 
-	 val LOG = LoggerFactory.getLogger(ProducerNotifyCreateUserUsecaseImpl::class.java)
+  val LOG = LoggerFactory.getLogger(ProducerNotifyCreateUserUsecaseImpl::class.java)
 
+  override fun produce(body: RequestPostNotifyCreateUserEntity) {
 
-	override fun produce(body: RequestPostNotifyCreateUserEntity) {
+    val methodName = "Produce Notify Create User"
 
-		val methodName = "Produce Notify Create User"
+    runCatching {
 
-		runCatching {
+      LOG.info("START $methodName body: $body")
 
-			LOG.info("START $methodName body: $body")
+      //rabbitTemplate.send("routingkey", body)
 
-			rabbitTemplate.send("routingkey", body)
+    }.onFailure {
 
-		}.onFailure {
+      LOG.error("ERROR $methodName message: {} localizeMessage: {}", it.message, it.localizedMessage)
 
-			LOG.error("ERROR $methodName message: {} localizeMessage: {}", it.message, it.localizedMessage)
+      throw PostNotifyCreateUserException()
 
-			throw PostNotifyCreateUserException()
+    }.onSuccess {
+      LOG.info("END $methodName")
 
-		}.onSuccess {
-			LOG.info("END $methodName")
-
-		}
-	}
+    }
+  }
 }
 ```
-
 
 #### JUnit
 

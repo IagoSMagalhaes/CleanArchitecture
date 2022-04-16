@@ -3,13 +3,12 @@ package com.example.clean.architecture.notifyRepository.service.producer.impl
 import com.example.clean.architecture.entities.otherRepositories.notify.dto.request.RequestPostNotifyCreateUserEntity
 import com.example.clean.architecture.entities.otherRepositories.notify.exception.PostNotifyCreateUserException
 import com.example.clean.architecture.notifyRepository.service.producer.ProducerNotifyCreateUserUsecase
-import org.slf4j.LoggerFactory
-import org.springframework.amqp.rabbit.core.RabbitTemplate
+import com.sun.org.slf4j.internal.LoggerFactory
 import org.springframework.stereotype.Service
 
 
 @Service
-open class ProducerNotifyCreateUserUsecaseImpl(val rabbitTemplate: RabbitTemplate) : ProducerNotifyCreateUserUsecase {
+open class ProducerNotifyCreateUserUsecaseImpl() : ProducerNotifyCreateUserUsecase {
 
 	 val LOG = LoggerFactory.getLogger(ProducerNotifyCreateUserUsecaseImpl::class.java)
 
@@ -20,18 +19,18 @@ open class ProducerNotifyCreateUserUsecaseImpl(val rabbitTemplate: RabbitTemplat
 
 		runCatching {
 
-			LOG.info("START $methodName body: $body")
+			//LOG.info("START $methodName body: $body")
 
 			//rabbitTemplate.send("routingkey", body)
 
 		}.onFailure {
 
-			LOG.error("ERROR $methodName message: {} localizeMessage: {}", it.message, it.localizedMessage)
+			//LOG.error("ERROR $methodName message: {} localizeMessage: {}", it.message, it.localizedMessage)
 
 			throw PostNotifyCreateUserException()
 
 		}.onSuccess {
-			LOG.info("END $methodName")
+			//LOG.info("END $methodName")
 
 		}
 	}
