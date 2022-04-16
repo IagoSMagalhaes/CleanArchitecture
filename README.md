@@ -117,19 +117,19 @@
 
                     CleanArchitecture
 
-    [Servidor]                   Spring Boot
-
-    [Banco de dados]             Spring Data / Spring LDAP / PostgreSQL
-
-    [Linguagem]                  Kotlin
-
-    [Autenticação]               SpringSecurity / oAuth2 / JWT
-
-    [Design Pattern's]           Clean Architecture / Strategy / Chain Of Responsability / Builder / Producer / Server Driven UI
-
-    [Mensageria]                 RabbitMQ
-
-    [Documentação]               Swagger
+      [Servidor]                   Spring Boot
+  
+      [Banco de dados]             Spring Data / Spring LDAP / PostgreSQL
+  
+      [Linguagem]                  Kotlin
+  
+      [Autenticação]               SpringSecurity / oAuth2 / JWT
+  
+      [Design Pattern's]           Clean Architecture / Strategy / Chain Of Responsability / Builder / Producer / Server Driven UI
+  
+      [Mensageria]                 RabbitMQ
+  
+      [Documentação]               Swagger
 
 ## Documentação
 
