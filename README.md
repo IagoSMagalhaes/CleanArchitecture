@@ -62,6 +62,7 @@
   * [JUnit](#junit)
   * [Mockito](#mockito)
   * [PostgreSQL](#postgre-sql)
+  * [REST API](#rest-api)
   
 
 * [Design Patter'n](#design-pattern)
@@ -77,6 +78,7 @@
     * [HandleRepository](#chain-of-responsability-handle-repository)   
     * [HandleLDAP](#chain-of-responsability-handle-ldap)   
     * [HandleNotify](#chain-of-responsability-handle-notify)   
+  * [Producer](#producer)
   * [Builder](#builder)
   * [Server Driven UI](#server-driven-ui)
   * [Estrutura de Packages / Nomeclatura dos arquivos](#estrutura-de-packges)  
@@ -88,25 +90,45 @@
 
 * [Readme](#readme)
 * [Personas](#personas)
+* [Carreira](#carreira)
+* [Contato](#contact)
 
 
 
 
 ## Sobre
 
-- Este é um template de microserviço escrito na linguagem Kotlin, usando os frameworks Spring com o padrão Clean Architecture;
-
-
-- O Sistema possui:
+- Este é um microserviço escrito na linguagem Kotlin, usando os frameworks Spring com o padrão Clean Architecture, o sistema possui:
 
   - Conexão com Banco de Dados (PostgreSQL);
-  - Conexão com Mensageria (RabbitMQ);
-  - Design Patter'ns (Clean Architecture, Strategy, ChainOfResponsability, Builder, Server Driven UI);
+  
+  - Conexão com Mensageria (RabbitMQ)
+  
+  - Design Patter'ns (Clean Architecture, Strategy, ChainOfResponsability, Producer, Builder, Server Driven UI);
+
+  
+- Este microserviço aborda a necessidade de gerenciar usuários. A api deve permitir: 
+  - Cadastro de novos usuarios; 
+  - Consulta por documento ou telefone; 
+  - Alteração dos dados; 
+  - Exclusão de usuários;  
 
 
+                    CleanArchitecture
 
+    [Servidor]                   Spring Boot
 
+    [Banco de dados]             Spring Data / Spring LDAP / PostgreSQL
 
+    [Linguagem]                  Kotlin
+
+    [Autenticação]               SpringSecurity / oAuth2 / JWT
+
+    [Design Pattern's]           Clean Architecture / Strategy / Chain Of Responsability / Builder / Producer / Server Driven UI
+
+    [Mensageria]                 RabbitMQ
+
+    [Documentação]               Swagger
 
 ## Documentação
 
@@ -121,23 +143,6 @@
 
 - O termo se refere à preparação de backlog  (que são os requisitos ou lista de pendências) e é mais adequadamente conhecido como refinamento. É o ato de detalhar, entender mais profundamente, adicionar características, estimar, priorizar e manter o backlog do produto vivo.
 
-#### Sistema
-
-                    CleanArchitecture
-
-    [Servidor]                   Spring Boot
-
-    [Banco de dados]             Spring Data / Spring LDAP / PostgreSQL
-
-    [Linguagem]                  Kotlin
-
-    [Autenticação]               SpringSecurity / oAuth2 / JWT
-
-    [Design Pattern's]           Clean Architecture / Strategy / Chain Of Responsability / Builder / Server Driven UI
-
-    [Mensageria]                 Rabbit 
-
-    [Documentação]               Swagger
 
 
 ##### Premissas
@@ -177,17 +182,25 @@
 
 #### Criando usuario;
 
-![img_1.png](readme/images/diagram_create_user.png)
+![img.png](readme/images/diagram_create_user_v3.png)
 
-#### Buscando usuário;
+#### Buscando todos usuários;
 
-![img.png](readme/images/diagram_get_user.png)
+![img.png](readme/images/diagram_get_all_users.png)
+
+#### Buscando usuário por Parametro;
+
+![img.png](readme/images/diagram_get_user_by.png)
 
 #### Alterando usuário;
+
+![img.png](readme/images/diagram_put_user_by.png)
 
 #### Bloqueando / Desbloqueando usuário;
 
 #### Deletando usuário;
+
+![img.png](readme/images/diagram_delete_user_by.png)
 
 
 
@@ -198,10 +211,11 @@
 #### HTTP
 
     1. Criar usuario                    POST localhost:8080/v1/user        
-    2. Buscar usuario                   GET  localhost:8080/v1/user
-    3. Alterar dados usuario            PUT  localhost:8080/v1/user
-    4. Bloquear usuario                 PUT  localhost:8080/v1/user/block
-    5. Bloquear / Desbloquear usuario   PUT  localhost:8080/v1/user/unlock
+    2. Buscar todos usuarios            GET  localhost:8080/v1/user/all
+    3. Buscar usuario por parametro     GET  localhost:8080/v1/user
+    4. Alterar dados usuario            PUT  localhost:8080/v1/user
+    5. Bloquear usuario                 PUT  localhost:8080/v1/user/block
+    6. Bloquear / Desbloquear usuario   PUT  localhost:8080/v1/user/unlock
 
 #### Fila
 
@@ -879,7 +893,7 @@ open class ProducerNotifyCreateUserUsecaseImpl(val rabbitTemplate: RabbitTemplat
     
         UPDATE -> Atualizar Registro. update schema.tb_usuario set telefone = '' where documento = '12345678'
     
-        DELETE -: Deletar registro. delete from schema.tb_usuario where documento = '123545768'
+        DELETE -> Deletar registro. delete from schema.tb_usuario where documento = '123545768'
 
 
     Exemplos:
@@ -887,8 +901,30 @@ open class ProducerNotifyCreateUserUsecaseImpl(val rabbitTemplate: RabbitTemplat
     Links: https://rockcontent.com/br/blog/postgresql/
 
            https://4linux.com.br/o-que-e-postgresql/
+
+
+## REST API
+
+    O que é: API REST, também chamada de API RESTful, é uma interface de programação de aplicações (API ou API web) que está em conformidade com as restrições do estilo de arquitetura REST, permitindo a interação com serviços web RESTful. 
+
+    REST é a sigla em inglês para "Representational State Transfer", que em português significa tansferência de estado representacional. Essa arquitetura foi criada pelo cientista da computação Roy Fielding.
     
+    Pra que serve: Protocolo de comunicação entre API's;
     
+    Conceitos: PATH, HEADER, BODY
+    
+        PATH -> Caminho da requisição; (qual a porta de entrada do serviço)
+    
+        HEADER -> Cabeçalho da requisição; (contem as informções da requisição como IP, userAgent etc)
+    
+        BODY -> Corpo da requisição; (Conteúdo da requisição)
+
+
+    Exemplos:
+
+    Links: https://www.redhat.com/pt-br/topics/api/what-is-a-rest-api          
+ 
+
 
 
 # Design Patter'n
@@ -901,8 +937,7 @@ open class ProducerNotifyCreateUserUsecaseImpl(val rabbitTemplate: RabbitTemplat
     
     Conceitos: Entity, Repository, Usecase, Controller
     
-    Links: https://engsoftmoderna.info/artigos/arquitetura-limpa.html
-           
+    Links: https://engsoftmoderna.info/artigos/arquitetura-limpa.html           
            https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html
 
 
@@ -1285,14 +1320,10 @@ open class ChainHandlerNotifyCreateUser(val gatewayProducerNotifyCreateUserRepos
 
 ```
 
-        
-
 
 #### Clean Code
 
-    O que é: 
-
-    Por que clean code é tão importante para nós? De fato a manutenção de um software é tão importante quanto sua construção.
+    O que é: Por que clean code é tão importante para nós? De fato a manutenção de um software é tão importante quanto sua construção.
     
     Como relatado por Robert C. Martin em seu livro clássico, Clean Code, um Best Seller da nossa área, algumas práticas e visões são importantíssimas para mantermos a vida do nosso software.
     
@@ -1369,12 +1400,75 @@ O primeiro passo para entender o Git Flow é compreender o funcionamento das bra
     Padrão de gerenciamento de código, boas práticas.
 
 
-## Readme
 
-- https://docs.github.com/pt/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax
+## Carreira
 
 
-- https://blog.rocketseat.com.br/como-fazer-um-bom-readme/
+Nivel: Estágiario
+
+    Responsabilidades:
+     - Estudar;
+     - Aprender;
+     - Perguntar;
+     - Aguçar a curiosidade;
+     - Executa tarefas simples;    
+
+
+Nivel: Junior
+
+    Responsabilidades:
+     - Executa tarefas de baixa complexidade;
+     - Executa tarefas média complexidade com ajuda;
+     - Estudar;
+     - Aprender;
+     - Perguntar;
+     - Aprender a pesquisar;
+     - Entende sua parte/ responsabilidade no projeto;
+     - Estuda bastante;
+
+
+Nivel: Pleno
+
+    Responsabilidades:
+     - Executa tarefas de média complexidade;
+     - Executa tarefas de alta complexidade com ajuda;
+     - Sabe pesquisar;
+     - Ajuda junior's;
+     - Entende o projeto como um todo;
+
+Nivel: Senior
+
+    Responsabilidades:     
+     - Executa tarefas de alta complexidade;
+     - Apaga os incêndios em produção;
+     - Responsável por produtos em produção;
+     - Ajuda no refinamento das tarefas;
+     - Ajuda no gerenciamento das atividades; obs: Tanto as próprias atividades quanto dos desenvolvedores com menos senioriedade     
+     - Sabe pesquisar muito bem;     
+     - Ajuda na definição da arquitetura;
+     - Ajuda todo o time; 
+     - Conhece bem os Padrões de Projeto;
+     - Conhece bem as tecnologias;
+     - Cuida dos ambientes; DEV / UAT / PRD
+     - Ajuda nos Pull Request PR's;     
+
+
+
+Nivel: Especialista / Arquiteto
+
+    Responsabilidades:
+     - Apaga os incendios mais sensiveis em produção;
+     - Responsável por produtos em produção;
+     - Ajuda no refinamento das tarefas;
+     - Ajuda no gerenciamento das atividades de todo o time;
+     - Responsavel pela definição da arquitetura e manutenção da mesma;
+     - Responsável pelas implementações mais sensiveis e complexas;
+     - Domina a arte de pesquisar;
+     - Aprende rapido;
+     - Ajuda todo o time;
+     - Domina os frameworks, os padrões, tecnologias e metodologias;     
+     - Cuida dos Pull Request PR's; -> Responsavel por tudo que entra em PRD
+
 
 ## Personas
 
@@ -1382,10 +1476,13 @@ O primeiro passo para entender o Git Flow é compreender o funcionamento das bra
 - Martin Fowler
 
 
+## Readme
+
+- https://docs.github.com/pt/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax
+
+
+- https://blog.rocketseat.com.br/como-fazer-um-bom-readme/
 
 ## Contact
 
 - https://www.linkedin.com/in/iagomagalh%C3%A3es/
-
-
-
