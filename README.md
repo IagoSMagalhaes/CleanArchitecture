@@ -115,7 +115,8 @@
 
 
 
-                    CleanArchitecture
+```
+               CleanArchitecture
 
       [Servidor]                   Spring Boot
   
@@ -130,6 +131,10 @@
       [Mensageria]                 RabbitMQ
   
       [Documentação]               Swagger
+```
+
+
+     
 
 ## Documentação
 
