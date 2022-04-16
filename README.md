@@ -88,9 +88,9 @@
   * [GitFlow](#git-flow)
   
 
-* [Readme](#readme)
-* [Personas](#personas)
 * [Carreira](#carreira)
+* [Personas](#personas)
+* [Readme](#readme)
 * [Contato](#contact)
 
 
