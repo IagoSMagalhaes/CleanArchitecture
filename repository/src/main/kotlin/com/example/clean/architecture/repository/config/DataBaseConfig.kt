@@ -10,9 +10,9 @@ import javax.sql.DataSource
 
 @Configuration
 open class DataBaseConfig(@Value("\${spring.datasource.postgre.username:postgres}") val user: String,
-					 @Value("\${spring.datasource.postgre.password:postgres}") val password: String,
-					 @Value("\${spring.datasource.postgre.url:jdbc:postgresql://localhost:5432/users}") val url: String,
-					 @Value("\${spring.database.postgre.driverClassName:org.postgresql.Driver}") val driverClassName: String) {
+					 	  @Value("\${spring.datasource.postgre.password:postgres}") val password: String,
+					 	  @Value("\${spring.datasource.postgre.url:jdbc:postgresql://localhost:5432/users}") val url: String,
+					 	  @Value("\${spring.database.postgre.driverClassName:org.postgresql.Driver}") val driverClassName: String) {
 
 	@Bean
 	open fun getDataSource(): DataSource? {
@@ -22,7 +22,7 @@ open class DataBaseConfig(@Value("\${spring.datasource.postgre.username:postgres
 		dataSource.driverClassName(driverClassName)
 		dataSource.url(url)
 		dataSource.username(user)
-		dataSource.password( password)
+		dataSource.password(password)
 
 		return dataSource.build()
 	}
