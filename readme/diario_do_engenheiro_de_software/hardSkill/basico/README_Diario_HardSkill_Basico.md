@@ -13,16 +13,6 @@
 * [HardSkils](#Hardskils)
   * [Sistema](#sistema)
 
-* [SoftSkils](#Softskils)
-  * [Sistema](#sistema)
-
-
-
-* [Entradas](#entradas)
-  * [HTTP](#http)
-  * [Fila](#fila)
-  
-
 * [Banco de Dados](#banco-de-dados)
   * [Diagram](#diagram)
   * [Scripts](#scripts)
@@ -41,14 +31,11 @@
     
 
 * [Tecnologias](#tecnologias)
+  * [Java](#java)
   * [Kotlin](#kotlin)
   * [Spring Boot](#spring-boot)
-  * [Spring Data](#spring-data)
-  * [Spring Security](#spring-data)
+  * [Spring Data](#spring-data)  
   * [Spring Feign](#spring-feign)
-  * [Spring Actuator](#spring-data)
-  * [Spring LDAP](#spring-ldap)
-  * [RabbitMQ](#rabbit-mq)
   * [JUnit](#junit)
   * [Mockito](#mockito)
   * [PostgreSQL](#postgre-sql)
@@ -56,19 +43,7 @@
   
 
 * [Design Patter'n](#design-pattern)
-  * [Clean Architecture](#clean-architecture)
-  * [Strategy](#strategy)
-    * [Factory](#strategy-factory)
-    * [Usecase](#strategy-usecase)
-    * [Strategy Children](#strategy-children)
-    * [Usecase Children](#strategy-usecase-children)
-  * [Chain Of Responsability](#chain-of-responsability)
-    * [Abstract](#chain-of-responsability-abstract)   
-    * [Usecase](#chain-of-responsability-usecase)   
-    * [HandleRepository](#chain-of-responsability-handle-repository)   
-    * [HandleLDAP](#chain-of-responsability-handle-ldap)   
-    * [HandleNotify](#chain-of-responsability-handle-notify)   
-  * [Producer](#producer)
+  * [MVC](#mvc)
   * [Builder](#builder)
   * [Server Driven UI](#server-driven-ui)
   * [Estrutura de Packages / Nomeclatura dos arquivos](#estrutura-de-packges)  

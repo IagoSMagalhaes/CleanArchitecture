@@ -13,14 +13,10 @@
 * [HardSkils](#Hardskils)
   * [Sistema](#sistema)
 
-* [SoftSkils](#Softskils)
-  * [Sistema](#sistema)
-
-
 
 * [Entradas](#entradas)
-  * [HTTP](#http)
-  * [Fila](#fila)
+  * [HTTP - Protoclo REST](#http)
+  * [Fila - Protoclo Mensageria](#fila)
   
 
 * [Banco de Dados](#banco-de-dados)
@@ -41,6 +37,7 @@
     
 
 * [Tecnologias](#tecnologias)
+  * [Java](#java)
   * [Kotlin](#kotlin)
   * [Spring Boot](#spring-boot)
   * [Spring Data](#spring-data)
@@ -53,9 +50,17 @@
   * [Mockito](#mockito)
   * [PostgreSQL](#postgre-sql)
   * [REST API](#rest-api)
-  
+
+
+* [Liderança](#liderança)
+  * [Organização](#organização)
+  * [Comunicação](#comunicação)
+  * [Rotinas](#rotinas)
+  * [Feedback](#feedback)
+
 
 * [Design Patter'n](#design-pattern)
+  * [MVC](#mvc)
   * [Clean Architecture](#clean-architecture)
   * [Strategy](#strategy)
     * [Factory](#strategy-factory)
